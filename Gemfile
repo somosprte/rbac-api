@@ -45,6 +45,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
  	
 gem 'mini_magick'
+gem 'kaminari'
 
 gem 'auth', path: 'engines/auth'
 gem 'user', path: 'engines/user'
