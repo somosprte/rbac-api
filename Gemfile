@@ -29,8 +29,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+   gem 'byebug', platform: :mri
+   gem 'rspec-rails', '~> 3.5'
+   gem 'pry-meta'
+   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
+   gem 'database_cleaner'
+   gem 'factory_bot_rails'
+   gem 'faker'
 end
 
 group :development do
@@ -43,6 +49,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+ 	
+gem 'mini_magick'
+gem 'kaminari'
+gem 'rswag'
 
 gem 'auth', path: 'engines/auth'
 gem 'user', path: 'engines/user'

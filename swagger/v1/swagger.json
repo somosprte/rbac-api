@@ -1,0 +1,108 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "RBAC-API",
+    "version": "v1"
+  },
+  "paths": {
+    "/gallery/v1/activities/": {
+      "get": {
+        "summary": "Get Activities",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get Activities",
+        "parameters": [
+          {
+            "name": "per",
+            "in": "query",
+            "type": "integer",
+            "description": "results per page",
+            "default": 10,
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "description": "page",
+            "default": 1,
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment Methods found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/activities_object"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=1&page[size]=10"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=1&page[size]=10"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "url",
+                      "example": null
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=2&page[size]=10"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=10&page[size]=10"
+                    }
+                  },
+                  "required": [
+                    "self",
+                    "first",
+                    "last"
+                  ]
+                },
+                "meta": {
+                  "$ref": "#/definitions/meta_pagination_object"
+                }
+              },
+              "required": [
+                "data",
+                "links",
+                "meta"
+              ]
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
