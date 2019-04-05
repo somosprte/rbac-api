@@ -3,16 +3,16 @@ require 'swagger_helper'
 
 
 RSpec.describe 'Activities API', type: :request do
-    path '/gallery/v1/activities/' do
-        get "Get Activities" do
-            tags 'Gallery'
-            security [ Bearer: [] ]
+  path '/gallery/v1/activities/' do
+      get "Get Activities" do
+            tags 'Activities'
+            #security [ Bearer: [] ]
             consumes 'application/json'
             description "Get Activities"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
             parameter name: :page, :in => :query, :type => :integer, :description => 'page', :default => 1, required: false
 
-            response '200', 'Payment Methods found' do
+            response '200', 'Activities found' do
                 schema type: :object,
                     properties: {
                         data: {
@@ -66,4 +66,198 @@ RSpec.describe 'Activities API', type: :request do
             
         end
     end
+
+    path '/gallery/v1/activities/{id}' do
+      get "Get a Activity" do
+          tags 'Activities'
+          #security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Get a Activity"      
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
+
+          response '200', 'Activity found' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/activities_object'
+                          } 
+                      }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+
+
+          response '404', 'Activity Not Found' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+      end
+    end
+
+    path '/gallery/v1/activities' do
+      post "Create a Activity" do
+          tags 'Activities'
+          #security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Create a Activity"      
+          parameter name: :body, in: :body, required: true, schema: {
+              type: :object,
+              properties: {
+                  activity: {
+                      type: :object,
+                      properties: {
+                          title: { type: :string, example: "Atividade"},
+                          caption: { type: :string, example: "Atividade em sala"},
+                          description: { type: :string, example: "primeira atividade em sala de aula"},
+                          motivation: { type: :string, example: "Ensinamentos basicos"},
+                          powerful_ideas: { type: :string, example: "Ideias"},
+                          products: {type: :string, example: "Produtos"},
+                          requirements: {type: :string, example: "Inglês"},
+                          published: {type: :boolean, example:true},
+                          version_history: {type: :string, example:"1.0"},
+                          copyright: {type: :string, example:"rbac"},
+                          license_type: {type: :string, example:"License"},
+                          scope_ids: {type: :array, example:["c6a92130-6d30-42f6-93c0-245acf360152"]},
+                          audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
+                          user_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]}
+                      },
+                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","scope_ids","audience_ids","user_ids"] 
+                  }
+              }
+          }   
+          
+          response '201', 'Activity create' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/activities_object'
+                          } 
+                      }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+          
+         
+
+          response '422', 'Entity error' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+      end
+      
+    end
+
+    path '/gallery/v1/activities/{id}' do
+      put "Update a Activity" do
+          tags 'Activities'
+          #security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Update a Activity"
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true      
+          parameter name: :body, in: :body, required: true, schema: {
+              type: :object,
+              properties: {
+                  activity: {
+                      type: :object,
+                      properties: {
+                          title: { type: :string, example: "Atividade"},
+                          caption: { type: :string, example: "Atividade em sala"},
+                          description: { type: :string, example: "primeira atividade em sala de aula"},
+                          motivation: { type: :string, example: "Ensinamentos basicos"},
+                          powerful_ideas: { type: :string, example: "Ideias"},
+                          products: {type: :string, example: "Produtos"},
+                          requirements: {type: :string, example: "Inglês"},
+                          published: {type: :boolean, example:true},
+                          version_history: {type: :string, example:"1.0"},
+                          copyright: {type: :string, example:"rbac"},
+                          license_type: {type: :string, example:"License"},
+                          scope_ids: {type: :array, example:["c6a92130-6d30-42f6-93c0-245acf360152"]},
+                          audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
+                          user_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]}
+                      },
+                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","scope_ids","audience_ids","user_ids"] 
+                  }
+              }
+          }   
+          
+          response '200', 'Activity update' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/activities_object'
+                          } 
+                      }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+          
+          response '404', 'Activity Not Found' do
+            let(:id) { 'invalid' }
+            run_test!
+          end
+
+          response '422', 'Entity error' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+      end
+      
+    end
+
+    path '/gallery/v1/activities/{id}' do
+      delete "Delete a Activity" do
+          tags 'Activities'
+          #security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Delete a Activity"
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true      
+
+          
+          response '204', 'Activity delete' do
+            run_test!
+          end
+          
+          response '404', 'Activity Not Found' do
+            let(:id) { 'invalid' }
+            run_test!
+          end
+
+          
+          response '500', 'Internal Server Error' do
+              let(:id) { 'invalid' }
+              run_test!
+          end
+          
+      end
+      
+    end
+    
+
 end
