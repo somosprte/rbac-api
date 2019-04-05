@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "RBAC-API",
+    "title": "API V1",
     "version": "v1"
   },
   "paths": {

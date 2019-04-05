@@ -61,7 +61,6 @@ RSpec.describe 'Activities API', type: :request do
             end
             
             response '500', 'Internal Server Error' do
-                let(:id) { 'invalid' }
                 run_test!
             end
             
