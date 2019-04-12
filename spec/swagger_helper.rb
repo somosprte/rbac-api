@@ -113,9 +113,83 @@ RSpec.configure do |config|
                         license_type:{
                             type: :string,
                             example:"License"
+                        },
+                        scopes:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/scopes_object' 
+                            }   
+                        },
+                        audiences:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/audiences_object' 
+                            }   
                         }
                     },
                     required: ['title']
+                },
+                scopes_object: {
+                    type: :object,
+                    properties: {
+                    id: {
+                            type: :string,
+                            example: '1758b1cc-ae2f-41c1-9d40-5c6bc7bdc807'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'gallery-scopes'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/scope_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                scope_object: {
+                    type: :object,
+                    properties: {
+                        title: { 
+                            type: :string,
+                            example: 'Scope 1'
+                        },
+                        description: {
+                            type: :string, 
+                            example: 'Scope 1' 
+                        },
+                    },
+                    required: [ 'title']
+                },
+                audiences_object: {
+                    type: :object,
+                    properties: {
+                        id: {
+                                type: :string,
+                                example: '93f8345c-3e87-4485-9dfb-2a1102252020'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'gallery-audiences'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/audience_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                audience_object: {
+                    type: :object,
+                    properties: {
+                        name: { 
+                            type: :string,
+                            example: 'Crianças'
+                        },
+                        description: {
+                            type: :string, 
+                            example: 'Crianças' 
+                        },
+                    },
+                    required: [ 'title']
                 }
             }
         }

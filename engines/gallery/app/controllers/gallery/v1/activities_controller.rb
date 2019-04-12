@@ -7,7 +7,7 @@ module Gallery
       #skip_before_action :authenticate, :only => [:index, :page]
 
 
-      # GET /locals
+      # GET /gallery/v1/activities
       def index
         @activities = Gallery::Activity.all
 
@@ -60,7 +60,7 @@ module Gallery
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_activity
-          @local = Activity.find(params[:id])
+          @activity = Activity.find(params[:id])
         end
 
         # Only allow a trusted parameter "white list" through.

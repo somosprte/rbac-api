@@ -1,6 +1,8 @@
 # This migration comes from active_storage (originally 20170806125915)
 class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
   def change
+    enable_extension 'uuid-ossp' unless extension_enabled?('uuid-ossp')
+    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
     create_table :active_storage_blobs do |t|
       t.string   :key,        null: false
       t.string   :filename,   null: false
@@ -15,7 +17,8 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
 
     create_table :active_storage_attachments do |t|
       t.string     :name,     null: false
-      t.references :record,   null: false, polymorphic: true, index: false
+      t.uuid :record_id, null: false     
+      t.string :record_type, null: false 
       t.references :blob,     null: false
 
       t.datetime :created_at, null: false

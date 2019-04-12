@@ -53,6 +53,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mini_magick'
 gem 'kaminari'
 gem 'rswag'
+gem 'aws-sdk-s3'
 
 gem 'auth', path: 'engines/auth'
 gem 'user', path: 'engines/user'

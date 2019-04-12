@@ -32,3 +32,10 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+amazon:
+  service: S3
+  access_key_id: AKIA2SZCEJJ2OCUOKKTM
+  secret_access_key: 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
+  bucket: 'https://aprendizagemcriativa.signin.aws.amazon.com/console'
+  region: 'us-west-2'
