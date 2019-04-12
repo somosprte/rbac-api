@@ -539,7 +539,145 @@
         }
       }
     },
+    "/gallery/v1/audiences": {
+      "post": {
+        "summary": "Create a Audience",
+        "tags": [
+          "Audiences"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a Audience",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "audience": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Crianças"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Crianças"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Audience create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/audiences_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "422": {
+            "description": "Entity error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/gallery/v1/audiences/{id}": {
+      "put": {
+        "summary": "Update a Audience",
+        "tags": [
+          "Audiences"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a Audience",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "audience id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scope": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Crianças"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Crianças"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audience update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/audiences_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "404": {
+            "description": "Audience Not Found"
+          },
+          "422": {
+            "description": "Entity error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "get": {
         "summary": "Get a Audience",
         "tags": [
@@ -575,6 +713,36 @@
                 "data"
               ]
             }
+          },
+          "404": {
+            "description": "Audience Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Audience",
+        "tags": [
+          "Audiences"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a Audience",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "audience id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Audience delete"
           },
           "404": {
             "description": "Audience Not Found"
@@ -677,7 +845,145 @@
         }
       }
     },
+    "/gallery/v1/scopes": {
+      "post": {
+        "summary": "Create a Scope",
+        "tags": [
+          "Scopes"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a Scope",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scope": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "Scope 1"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Scope 1"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Scope create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/scopes_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "422": {
+            "description": "Entity error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/gallery/v1/scopes/{id}": {
+      "put": {
+        "summary": "Update a Scope",
+        "tags": [
+          "Scopes"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a Scope",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "scope id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scope": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "Scope 1"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Scope 1"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scope update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/scopes_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "404": {
+            "description": "Scope Not Found"
+          },
+          "422": {
+            "description": "Entity error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "get": {
         "summary": "Get a Scope",
         "tags": [
@@ -713,6 +1019,36 @@
                 "data"
               ]
             }
+          },
+          "404": {
+            "description": "Scope Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Scope",
+        "tags": [
+          "Scopes"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a Scope",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "scope id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Scope delete"
           },
           "404": {
             "description": "Scope Not Found"

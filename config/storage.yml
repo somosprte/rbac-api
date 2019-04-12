@@ -33,9 +33,9 @@ local:
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
 
-amazon:
-  service: S3
-  access_key_id: AKIA2SZCEJJ2OCUOKKTM
-  secret_access_key: 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
-  bucket: 'https://aprendizagemcriativa.signin.aws.amazon.com/console'
-  region: 'us-west-2'
+# amazon:
+#   service: S3
+#   access_key_id: 'my_key'
+#   secret_access_key: my_secret
+#   bucket: 'url'
+#   region: 'us-west-2'

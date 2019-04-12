@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class AudiencesController < ApplicationController
-      before_action :set_audience, only: [:show]
+      before_action :set_audience, only: [:show, :update, :destroy]
       #skip_before_action :authenticate, :only => [:index, :page]
 
 
@@ -17,13 +17,34 @@ module Gallery
         render json: @audiences, meta: pagination_dict(@audiences)
       end
 
+      # POST /gallery/v1/audiences
+      def create
+        @audience = Gallery::Audience.create(audience_params)
+        if @audience.save
+          render json: @audience
+        else
+          render json: @audience.errors, status: :unprocessable_entity
+        end
+      end
+
+      # PATCH/PUT gallery/v1/audiences/:id
+      def update
+        if @audience.update(audience_params)
+          render json: @audience
+        else
+          render json: @audience.errors, status: :unprocessable_entity
+        end
+      end
 
       # GET /gallery/v1/audiences/:id
       def show
         render json: @audience
       end
       
-    
+      # DELETE /gallery/v1/audiences/:id
+      def destroy
+        @audience.destroy
+      end
 
       def pagination_dict(collection)
         {

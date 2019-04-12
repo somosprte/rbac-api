@@ -67,6 +67,111 @@ RSpec.describe 'Audiences API', type: :request do
         end
     end
 
+    path '/gallery/v1/audiences' do
+        post "Create a Audience" do
+            tags 'Audiences'
+            #security [ Bearer: [] ]
+            consumes 'application/json'
+            description "Create a Audience"      
+            parameter name: :body, in: :body, required: true, schema: {
+                type: :object,
+                properties: {
+                    audience: {
+                        type: :object,
+                        properties: {
+                            name: { type: :string, example: "Crianças"},
+                            description: { type: :string, example: "Crianças"}
+                        },
+                        required: ["name"] 
+                    }
+                }
+            }   
+            
+            response '201', 'Audience create' do
+                schema type: :object,
+                    properties: {
+                        data: {
+                            type: :array,
+                            items: {
+                                '$ref': '#/definitions/audiences_object'
+                            } 
+                        }
+                    },
+                    required: ["data"] 
+                run_test!
+            end
+            
+           
+  
+            response '422', 'Entity error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+            response '500', 'Internal Server Error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+        end
+        
+    end
+
+    path '/gallery/v1/audiences/{id}' do
+        put "Update a Audience" do
+            tags 'Audiences'
+            #security [ Bearer: [] ]
+            consumes 'application/json'
+            description "Update a Audience"
+            parameter name: :id, :in => :path, :type => :string, :description => 'audience id', required: true      
+            parameter name: :body, in: :body, required: true, schema: {
+                type: :object,
+                properties: {
+                    scope: {
+                        type: :object,
+                        properties: {
+                            name: { type: :string, example: "Crianças"},
+                            description: { type: :string, example: "Crianças"}
+                        },
+                        required: ["name"] 
+                    }
+                }
+            }   
+            
+            response '200', 'Audience update' do
+                schema type: :object,
+                    properties: {
+                        data: {
+                            type: :array,
+                            items: {
+                                '$ref': '#/definitions/audiences_object'
+                            } 
+                        }
+                    },
+                    required: ["data"] 
+                run_test!
+            end
+            
+           
+            response '404', 'Audience Not Found' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+  
+            response '422', 'Entity error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+            response '500', 'Internal Server Error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+        end
+        
+    end
+
     path '/gallery/v1/audiences/{id}' do
         get "Get a Audience" do
             tags 'Audiences'
@@ -94,6 +199,33 @@ RSpec.describe 'Audiences API', type: :request do
                 let(:id) { 'invalid' }
                 run_test!
             end
+            
+            response '500', 'Internal Server Error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+        end
+    end
+
+    path '/gallery/v1/audiences/{id}' do
+        delete "Delete a Audience" do
+            tags 'Audiences'
+            #security [ Bearer: [] ]
+            consumes 'application/json'
+            description "Delete a Audience"
+            parameter name: :id, :in => :path, :type => :string, :description => 'audience id', required: true      
+  
+            
+            response '204', 'Audience delete' do
+              run_test!
+            end
+            
+            response '404', 'Audience Not Found' do
+              let(:id) { 'invalid' }
+              run_test!
+            end
+  
             
             response '500', 'Internal Server Error' do
                 let(:id) { 'invalid' }

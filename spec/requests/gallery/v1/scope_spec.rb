@@ -67,6 +67,111 @@ RSpec.describe 'Scopes API', type: :request do
         end
     end
 
+    path '/gallery/v1/scopes' do
+        post "Create a Scope" do
+            tags 'Scopes'
+            #security [ Bearer: [] ]
+            consumes 'application/json'
+            description "Create a Scope"      
+            parameter name: :body, in: :body, required: true, schema: {
+                type: :object,
+                properties: {
+                    scope: {
+                        type: :object,
+                        properties: {
+                            title: { type: :string, example: "Scope 1"},
+                            description: { type: :string, example: "Scope 1"}
+                        },
+                        required: ["title"] 
+                    }
+                }
+            }   
+            
+            response '201', 'Scope create' do
+                schema type: :object,
+                    properties: {
+                        data: {
+                            type: :array,
+                            items: {
+                                '$ref': '#/definitions/scopes_object'
+                            } 
+                        }
+                    },
+                    required: ["data"] 
+                run_test!
+            end
+            
+           
+  
+            response '422', 'Entity error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+            response '500', 'Internal Server Error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+        end
+        
+    end
+
+    path '/gallery/v1/scopes/{id}' do
+        put "Update a Scope" do
+            tags 'Scopes'
+            #security [ Bearer: [] ]
+            consumes 'application/json'
+            description "Update a Scope"
+            parameter name: :id, :in => :path, :type => :string, :description => 'scope id', required: true      
+            parameter name: :body, in: :body, required: true, schema: {
+                type: :object,
+                properties: {
+                    scope: {
+                        type: :object,
+                        properties: {
+                            title: { type: :string, example: "Scope 1"},
+                            description: { type: :string, example: "Scope 1"}
+                        },
+                        required: ["title"] 
+                    }
+                }
+            }   
+            
+            response '200', 'Scope update' do
+                schema type: :object,
+                    properties: {
+                        data: {
+                            type: :array,
+                            items: {
+                                '$ref': '#/definitions/scopes_object'
+                            } 
+                        }
+                    },
+                    required: ["data"] 
+                run_test!
+            end
+            
+           
+            response '404', 'Scope Not Found' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+  
+            response '422', 'Entity error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+            response '500', 'Internal Server Error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+        end
+        
+    end
+
     path '/gallery/v1/scopes/{id}' do
         get "Get a Scope" do
             tags 'Scopes'
@@ -94,6 +199,33 @@ RSpec.describe 'Scopes API', type: :request do
                 let(:id) { 'invalid' }
                 run_test!
             end
+            
+            response '500', 'Internal Server Error' do
+                let(:id) { 'invalid' }
+                run_test!
+            end
+            
+        end
+    end
+
+    path '/gallery/v1/scopes/{id}' do
+        delete "Delete a Scope" do
+            tags 'Scopes'
+            #security [ Bearer: [] ]
+            consumes 'application/json'
+            description "Delete a Scope"
+            parameter name: :id, :in => :path, :type => :string, :description => 'scope id', required: true      
+  
+            
+            response '204', 'Scope delete' do
+              run_test!
+            end
+            
+            response '404', 'Scope Not Found' do
+              let(:id) { 'invalid' }
+              run_test!
+            end
+  
             
             response '500', 'Internal Server Error' do
                 let(:id) { 'invalid' }
