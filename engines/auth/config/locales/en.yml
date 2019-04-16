@@ -7,3 +7,8 @@ en:
     exists_email:
       message: "This e-mail is already registered in our system"
       internal_message: "exists email"
+    
+    exists_username:
+      message: "This username is already registered in our system"
+      internal_message: "exists username"
+      

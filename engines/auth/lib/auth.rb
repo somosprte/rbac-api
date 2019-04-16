@@ -3,7 +3,9 @@ require "auth/engine"
 module Auth
   require 'bcrypt'
   require 'jwt'
-  require 'auth/functions_auth'
+
+  mattr_accessor :person_class
+  mattr_accessor :person_serializer
   
   class Authenticate
     ALGORITHM = 'HS256'
@@ -25,6 +27,14 @@ module Auth
     def self.auth_secret
       ENV["RBAC_JWT_SECRET"]
     end
-  end  
+  end 
+  
+  def self.person_class
+    @@person_class.constantize
+  end
+
+  def self.person_serializer
+    @@person_serializer.constantize
+  end
 
 end

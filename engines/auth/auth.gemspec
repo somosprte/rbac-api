@@ -28,4 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 5.2.2"
 
   spec.add_development_dependency "sqlite3"
+  spec.add_dependency "bcrypt"
+  spec.add_dependency "jwt"
 end

@@ -7,3 +7,7 @@ pt-BR:
     exists_email:
       message: "Este email ja esta cadastrado em nosso sistema"
       internal_message: "exists email"
+    
+    exists_username:
+      message: "Este nome de usuário ja esta cadastrado em nosso sistema"
+      internal_message: "exists username"
