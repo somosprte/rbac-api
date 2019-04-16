@@ -1,5 +1,30 @@
 require "auth/engine"
 
 module Auth
-  # Your code goes here...
+  require 'bcrypt'
+  require 'jwt'
+  require 'auth/functions_auth'
+  
+  class Authenticate
+    ALGORITHM = 'HS256'
+
+    def self.issue(payload)
+      JWT.encode(
+        payload,
+        auth_secret,
+        ALGORITHM)
+    end
+
+    def self.decode(token)
+      JWT.decode(token, 
+        auth_secret, 
+        true, 
+        { algorithm: ALGORITHM }).first
+    end
+
+    def self.auth_secret
+      ENV["RBAC_JWT_SECRET"]
+    end
+  end  
+
 end
