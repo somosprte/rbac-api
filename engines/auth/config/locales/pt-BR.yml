@@ -1,0 +1,9 @@
+pt-BR:
+  error_messages:
+    email_not_informed:
+      message: "O email deve ser informado"
+      internal_message: "email not informed"
+
+    exists_email:
+      message: "Este email ja esta cadastrado em nosso sistema"
+      internal_message: "exists email"
