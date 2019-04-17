@@ -11,6 +11,13 @@
         "tags": [
           "Activities"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -103,6 +110,13 @@
         "tags": [
           "Activities"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -146,6 +160,13 @@
         "summary": "Update a Activity",
         "tags": [
           "Activities"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
         ],
         "consumes": [
           "application/json"
@@ -288,6 +309,13 @@
         "tags": [
           "Activities"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -319,6 +347,13 @@
         "summary": "Create a Activity",
         "tags": [
           "Activities"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
         ],
         "consumes": [
           "application/json"
@@ -453,6 +488,13 @@
         "tags": [
           "Audiences"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -545,6 +587,13 @@
         "tags": [
           "Audiences"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -609,6 +658,13 @@
         "summary": "Update a Audience",
         "tags": [
           "Audiences"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
         ],
         "consumes": [
           "application/json"
@@ -683,6 +739,13 @@
         "tags": [
           "Audiences"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -727,6 +790,13 @@
         "tags": [
           "Audiences"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -758,6 +828,13 @@
         "summary": "Get Scopes",
         "tags": [
           "Scopes"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
         ],
         "consumes": [
           "application/json"
@@ -851,6 +928,13 @@
         "tags": [
           "Scopes"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -915,6 +999,13 @@
         "summary": "Update a Scope",
         "tags": [
           "Scopes"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
         ],
         "consumes": [
           "application/json"
@@ -989,6 +1080,13 @@
         "tags": [
           "Scopes"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -1033,6 +1131,13 @@
         "tags": [
           "Scopes"
         ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -1058,6 +1163,13 @@
           }
         }
       }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
     }
   },
   "definitions": {

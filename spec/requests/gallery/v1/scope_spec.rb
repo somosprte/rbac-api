@@ -6,7 +6,7 @@ RSpec.describe 'Scopes API', type: :request do
     path '/gallery/v1/scopes/' do
         get "Get Scopes" do
             tags 'Scopes'
-            #security [ Bearer: [] ]
+            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get Scopes"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
@@ -70,7 +70,7 @@ RSpec.describe 'Scopes API', type: :request do
     path '/gallery/v1/scopes' do
         post "Create a Scope" do
             tags 'Scopes'
-            #security [ Bearer: [] ]
+            security [ Bearer: [] ]
             consumes 'application/json'
             description "Create a Scope"      
             parameter name: :body, in: :body, required: true, schema: {
@@ -120,7 +120,7 @@ RSpec.describe 'Scopes API', type: :request do
     path '/gallery/v1/scopes/{id}' do
         put "Update a Scope" do
             tags 'Scopes'
-            #security [ Bearer: [] ]
+            security [ Bearer: [] ]
             consumes 'application/json'
             description "Update a Scope"
             parameter name: :id, :in => :path, :type => :string, :description => 'scope id', required: true      
@@ -175,7 +175,7 @@ RSpec.describe 'Scopes API', type: :request do
     path '/gallery/v1/scopes/{id}' do
         get "Get a Scope" do
             tags 'Scopes'
-            #security [ Bearer: [] ]
+            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get a Scope"      
             parameter name: :id, :in => :path, :type => :string, :description => 'scope id', required: true
@@ -211,7 +211,7 @@ RSpec.describe 'Scopes API', type: :request do
     path '/gallery/v1/scopes/{id}' do
         delete "Delete a Scope" do
             tags 'Scopes'
-            #security [ Bearer: [] ]
+            security [ Bearer: [] ]
             consumes 'application/json'
             description "Delete a Scope"
             parameter name: :id, :in => :path, :type => :string, :description => 'scope id', required: true      

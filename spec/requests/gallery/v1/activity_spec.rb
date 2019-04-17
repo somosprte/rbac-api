@@ -6,7 +6,7 @@ RSpec.describe 'Activities API', type: :request do
   path '/gallery/v1/activities/' do
       get "Get Activities" do
             tags 'Activities'
-            #security [ Bearer: [] ]
+            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get Activities"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
@@ -70,7 +70,7 @@ RSpec.describe 'Activities API', type: :request do
     path '/gallery/v1/activities/{id}' do
       get "Get a Activity" do
           tags 'Activities'
-          #security [ Bearer: [] ]
+          security [ Bearer: [] ]
           consumes 'application/json'
           description "Get a Activity"      
           parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
@@ -106,7 +106,7 @@ RSpec.describe 'Activities API', type: :request do
     path '/gallery/v1/activities' do
       post "Create a Activity" do
           tags 'Activities'
-          #security [ Bearer: [] ]
+          security [ Bearer: [] ]
           consumes 'application/json'
           description "Create a Activity"      
           parameter name: :body, in: :body, required: true, schema: {
@@ -168,7 +168,7 @@ RSpec.describe 'Activities API', type: :request do
     path '/gallery/v1/activities/{id}' do
       put "Update a Activity" do
           tags 'Activities'
-          #security [ Bearer: [] ]
+          security [ Bearer: [] ]
           consumes 'application/json'
           description "Update a Activity"
           parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true      
@@ -234,7 +234,7 @@ RSpec.describe 'Activities API', type: :request do
     path '/gallery/v1/activities/{id}' do
       delete "Delete a Activity" do
           tags 'Activities'
-          #security [ Bearer: [] ]
+          security [ Bearer: [] ]
           consumes 'application/json'
           description "Delete a Activity"
           parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true      

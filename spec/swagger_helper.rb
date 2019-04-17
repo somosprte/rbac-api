@@ -23,6 +23,13 @@ RSpec.configure do |config|
                 version: 'v1'
             },
             paths: {},
+            securityDefinitions: {
+                Bearer: {
+                type: :apiKey,
+                name: 'Authorization',
+                in: :header,
+                }
+            },
             definitions:{
                 meta_pagination_object: {
                     type: :object,
