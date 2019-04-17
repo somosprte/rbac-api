@@ -1,5 +1,9 @@
 en:
   error_messages:
+    username_not_informed:
+      message: "The username must be informed"
+      internal_message: "username not informed"
+  
     email_not_informed:
       message: "The email must be informed"
       internal_message: "email not informed"

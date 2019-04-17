@@ -1,5 +1,9 @@
 pt-BR:
   error_messages:
+    username_not_informed:
+      message: "O nome de usuário deve ser informado"
+      internal_message: "username not informed"
+
     email_not_informed:
       message: "O email deve ser informado"
       internal_message: "email not informed"
