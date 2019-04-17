@@ -15,4 +15,11 @@ en:
     exists_username:
       message: "This username is already registered in our system"
       internal_message: "exists username"
-      
+    
+    password_not_informed:
+      message: "The password must be informed"
+      internal_message: "password not informed"
+
+    invalid_password:
+      message: "Invalid password"
+      internal_message: "invalid password"

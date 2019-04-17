@@ -15,3 +15,11 @@ pt-BR:
     exists_username:
       message: "Este nome de usuário ja esta cadastrado em nosso sistema"
       internal_message: "exists username"
+    
+    password_not_informed:
+      message: "A senha deverá ser informada"
+      internal_message: "password not informed"
+
+    invalid_password:
+      message: "Senha inválida"
+      internal_message: "invalid password"
