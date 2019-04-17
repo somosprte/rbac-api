@@ -251,7 +251,10 @@
             }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -301,10 +304,16 @@
             }
           },
           "404": {
-            "description": "Activity Not Found"
+            "description": "Activity Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       },
@@ -446,13 +455,22 @@
             }
           },
           "404": {
-            "description": "Activity Not Found"
+            "description": "Activity Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "422": {
-            "description": "Entity error"
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       },
@@ -483,13 +501,22 @@
         ],
         "responses": {
           "204": {
-            "description": "Activity delete"
+            "description": "Activity delete",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "404": {
-            "description": "Activity Not Found"
+            "description": "Activity Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -626,10 +653,16 @@
             }
           },
           "422": {
-            "description": "Entity error"
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -728,7 +761,10 @@
             }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -797,10 +833,16 @@
             }
           },
           "422": {
-            "description": "Entity error"
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -876,13 +918,22 @@
             }
           },
           "404": {
-            "description": "Audience Not Found"
+            "description": "Audience Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "422": {
-            "description": "Entity error"
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       },
@@ -930,10 +981,16 @@
             }
           },
           "404": {
-            "description": "Audience Not Found"
+            "description": "Audience Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       },
@@ -967,10 +1024,16 @@
             "description": "Audience delete"
           },
           "404": {
-            "description": "Audience Not Found"
+            "description": "Audience Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -1069,7 +1132,10 @@
             }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -1138,10 +1204,16 @@
             }
           },
           "422": {
-            "description": "Entity error"
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }
@@ -1217,13 +1289,22 @@
             }
           },
           "404": {
-            "description": "Scope Not Found"
+            "description": "Scope Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "422": {
-            "description": "Entity error"
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       },
@@ -1271,10 +1352,16 @@
             }
           },
           "404": {
-            "description": "Scope Not Found"
+            "description": "Scope Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       },
@@ -1308,10 +1395,16 @@
             "description": "Scope delete"
           },
           "404": {
-            "description": "Scope Not Found"
+            "description": "Scope Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           }
         }
       }

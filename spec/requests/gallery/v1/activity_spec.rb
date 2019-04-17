@@ -61,6 +61,7 @@ RSpec.describe 'Activities API', type: :request do
             end
             
             response '500', 'Internal Server Error' do
+                schema '$ref': '#/definitions/error_object'
                 run_test!
             end
             
@@ -91,13 +92,13 @@ RSpec.describe 'Activities API', type: :request do
 
 
           response '404', 'Activity Not Found' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
           response '500', 'Internal Server Error' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
       end
@@ -152,13 +153,13 @@ RSpec.describe 'Activities API', type: :request do
          
 
           response '422', 'Entity error' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
           response '500', 'Internal Server Error' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
       end
@@ -213,18 +214,18 @@ RSpec.describe 'Activities API', type: :request do
           end
           
           response '404', 'Activity Not Found' do
-            let(:id) { 'invalid' }
+            schema '$ref': '#/definitions/error_object'
             run_test!
           end
 
           response '422', 'Entity error' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
           response '500', 'Internal Server Error' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
       end
@@ -241,18 +242,19 @@ RSpec.describe 'Activities API', type: :request do
 
           
           response '204', 'Activity delete' do
+            schema '$ref': '#/definitions/error_object'
             run_test!
           end
           
           response '404', 'Activity Not Found' do
-            let(:id) { 'invalid' }
+            schema '$ref': '#/definitions/error_object'
             run_test!
           end
 
           
           response '500', 'Internal Server Error' do
-              let(:id) { 'invalid' }
-              run_test!
+            schema '$ref': '#/definitions/error_object'
+            run_test!
           end
           
       end
