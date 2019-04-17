@@ -5,6 +5,158 @@
     "version": "v1"
   },
   "paths": {
+    "/auth/v1/register": {
+      "post": {
+        "summary": "Create a User",
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a User",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "auth": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "pedro123@gmail.com"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Pedro"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "example": "1989-10-10"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "123456"
+                    }
+                  },
+                  "required": [
+                    "email",
+                    "name",
+                    "birthday",
+                    "password"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/people_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
+    "/auth/v1/login": {
+      "post": {
+        "summary": "Login API",
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Login in API",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "auth": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "pedro123@gmail.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "123456"
+                    }
+                  },
+                  "required": [
+                    "username",
+                    "password"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login Successful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "jwt": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMTI9OGI0OTYtYjk3NC00YWM10LWFiZGEtODlhZjZmYWUwMjgxIn0"
+                }
+              },
+              "required": [
+                "jwt"
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
     "/gallery/v1/activities/": {
       "get": {
         "summary": "Get Activities",
@@ -1361,6 +1513,84 @@
       "required": [
         "title"
       ]
+    },
+    "people_object": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "f963962d-405e-4be8-93f4-ff90a85ad347"
+        },
+        "type": {
+          "type": "string",
+          "example": "user-people"
+        },
+        "attributes": {
+          "$ref": "#/definitions/person_object"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "person_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Pedro"
+        },
+        "email": {
+          "type": "string",
+          "example": "pedro123@gmail.com"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1980-10-10"
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ]
+    },
+    "error_object": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "lang": {
+              "type": "string",
+              "example": "en",
+              "description": "Error Language"
+            },
+            "message": {
+              "type": "string",
+              "example": "Friendly Message",
+              "description": "Message to Show the User."
+            },
+            "internal_message": {
+              "type": "string",
+              "example": "Bad things are happening.",
+              "description": "Internal Message for Developer Control"
+            },
+            "status": {
+              "type": "string",
+              "example": "000",
+              "description": "HTTP Status Code"
+            }
+          },
+          "required": [
+            "lang",
+            "message",
+            "internal_message",
+            "status"
+          ]
+        }
+      }
     }
   }
 }

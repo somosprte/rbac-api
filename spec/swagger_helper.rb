@@ -197,6 +197,73 @@ RSpec.configure do |config|
                         },
                     },
                     required: [ 'title']
+                },
+                people_object:{
+                    type: :object,
+                    properties: {
+                        id: {
+                            type: :string,
+                            example: 'f963962d-405e-4be8-93f4-ff90a85ad347'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'user-people'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/person_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                person_object:{
+                    type: :object,
+                    properties: {
+                        name: { 
+                            type: :string,
+                            example: 'Pedro'
+                        },
+                        email: {
+                            type: :string, 
+                            example: 'pedro123@gmail.com' 
+                        },
+                        birthday: {
+                            type: :string, 
+                            example: '1980-10-10' 
+                        }
+                    },
+                    required: ['name', 'email']
+                },
+                error_object: {
+                    type: :object,
+                    properties:{
+                        error: {
+                        type: :object,
+                        properties: {
+                            lang: {
+                            type: :string,
+                            example: "en",
+                            description: "Error Language"
+                            },
+                            message: {
+                            type: :string,
+                            example: "Friendly Message",
+                            description: "Message to Show the User."
+                            },
+                            internal_message: {
+                            type: :string,
+                            example: "Bad things are happening.",
+                            description: "Internal Message for Developer Control"
+                            },
+                            status: {
+                            type: :string,
+                            example: "000",
+                            description: "HTTP Status Code"
+                            }
+
+                        },
+                        required: ['lang', 'message', 'internal_message', 'status']
+                        }
+                    }
                 }
             }
         }
