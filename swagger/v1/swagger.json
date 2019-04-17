@@ -250,6 +250,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -301,6 +307,12 @@
               "required": [
                 "data"
               ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
             }
           },
           "404": {
@@ -454,6 +466,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "404": {
             "description": "Activity Not Found",
             "schema": {
@@ -502,6 +520,12 @@
         "responses": {
           "204": {
             "description": "Activity delete",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
             "schema": {
               "$ref": "#/definitions/error_object"
             }
@@ -652,6 +676,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "422": {
             "description": "Entity error",
             "schema": {
@@ -760,6 +790,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -830,6 +866,12 @@
               "required": [
                 "data"
               ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
             }
           },
           "422": {
@@ -917,6 +959,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "404": {
             "description": "Audience Not Found",
             "schema": {
@@ -980,6 +1028,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "404": {
             "description": "Audience Not Found",
             "schema": {
@@ -1022,6 +1076,12 @@
         "responses": {
           "204": {
             "description": "Audience delete"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "404": {
             "description": "Audience Not Found",
@@ -1131,6 +1191,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -1201,6 +1267,12 @@
               "required": [
                 "data"
               ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
             }
           },
           "422": {
@@ -1288,6 +1360,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "404": {
             "description": "Scope Not Found",
             "schema": {
@@ -1351,6 +1429,12 @@
               ]
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
           "404": {
             "description": "Scope Not Found",
             "schema": {
@@ -1393,6 +1477,12 @@
         "responses": {
           "204": {
             "description": "Scope delete"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
           },
           "404": {
             "description": "Scope Not Found",

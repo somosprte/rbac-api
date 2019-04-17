@@ -59,6 +59,11 @@ RSpec.describe 'Audiences API', type: :request do
                     required: ["data", "links", "meta"] 
                 run_test!
             end
+
+            response '401', 'Unauthorized' do
+                schema '$ref': '#/definitions/error_object'
+                run_test!
+            end
             
             response '500', 'Internal Server Error' do
                 schema '$ref': '#/definitions/error_object'
@@ -102,7 +107,10 @@ RSpec.describe 'Audiences API', type: :request do
                 run_test!
             end
             
-           
+            response '401', 'Unauthorized' do
+                schema '$ref': '#/definitions/error_object'
+                run_test!
+            end
   
             response '422', 'Entity error' do
                 schema '$ref': '#/definitions/error_object'
@@ -152,6 +160,11 @@ RSpec.describe 'Audiences API', type: :request do
                     required: ["data"] 
                 run_test!
             end
+
+            response '401', 'Unauthorized' do
+                schema '$ref': '#/definitions/error_object'
+                run_test!
+            end
             
            
             response '404', 'Audience Not Found' do
@@ -194,6 +207,11 @@ RSpec.describe 'Audiences API', type: :request do
                     required: ["data"] 
                 run_test!
             end
+
+            response '401', 'Unauthorized' do
+                schema '$ref': '#/definitions/error_object'
+                run_test!
+            end
   
   
             response '404', 'Audience Not Found' do
@@ -220,6 +238,11 @@ RSpec.describe 'Audiences API', type: :request do
             
             response '204', 'Audience delete' do
               run_test!
+            end
+
+            response '401', 'Unauthorized' do
+                schema '$ref': '#/definitions/error_object'
+                run_test!
             end
             
             response '404', 'Audience Not Found' do
