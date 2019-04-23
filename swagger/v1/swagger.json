@@ -1542,6 +1542,407 @@
           }
         }
       }
+    },
+    "/gallery/v1/space_types/": {
+      "get": {
+        "summary": "Get Space Types",
+        "tags": [
+          "Space Types"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get Space Typess",
+        "parameters": [
+          {
+            "name": "per",
+            "in": "query",
+            "type": "integer",
+            "description": "results per page",
+            "default": 10,
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "description": "page",
+            "default": 1,
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Space Types found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/space_types_object"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/space_types/?page[number]=1&page[size]=10"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/space_types/?page[number]=1&page[size]=10"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "url",
+                      "example": null
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/space_types/?page[number]=2&page[size]=10"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/space_types/?page[number]=10&page[size]=10"
+                    }
+                  },
+                  "required": [
+                    "self",
+                    "first",
+                    "last"
+                  ]
+                },
+                "meta": {
+                  "$ref": "#/definitions/meta_pagination_object"
+                }
+              },
+              "required": [
+                "data",
+                "links",
+                "meta"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
+    "/gallery/v1/space_types": {
+      "post": {
+        "summary": "Create a Space Type",
+        "tags": [
+          "Space Types"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a Space Type",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "space_type": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "Sala de aula"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Sala de aula com projetor"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Space Type create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/space_types_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
+    "/gallery/v1/space_types/{id}": {
+      "put": {
+        "summary": "Update a Space Tyoe",
+        "tags": [
+          "Space Types"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a Space Type",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "space type id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "space_type": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "Sala de aula"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Sala de aula com projetor"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Space Type update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/space_types_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Scope Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a Space Type",
+        "tags": [
+          "Space Types"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get a Space Type",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "space type id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Space Type found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/space_types_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Scope Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Space Type",
+        "tags": [
+          "Space Types"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a Space Type",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "space type id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Space Type delete"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Scope Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -1844,6 +2245,43 @@
           ]
         }
       }
+    },
+    "space_types_object": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
+        },
+        "type": {
+          "type": "string",
+          "example": "gallery-space-types"
+        },
+        "attributes": {
+          "$ref": "#/definitions/space_type_object"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "space_type_object": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Sala de aula"
+        },
+        "description": {
+          "type": "string",
+          "example": "Sala de aula com projetor"
+        }
+      },
+      "required": [
+        "title"
+      ]
     }
   }
 }

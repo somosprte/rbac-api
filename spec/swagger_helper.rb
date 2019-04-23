@@ -290,6 +290,37 @@ RSpec.configure do |config|
                         required: ['lang', 'message', 'internal_message', 'status']
                         }
                     }
+                },
+                space_types_object: {
+                    type: :object,
+                    properties: {
+                        id: {
+                                type: :string,
+                                example: 'df1f4ff2-c167-44b9-9b3d-50d51e909e2d'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'gallery-space-types'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/space_type_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                space_type_object: {
+                    type: :object,
+                    properties: {
+                        title: { 
+                            type: :string,
+                            example: 'Sala de aula'
+                        },
+                        description: {
+                            type: :string, 
+                            example: 'Sala de aula com projetor' 
+                        },
+                    },
+                    required: [ 'title']
                 }
             }
         }

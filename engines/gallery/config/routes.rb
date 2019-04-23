@@ -3,5 +3,6 @@ Gallery::Engine.routes.draw do
         resources :activities
         resources :scopes
         resources :audiences
+        resources :space_types
     end
 end
