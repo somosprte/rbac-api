@@ -630,7 +630,7 @@
                         "93f8345c-3e87-4485-9dfb-2a1102252020"
                       ]
                     },
-                    "user_ids": {
+                    "person_ids": {
                       "type": "array",
                       "example": [
                         "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
@@ -651,7 +651,7 @@
                     "license_type",
                     "scope_ids",
                     "audience_ids",
-                    "user_ids"
+                    "person_ids"
                   ]
                 }
               }
@@ -1616,6 +1616,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/audiences_object"
+          }
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/person_object"
           }
         }
       },

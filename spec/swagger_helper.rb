@@ -132,6 +132,12 @@ RSpec.configure do |config|
                             items: {
                                 '$ref' => '#/definitions/audiences_object' 
                             }   
+                        },
+                        authors:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/person_object' 
+                            }   
                         }
                     },
                     required: ['title']
@@ -240,24 +246,24 @@ RSpec.configure do |config|
                         type: :object,
                         properties: {
                             lang: {
-                            type: :string,
-                            example: "en",
-                            description: "Error Language"
+                                type: :string,
+                                example: "en",
+                                description: "Error Language"
                             },
                             message: {
-                            type: :string,
-                            example: "Friendly Message",
-                            description: "Message to Show the User."
+                                type: :string,
+                                example: "Friendly Message",
+                                description: "Message to Show the User."
                             },
                             internal_message: {
-                            type: :string,
-                            example: "Bad things are happening.",
-                            description: "Internal Message for Developer Control"
+                                type: :string,
+                                example: "Bad things are happening.",
+                                description: "Internal Message for Developer Control"
                             },
                             status: {
-                            type: :string,
-                            example: "000",
-                            description: "HTTP Status Code"
+                                type: :string,
+                                example: "000",
+                                description: "HTTP Status Code"
                             }
 
                         },

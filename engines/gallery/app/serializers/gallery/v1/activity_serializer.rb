@@ -14,7 +14,8 @@ module Gallery
                        :copyright, 
                        :license_type,
                        :scopes,
-                       :audiences
+                       :audiences,
+                       :authors
 
             
             def scopes
@@ -26,6 +27,12 @@ module Gallery
             def audiences
                 object.audiences.map{|audience|
                     Gallery::V1::AudienceSerializer.new(audience, root: false)
+                }   
+            end
+
+            def authors
+                object.people.map{|author|
+                    User::V1::PersonSerializer.new(author, root: false)
                 }   
             end
 
