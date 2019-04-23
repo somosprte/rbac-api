@@ -13,6 +13,11 @@ module Gallery
                        :version_history, 
                        :copyright, 
                        :license_type,
+                       :space_organization,
+                       :implementation_steps,
+                       :implementation_tips,
+                       :reflection_assessment,
+                       :duration,
                        :scopes,
                        :audiences,
                        :authors

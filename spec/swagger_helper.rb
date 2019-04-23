@@ -121,6 +121,26 @@ RSpec.configure do |config|
                             type: :string,
                             example:"License"
                         },
+                        space_organization:{
+                            type: :string,
+                            example:"Precisa de projetor para realizar a atividade"
+                        },
+                        implementation_steps:{
+                            type: :string,
+                            example:"Primeiramente ler a apostila pagina 2"
+                        },
+                        implementation_tips:{
+                            type: :string,
+                            example:"Realizar a atividade durante o dia"
+                        },
+                        reflection_assessment:{
+                            type: :string,
+                            example:"Avaliar o comportamento do aluno"
+                        },
+                        duration:{
+                            type: :string,
+                            example:"Cerca de 30 minutos"
+                        },
                         scopes:{
                             type: :array,
                             items: {
