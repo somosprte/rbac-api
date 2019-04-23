@@ -8,6 +8,9 @@ module Gallery
 
     has_many :authors,    class_name: 'Gallery::Author'
     has_many :people, through: :authors, class_name: 'User::Person'
+
+    has_many :activity_space_types,    class_name: 'Gallery::ActivitySpaceType'
+    has_many :space_types, through: :activity_space_types, class_name: 'Gallery::SpaceType'
   
   end
 end

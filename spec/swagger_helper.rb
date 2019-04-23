@@ -158,6 +158,12 @@ RSpec.configure do |config|
                             items: {
                                 '$ref' => '#/definitions/person_object' 
                             }   
+                        },
+                        space_types:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/space_type_object' 
+                            }   
                         }
                     },
                     required: ['title']

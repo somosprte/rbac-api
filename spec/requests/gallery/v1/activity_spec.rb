@@ -143,9 +143,10 @@ RSpec.describe 'Activities API', type: :request do
                           duration: {type: :string, example:"cerca de 30 minutos"},
                           scope_ids: {type: :array, example:["c6a92130-6d30-42f6-93c0-245acf360152"]},
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
-                          person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]}
+                          person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},
+                          space_type_ids: {type: :array, example:["df1f4ff2-c167-44b9-9b3d-50d51e909e2d"]} 
                       },
-                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids"] 
+                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids"] 
                   }
               }
           }   
@@ -214,9 +215,10 @@ RSpec.describe 'Activities API', type: :request do
                           duration: {type: :string, example:"cerca de 30 minutos"},
                           scope_ids: {type: :array, example:["c6a92130-6d30-42f6-93c0-245acf360152"]},
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
-                          person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]}
+                          person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},
+                          space_type_ids: {type: :array, example:["df1f4ff2-c167-44b9-9b3d-50d51e909e2d"]}
                       },
-                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids"] 
+                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids"] 
                   }
               }
           }   

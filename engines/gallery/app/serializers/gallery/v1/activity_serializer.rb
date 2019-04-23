@@ -20,7 +20,8 @@ module Gallery
                        :duration,
                        :scopes,
                        :audiences,
-                       :authors
+                       :authors,
+                       :space_types
 
             
             def scopes
@@ -38,6 +39,12 @@ module Gallery
             def authors
                 object.people.map{|author|
                     User::V1::PersonSerializer.new(author, root: false)
+                }   
+            end
+
+            def space_types
+                object.space_types.map{|space_type|
+                    Gallery::V1::SpaceTypeSerializer.new(space_type, root: false)
                 }   
             end
 

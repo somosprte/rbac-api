@@ -445,6 +445,12 @@
                       "example": [
                         "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
                       ]
+                    },
+                    "space_type_ids": {
+                      "type": "array",
+                      "example": [
+                        "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
+                      ]
                     }
                   },
                   "required": [
@@ -463,7 +469,8 @@
                     "duration",
                     "implementation_stepsscope_ids",
                     "audience_ids",
-                    "person_ids"
+                    "person_ids",
+                    "space_type_ids"
                   ]
                 }
               }
@@ -677,6 +684,12 @@
                       "example": [
                         "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
                       ]
+                    },
+                    "space_type_ids": {
+                      "type": "array",
+                      "example": [
+                        "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
+                      ]
                     }
                   },
                   "required": [
@@ -695,7 +708,8 @@
                     "duration",
                     "implementation_stepsscope_ids",
                     "audience_ids",
-                    "person_ids"
+                    "person_ids",
+                    "space_type_ids"
                   ]
                 }
               }
@@ -2087,6 +2101,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/person_object"
+          }
+        },
+        "space_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/space_type_object"
           }
         }
       },
