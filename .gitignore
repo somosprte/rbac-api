@@ -27,3 +27,5 @@ config/database.yml
 config/storage.yml
 
 db/schema.rb
+data
+.env
