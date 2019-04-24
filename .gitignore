@@ -29,3 +29,4 @@ config/storage.yml
 db/schema.rb
 data
 .env
+.env_rds
