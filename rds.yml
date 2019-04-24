@@ -11,3 +11,7 @@ services:
     tty: true
     env_file:
       - '.env_rds'
+networks:
+    default:
+        external:
+            name: rbacapi_default
