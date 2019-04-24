@@ -65,7 +65,7 @@ module Gallery
 
         # Only allow a trusted parameter "white list" through.
         def activity_params
-          params.require(:activity).permit(:title, :caption, :description, :image ,:motivation, :powerful_ideas, :products, :requirements, :published, :version_history, :copyright, :license_type, :space_organization, :implementation_steps, :implementation_tips, :reflection_assessment, :duration, scope_ids:[], audience_ids:[], person_ids:[], space_type_ids: [])
+          params.require(:activity).permit(:title, :caption, :description, :image ,:motivation, :powerful_ideas, :products, :requirements, :published, :version_history, :copyright, :license_type, :space_organization, :implementation_steps, :implementation_tips, :reflection_assessment, :duration, specific_materials_attributes:[:id, :name, :quantity, :_destroy], scope_ids:[], audience_ids:[], person_ids:[], space_type_ids: [])
         end
     end
   end

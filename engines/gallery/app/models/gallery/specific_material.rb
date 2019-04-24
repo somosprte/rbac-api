@@ -1,0 +1,5 @@
+module Gallery
+  class SpecificMaterial < ApplicationRecord
+    belongs_to :activity, class_name:'Gallery::Activity'
+  end
+end

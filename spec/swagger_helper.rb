@@ -164,6 +164,12 @@ RSpec.configure do |config|
                             items: {
                                 '$ref' => '#/definitions/space_type_object' 
                             }   
+                        },
+                        specific_materials:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/specific_materials_object' 
+                            }   
                         }
                     },
                     required: ['title']
@@ -327,6 +333,37 @@ RSpec.configure do |config|
                         },
                     },
                     required: [ 'title']
+                },
+                specific_materials_objects:{
+                    type: :object,
+                    properties: {
+                        id: {
+                            type: :string,
+                            example: '063ef0fd-4c82-475f-b50e-dd10326423b3'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'gallery-specific-materials'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/specific_materials_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                specific_materials_object:{
+                    type: :object,
+                    properties: {
+                        name: { 
+                            type: :string,
+                            example: 'Tesoura sem ponta'
+                        },
+                        quantity: {
+                            type: :integer, 
+                            example: 1
+                        },
+                    },
+                    required: [ 'name', 'quantity']
                 }
             }
         }

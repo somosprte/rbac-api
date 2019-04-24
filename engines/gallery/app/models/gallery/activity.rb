@@ -12,5 +12,9 @@ module Gallery
     has_many :activity_space_types,    class_name: 'Gallery::ActivitySpaceType'
     has_many :space_types, through: :activity_space_types, class_name: 'Gallery::SpaceType'
   
+    has_many :specific_materials, class_name: 'Gallery::SpecificMaterial'
+
+    accepts_nested_attributes_for :specific_materials, allow_destroy: true
+
   end
 end

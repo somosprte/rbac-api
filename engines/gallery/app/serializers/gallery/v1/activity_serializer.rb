@@ -21,7 +21,8 @@ module Gallery
                        :scopes,
                        :audiences,
                        :authors,
-                       :space_types
+                       :space_types,
+                       :specific_materials
 
             
             def scopes
@@ -45,6 +46,12 @@ module Gallery
             def space_types
                 object.space_types.map{|space_type|
                     Gallery::V1::SpaceTypeSerializer.new(space_type, root: false)
+                }   
+            end
+
+            def specific_materials
+                object.specific_materials.map{|specific_material|
+                    Gallery::V1::SpecificMaterialSerializer.new(specific_material, root: false)
                 }   
             end
 
