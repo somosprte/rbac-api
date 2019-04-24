@@ -11,6 +11,9 @@ module Gallery
 
     has_many :activity_space_types,    class_name: 'Gallery::ActivitySpaceType'
     has_many :space_types, through: :activity_space_types, class_name: 'Gallery::SpaceType'
+
+    has_many :activity_general_materials,    class_name: 'Gallery::ActivityGeneralMaterial'
+    has_many :general_materials, through: :activity_general_materials, class_name: 'Gallery::GeneralMaterial'
   
     has_many :specific_materials, class_name: 'Gallery::SpecificMaterial'
 
