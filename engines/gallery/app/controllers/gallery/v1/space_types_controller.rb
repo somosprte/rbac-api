@@ -29,7 +29,7 @@ module Gallery
 
       # PATCH/PUT gallery/v1/space_types/:id
       def update
-        if @space_type.update(scope_params)
+        if @space_type.update(space_type_params)
           render json: @space_type
         else
           render json: @space_type.errors, status: :unprocessable_entity

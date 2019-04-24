@@ -364,6 +364,37 @@ RSpec.configure do |config|
                         },
                     },
                     required: [ 'name', 'quantity']
+                },
+                general_materials_objects:{
+                    type: :object,
+                    properties: {
+                        id: {
+                            type: :string,
+                            example: '6bea14a4-0e33-4d05-a015-df79ca9a3559'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'gallery-general-materials'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/general_materials_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                general_materials_object:{
+                    type: :object,
+                    properties: {
+                        name: { 
+                            type: :string,
+                            example: 'Cartolina'
+                        },
+                        description: {
+                            type: :string, 
+                            example: "Cartolina para ser usada em atividades"
+                        },
+                    },
+                    required: [ 'name', 'description']
                 }
             }
         }

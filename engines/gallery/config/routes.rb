@@ -4,5 +4,6 @@ Gallery::Engine.routes.draw do
         resources :scopes
         resources :audiences
         resources :space_types
+        resources :general_materials
     end
 end

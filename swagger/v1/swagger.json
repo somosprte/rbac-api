@@ -1181,6 +1181,407 @@
         }
       }
     },
+    "/gallery/v1/general_materials/": {
+      "get": {
+        "summary": "Get Space Types",
+        "tags": [
+          "General Materials"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "General Materials",
+        "parameters": [
+          {
+            "name": "per",
+            "in": "query",
+            "type": "integer",
+            "description": "results per page",
+            "default": 10,
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "description": "page",
+            "default": 1,
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "General Materials found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/general_materials_objects"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/general_materials/?page[number]=1&page[size]=10"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/general_materials/?page[number]=1&page[size]=10"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "url",
+                      "example": null
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/general_materials/?page[number]=2&page[size]=10"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/general_materials/?page[number]=10&page[size]=10"
+                    }
+                  },
+                  "required": [
+                    "self",
+                    "first",
+                    "last"
+                  ]
+                },
+                "meta": {
+                  "$ref": "#/definitions/meta_pagination_object"
+                }
+              },
+              "required": [
+                "data",
+                "links",
+                "meta"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
+    "/gallery/v1/general_materials": {
+      "post": {
+        "summary": "Create a General Material",
+        "tags": [
+          "General Materials"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a General Material",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "general_material": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Cartolina"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Cartolina para ser usada em atividades"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "General Material create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/general_materials_objects"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
+    "/gallery/v1/general_materials/{id}": {
+      "put": {
+        "summary": "Update a General Material",
+        "tags": [
+          "General Materials"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a General Material",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "general material id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "general_material": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Cartolina"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Cartolina para ser usada em atividades"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "General Material update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/general_materials_objects"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "General Material Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a General Material",
+        "tags": [
+          "General Materials"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get a General Material",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "general material id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "General Material found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/general_materials_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "General Material Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a General Material",
+        "tags": [
+          "General Materials"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a General Materia",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "general material id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "General Materia delete"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "General Materia Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
     "/gallery/v1/scopes/": {
       "get": {
         "summary": "Get Scopes",
@@ -1776,7 +2177,7 @@
     },
     "/gallery/v1/space_types/{id}": {
       "put": {
-        "summary": "Update a Space Tyoe",
+        "summary": "Update a Space Type",
         "tags": [
           "Space Types"
         ],
@@ -1851,7 +2252,7 @@
             }
           },
           "404": {
-            "description": "Scope Not Found",
+            "description": "Space Type Not Found",
             "schema": {
               "$ref": "#/definitions/error_object"
             }
@@ -1920,7 +2321,7 @@
             }
           },
           "404": {
-            "description": "Scope Not Found",
+            "description": "Space Type Not Found",
             "schema": {
               "$ref": "#/definitions/error_object"
             }
@@ -1969,7 +2370,7 @@
             }
           },
           "404": {
-            "description": "Scope Not Found",
+            "description": "Space Type Not Found",
             "schema": {
               "$ref": "#/definitions/error_object"
             }
@@ -2370,6 +2771,44 @@
       "required": [
         "name",
         "quantity"
+      ]
+    },
+    "general_materials_objects": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "6bea14a4-0e33-4d05-a015-df79ca9a3559"
+        },
+        "type": {
+          "type": "string",
+          "example": "gallery-general-materials"
+        },
+        "attributes": {
+          "$ref": "#/definitions/general_materials_object"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "general_materials_object": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Cartolina"
+        },
+        "description": {
+          "type": "string",
+          "example": "Cartolina para ser usada em atividades"
+        }
+      },
+      "required": [
+        "name",
+        "description"
       ]
     }
   }
