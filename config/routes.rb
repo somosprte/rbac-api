@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Gallery::Engine, at: "/gallery"
   mount Auth::Engine, at: "/auth"
+  mount User::Engine, at: "/user"
 end
