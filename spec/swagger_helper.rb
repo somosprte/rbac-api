@@ -170,6 +170,12 @@ RSpec.configure do |config|
                             items: {
                                 '$ref' => '#/definitions/specific_materials_object' 
                             }   
+                        },
+                        general_materials:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/general_materials_object' 
+                            }   
                         }
                     },
                     required: ['title']

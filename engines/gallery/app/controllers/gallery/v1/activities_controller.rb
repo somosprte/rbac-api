@@ -22,6 +22,7 @@ module Gallery
       def create
         @activity = Gallery::Activity.create(activity_params)
         if @activity.save
+          Gallery::FunctionsActivity.crud_general_materials(@activity, params)
           render json: @activity
         else
           render json: @activity.errors, status: :unprocessable_entity
@@ -31,6 +32,7 @@ module Gallery
       # PATCH/PUT gallery/v1/activities/:id
       def update
         if @activity.update(activity_params)
+          Gallery::FunctionsActivity.crud_general_materials(@activity, params, true)
           render json: @activity
         else
           render json: @activity.errors, status: :unprocessable_entity
@@ -65,7 +67,7 @@ module Gallery
 
         # Only allow a trusted parameter "white list" through.
         def activity_params
-          params.require(:activity).permit(:title, :caption, :description, :image ,:motivation, :powerful_ideas, :products, :requirements, :published, :version_history, :copyright, :license_type, :space_organization, :implementation_steps, :implementation_tips, :reflection_assessment, :duration, specific_materials_attributes:[:id, :name, :quantity, :_destroy], scope_ids:[], audience_ids:[], person_ids:[], space_type_ids: [])
+          params.require(:activity).permit(:title, :caption, :description, :image ,:motivation, :powerful_ideas, :products, :requirements, :published, :version_history, :copyright, :license_type, :space_organization, :implementation_steps, :implementation_tips, :reflection_assessment, :duration, specific_materials_attributes:[:id, :name, :quantity, :_destroy],  scope_ids:[], audience_ids:[], person_ids:[], space_type_ids: [])
         end
     end
   end

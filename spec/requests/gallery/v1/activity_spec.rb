@@ -145,9 +145,10 @@ RSpec.describe 'Activities API', type: :request do
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
                           person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},
                           space_type_ids: {type: :array, example:["df1f4ff2-c167-44b9-9b3d-50d51e909e2d"]}, 
-                          specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1}]}
+                          specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1}]},
+                          general_materials:{type: :array, example:[{"id": "9c65a353-497a-42ed-9631-38f68c6862b0", "quantity": 11}]}
                       },
-                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids"] 
+                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids", "general_materials"] 
                   }
               }
           }   
@@ -218,9 +219,10 @@ RSpec.describe 'Activities API', type: :request do
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
                           person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},
                           space_type_ids: {type: :array, example:["df1f4ff2-c167-44b9-9b3d-50d51e909e2d"]},
-                          specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1}, {"id": "063ef0fd-4c82-475f-b50e-dd10326423b3", "name": "Tesoura sem ponta", "quantity": 1, "_destroy": true}], description: "To delete a material pass the id in the object, and the attribute _destroy: true"}
+                          specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1}, {"id": "063ef0fd-4c82-475f-b50e-dd10326423b3", "name": "Tesoura sem ponta", "quantity": 1, "_destroy": true}], description: "To delete a material pass the id in the object, and the attribute _destroy: true"},
+                          general_materials:{type: :array, example:[{"id": "9c65a353-497a-42ed-9631-38f68c6862b0", "quantity": 11}]}
                       },
-                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids"] 
+                      required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids", "general_materials"] 
                   }
               }
           }   

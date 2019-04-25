@@ -467,6 +467,15 @@
                         }
                       ],
                       "description": "To delete a material pass the id in the object, and the attribute _destroy: true"
+                    },
+                    "general_materials": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "id": "9c65a353-497a-42ed-9631-38f68c6862b0",
+                          "quantity": 11
+                        }
+                      ]
                     }
                   },
                   "required": [
@@ -486,7 +495,8 @@
                     "implementation_stepsscope_ids",
                     "audience_ids",
                     "person_ids",
-                    "space_type_ids"
+                    "space_type_ids",
+                    "general_materials"
                   ]
                 }
               }
@@ -715,6 +725,15 @@
                           "quantity": 1
                         }
                       ]
+                    },
+                    "general_materials": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "id": "9c65a353-497a-42ed-9631-38f68c6862b0",
+                          "quantity": 11
+                        }
+                      ]
                     }
                   },
                   "required": [
@@ -734,7 +753,8 @@
                     "implementation_stepsscope_ids",
                     "audience_ids",
                     "person_ids",
-                    "space_type_ids"
+                    "space_type_ids",
+                    "general_materials"
                   ]
                 }
               }
@@ -2539,6 +2559,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/specific_materials_object"
+          }
+        },
+        "general_materials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/general_materials_object"
           }
         }
       },
