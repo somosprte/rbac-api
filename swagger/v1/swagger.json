@@ -5,7 +5,7 @@
     "version": "v1"
   },
   "paths": {
-    "/auth/v1/register": {
+    "/auth/v1/users/register": {
       "post": {
         "summary": "Create a User",
         "tags": [
@@ -87,7 +87,7 @@
         }
       }
     },
-    "/auth/v1/login": {
+    "/auth/v1/users/login": {
       "post": {
         "summary": "Login API",
         "tags": [

@@ -3,7 +3,7 @@ require 'swagger_helper'
 
 
 RSpec.describe 'Auth API', type: :request do
-    path '/auth/v1/register' do
+    path '/auth/v1/users/register' do
         post "Create a User" do
             tags 'Auth'
             consumes 'application/json'
@@ -52,7 +52,7 @@ RSpec.describe 'Auth API', type: :request do
         
     end
 
-    path '/auth/v1/login' do
+    path '/auth/v1/users/login' do
         post "Login API" do
             tags 'Auth'
             consumes 'application/json'
