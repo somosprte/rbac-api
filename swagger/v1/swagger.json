@@ -190,6 +190,13 @@
             "description": "page",
             "default": 1,
             "required": false
+          },
+          {
+            "name": "global",
+            "in": "query",
+            "type": "string",
+            "description": "Search global fields",
+            "required": false
           }
         ],
         "responses": {

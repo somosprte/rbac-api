@@ -19,5 +19,9 @@ module Gallery
 
     accepts_nested_attributes_for :specific_materials, allow_destroy: true
 
+    def self.search_global(query)
+      where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
+    end
+
   end
 end

@@ -9,7 +9,11 @@ module Gallery
 
       # GET /gallery/v1/activities
       def index
-        @activities = Gallery::Activity.all
+        if params[:global]
+          @activities = Gallery::Activity.search_global(params[:global])
+        else
+          @activities = Gallery::Activity.all
+        end
 
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)

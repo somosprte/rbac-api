@@ -11,6 +11,7 @@ RSpec.describe 'Activities API', type: :request do
             description "Get Activities"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
             parameter name: :page, :in => :query, :type => :integer, :description => 'page', :default => 1, required: false
+            parameter name: :global, :in => :query, :type => :string, :description => 'Search global fields', required: false  
 
             response '200', 'Activities found' do
                 schema type: :object,
@@ -192,7 +193,7 @@ RSpec.describe 'Activities API', type: :request do
           security [ Bearer: [] ]
           consumes 'application/json'
           description "Update a Activity"
-          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true      
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true    
           parameter name: :body, in: :body, required: true, schema: {
               type: :object,
               properties: {
