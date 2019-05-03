@@ -55,6 +55,7 @@ gem 'kaminari'
 gem 'rswag'
 gem 'aws-sdk-s3'
 gem 'bcrypt'
+gem 'paperclip'
 
 gem 'auth', path: 'engines/auth'
 gem 'user', path: 'engines/user'

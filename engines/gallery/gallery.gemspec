@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "sqlite3"
   spec.add_dependency 'active_model_serializers'
+  spec.add_dependency "paperclip"
 end

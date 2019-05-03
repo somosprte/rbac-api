@@ -23,7 +23,8 @@ module Gallery
                        :authors,
                        :space_types,
                        :specific_materials,
-                       :general_materials
+                       :general_materials,
+                       :images
 
             
             def scopes
@@ -60,6 +61,15 @@ module Gallery
                 object.general_materials.map{|general_material|
                     Gallery::V1::GeneralMaterialSerializer.new(general_material, root: false)
                 }   
+            end
+
+            def images
+                {
+                  original: object.image.url,
+                  medium: object.image.url(:medium),
+                  square: object.image.url(:square),
+                  thumbnail: object.image.url(:thumb)
+                }
             end
 
         end
