@@ -483,6 +483,10 @@
                           "quantity": 11
                         }
                       ]
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="
                     }
                   },
                   "required": [
@@ -741,6 +745,10 @@
                           "quantity": 11
                         }
                       ]
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="
                     }
                   },
                   "required": [
@@ -2746,6 +2754,9 @@
           "items": {
             "$ref": "#/definitions/general_materials_object"
           }
+        },
+        "images": {
+          "$ref": "#/definitions/image_object"
         }
       },
       "required": [
@@ -3016,6 +3027,27 @@
         "name",
         "description"
       ]
+    },
+    "image_object": {
+      "type": "object",
+      "properties": {
+        "original": {
+          "type": "string",
+          "example": "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+        },
+        "medium": {
+          "type": "string",
+          "example": "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+        },
+        "square": {
+          "type": "string",
+          "example": "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+        },
+        "thumbnail": {
+          "type": "string",
+          "example": "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+        }
+      }
     }
   }
 }

@@ -176,6 +176,10 @@ RSpec.configure do |config|
                             items: {
                                 '$ref' => '#/definitions/general_materials_object' 
                             }   
+                        },
+                        images:{
+                            '$ref' => '#/definitions/image_object' 
+                               
                         }
                     },
                     required: ['title']
@@ -401,6 +405,27 @@ RSpec.configure do |config|
                         },
                     },
                     required: [ 'name', 'description']
+                },
+                image_object:{
+                    type: :object,
+                    properties: {
+                        original: { 
+                            type: :string,
+                            example: "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+                        },
+                        medium: {
+                            type: :string, 
+                            example: "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+                        },
+                        square: {
+                            type: :string, 
+                            example: "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+                        },
+                        thumbnail: {
+                            type: :string, 
+                            example: "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+                        }
+                    }
                 }
             }
         }
