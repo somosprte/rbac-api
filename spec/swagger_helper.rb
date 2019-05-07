@@ -141,6 +141,14 @@ RSpec.configure do |config|
                             type: :string,
                             example:"Cerca de 30 minutos"
                         },
+                        inspiration:{
+                            type: :string,
+                            example: "Inspirada na atividade 1"
+                        },
+                        references:{
+                            type: :string,
+                            example: "Referências bibliograficas"
+                        },
                         scopes:{
                             type: :array,
                             items: {

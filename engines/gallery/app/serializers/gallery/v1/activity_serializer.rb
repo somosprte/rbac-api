@@ -18,6 +18,8 @@ module Gallery
                        :implementation_tips,
                        :reflection_assessment,
                        :duration,
+                       :inspiration,
+                       :references,
                        :scopes,
                        :audiences,
                        :authors,
