@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: [:show, :update, :destroy]
+      before_action :set_activity, only: [:show, :update, :destroy, :like]
       #skip_before_action :authenticate, :only => [:index, :page]
 
 
@@ -14,9 +14,10 @@ module Gallery
         else
           @activities = Gallery::Activity.all
         end
-
+        
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
+        @activities = Gallery::FunctionsActivity.verify_activities_liked(@activities, @current_user.usereable)
 
         render json: @activities, meta: pagination_dict(@activities)
       end
@@ -45,12 +46,24 @@ module Gallery
 
       # GET /gallery/v1/activities/:id
       def show
+        @activity.liked?(@current_user.person)
         render json: @activity
       end
       
       # DELETE /gallery/v1/activities/:id
       def destroy
         @activity.destroy
+      end
+
+      # GET /gallery/v1/activities/:id/like
+      def like
+        if @activity.likes.find_by(person: @current_user.usereable)
+          like = @activity.likes.find_by(person: @current_user.usereable)
+          like.destroy
+        else
+          @activity.likes.create(person: @current_user.usereable)
+        end
+        render json: @activity
       end
 
       def pagination_dict(collection)

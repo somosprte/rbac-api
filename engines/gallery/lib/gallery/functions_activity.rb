@@ -21,5 +21,13 @@ module Gallery
             end
             return activity
         end
+
+        def self.verify_activities_liked(activities, person)
+            activities.each do |activity|
+                activity.liked = activity.likes.where(person: person).present?
+            end
+            activities
+        end
+
     end
 end

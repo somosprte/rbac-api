@@ -5,5 +5,6 @@ Gallery::Engine.routes.draw do
         resources :audiences
         resources :space_types
         resources :general_materials
+        match 'activities/:id/like', to: 'activities#like', via: [:get]
     end
 end

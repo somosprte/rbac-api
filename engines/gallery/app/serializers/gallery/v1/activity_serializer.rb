@@ -20,6 +20,7 @@ module Gallery
                        :duration,
                        :inspiration,
                        :references,
+                       :liked,
                        :scopes,
                        :audiences,
                        :authors,

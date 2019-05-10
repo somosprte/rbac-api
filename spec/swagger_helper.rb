@@ -149,6 +149,10 @@ RSpec.configure do |config|
                             type: :string,
                             example: "Referências bibliograficas"
                         },
+                        liked:{
+                            type: :boolean,
+                            example: true
+                        },
                         scopes:{
                             type: :array,
                             items: {

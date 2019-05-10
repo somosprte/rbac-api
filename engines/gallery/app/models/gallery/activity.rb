@@ -1,6 +1,6 @@
 module Gallery
   class Activity < ApplicationRecord
-    attr_accessor :image
+    attr_accessor :image, :liked
     has_many :activity_scopes,    class_name: 'Gallery::ActivityScope'
     has_many :scopes, through: :activity_scopes, class_name: 'Gallery::Scope'
     
@@ -18,7 +18,10 @@ module Gallery
   
     has_many :specific_materials, class_name: 'Gallery::SpecificMaterial'
 
+    has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
+
     accepts_nested_attributes_for :specific_materials, allow_destroy: true
+    
 
     has_attached_file :image, styles: {
       thumb: '100x100#',
@@ -30,6 +33,10 @@ module Gallery
 
     def self.search_global(query)
       where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
+    end
+
+    def liked?(current_user)
+      self.liked = likes.where(person: current_user.userable).present?
     end
 
   end
