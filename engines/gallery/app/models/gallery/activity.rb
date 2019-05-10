@@ -36,7 +36,7 @@ module Gallery
     end
 
     def liked?(current_user)
-      self.liked = likes.where(person: current_user.userable).present?
+      self.liked = likes.where(person: current_user.usereable).present?
     end
 
   end

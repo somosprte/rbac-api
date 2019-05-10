@@ -46,7 +46,7 @@ module Gallery
 
       # GET /gallery/v1/activities/:id
       def show
-        @activity.liked?(@current_user.usereable)
+        @activity.liked?(@current_user)
         render json: @activity
       end
       
