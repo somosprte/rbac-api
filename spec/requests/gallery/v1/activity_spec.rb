@@ -345,4 +345,44 @@ RSpec.describe 'Activities API', type: :request do
           
       end
     end
+
+    path '/gallery/v1/activities/{id}/favorite' do
+      get "Favorite a activity" do
+          tags 'Activities'
+          security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Favorite a activity"      
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
+
+          response '200', 'Favorited' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/activities_object'
+                          } 
+                      }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+
+          response '401', 'Unauthorized' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+
+          response '404', 'Activity Not Found' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+      end
+    end
 end

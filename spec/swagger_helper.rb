@@ -153,6 +153,10 @@ RSpec.configure do |config|
                             type: :boolean,
                             example: true
                         },
+                        favorited:{
+                            type: :boolean,
+                            example: true
+                        },
                         scopes:{
                             type: :array,
                             items: {
