@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: [:show, :update, :destroy, :like]
+      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite]
       #skip_before_action :authenticate, :only => [:index, :page]
 
 
@@ -17,7 +17,7 @@ module Gallery
         
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
-        @activities = Gallery::FunctionsActivity.verify_activities_liked(@activities, @current_user.usereable)
+        @activities = Gallery::FunctionsActivity.verify_activities_reaction(@activities, @current_user.usereable)
 
         render json: @activities, meta: pagination_dict(@activities)
       end
@@ -46,7 +46,7 @@ module Gallery
 
       # GET /gallery/v1/activities/:id
       def show
-        @activity.liked?(@current_user)
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
         render json: @activity
       end
       
@@ -63,8 +63,22 @@ module Gallery
         else
           @activity.likes.create(person: @current_user.usereable)
         end
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
         render json: @activity
       end
+
+      # GET /gallery/v1/activities/:id/favorite
+      def favorite
+        if @activity.favorites.find_by(person: @current_user.usereable)
+          favorite = @activity.favorites.find_by(person: @current_user.usereable)
+          favorite.destroy
+        else
+          @activity.favorites.create(person: @current_user.usereable)
+        end
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
+        render json: @activity
+      end
+
 
       def pagination_dict(collection)
         {

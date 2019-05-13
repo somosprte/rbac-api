@@ -21,6 +21,7 @@ module Gallery
                        :inspiration,
                        :references,
                        :liked,
+                       :favorited,
                        :scopes,
                        :audiences,
                        :authors,
