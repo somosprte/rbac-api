@@ -56,6 +56,7 @@ gem 'rswag'
 gem 'aws-sdk-s3'
 gem 'bcrypt'
 gem 'paperclip'
+gem 'rails_admin'
 
 gem 'auth', path: 'engines/auth'
 gem 'user', path: 'engines/user'

@@ -37,6 +37,14 @@ module RbacApi
         resource '*', :headers => :any, :methods => [:get, :post, :patch, :delete, :put, :options]
       end
     end
+
+    config.active_record.primary_key = :uuid
+    config.middleware.use Rack::MethodOverride
+    config.session_store :cookie_store
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+    config.middleware.use ActionDispatch::Flash
+
     ActiveModel::Serializer.config.adapter = ActiveModel::Serializer::Adapter::JsonApi
   end
 end

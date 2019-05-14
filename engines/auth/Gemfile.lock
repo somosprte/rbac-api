@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     auth (0.1.0)
+      bcrypt
+      jwt
       rails (~> 5.2.2)
 
 GEM
@@ -49,6 +51,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    bcrypt (3.1.12)
     builder (3.2.3)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
@@ -57,6 +60,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    jwt (2.1.0)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
