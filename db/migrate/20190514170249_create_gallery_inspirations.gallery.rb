@@ -7,7 +7,7 @@ class CreateGalleryInspirations < ActiveRecord::Migration[5.2]
       t.uuid :activity_id
       t.uuid :activity_two_id
       t.string :title
-      t.string :link
+      t.text :activity_link
       t.timestamps
     end
   end

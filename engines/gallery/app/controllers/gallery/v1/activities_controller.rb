@@ -28,6 +28,7 @@ module Gallery
         @activity = Gallery::Activity.create(activity_params)
         if @activity.save
           Gallery::FunctionsActivity.crud_general_materials(@activity, params)
+          Gallery::FunctionsActivity.crud_inspirations(@activity, params)
           render json: @activity
         else
           render json: @activity.errors, status: :unprocessable_entity
@@ -38,6 +39,7 @@ module Gallery
       def update
         if @activity.update(activity_params)
           Gallery::FunctionsActivity.crud_general_materials(@activity, params, true)
+          Gallery::FunctionsActivity.crud_inspirations(@activity, params, true)
           render json: @activity
         else
           render json: @activity.errors, status: :unprocessable_entity

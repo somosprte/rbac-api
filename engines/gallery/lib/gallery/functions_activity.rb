@@ -14,8 +14,8 @@ module Gallery
                 ids.push(material[:id])
             end
             if update == true
-                    sync_materials = Gallery::ActivityGeneralMaterial.where(activity_id:activity.id).where.not(general_material_id:ids)
-                    sync_materials.each do |sync|
+                sync_materials = Gallery::ActivityGeneralMaterial.where(activity_id:activity.id).where.not(general_material_id:ids)
+                sync_materials.each do |sync|
                     sync.destroy
                 end
             end
@@ -34,6 +34,28 @@ module Gallery
             activity.liked?(user)
             activity.favorited?(user)
             activity
+        end
+
+        def self.crud_inspirations(activity, activity_params, update=nil)
+            ids = []
+            activity_params[:activity][:inspirations].each do |inspiration|
+                gallery_inspiration = Gallery::Activity.find_by(id:inspiration[:id])
+                if gallery_inspiration
+                    unless activity.inspirations.find_by(activity_two_id:inspiration[:id])
+                        activity.inspirations.create(activity_two_id:inspiration[:id], title:inspiration[:title], activity_link:inspiration[:link])
+                    else
+                        activity.inspirations.update(title:inspiration[:title], activity_link:inspiration[:link])
+                    end
+                end
+                ids.push(inspiration[:id])
+            end
+            if update == true
+                sync_inspirations = Gallery::Inspiration.where(activity_id:activity.id).where.not(activity_two_id:ids)
+                sync_inspirations.each do |sync|
+                    sync.destroy
+                end
+            end
+            return activity
         end
 
     end

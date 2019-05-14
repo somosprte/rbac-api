@@ -18,12 +18,12 @@ module Gallery
                        :implementation_tips,
                        :reflection_assessment,
                        :duration,
-                       :inspiration,
                        :references,
                        :liked,
                        :favorited,
                        :scopes,
                        :audiences,
+                       :inspirations,
                        :authors,
                        :space_types,
                        :specific_materials,
@@ -64,6 +64,12 @@ module Gallery
             def general_materials
                 object.general_materials.map{|general_material|
                     Gallery::V1::GeneralMaterialSerializer.new(general_material, root: false)
+                }   
+            end
+
+            def inspirations
+                object.inspirations.map{|inspiration|
+                    Gallery::V1::InspirationSerializer.new(inspiration, root: false)
                 }   
             end
 
