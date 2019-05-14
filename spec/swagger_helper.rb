@@ -169,6 +169,12 @@ RSpec.configure do |config|
                                 '$ref' => '#/definitions/audiences_object' 
                             }   
                         },
+                        inspirations:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/inspiration_object' 
+                            }   
+                        },
                         authors:{
                             type: :array,
                             items: {
@@ -388,6 +394,10 @@ RSpec.configure do |config|
                             type: :integer, 
                             example: 1
                         },
+                        description: {
+                            type: :string, 
+                            example: "Tesoura para ser usada na atividade"
+                        }
                     },
                     required: [ 'name', 'quantity']
                 },
@@ -440,6 +450,26 @@ RSpec.configure do |config|
                         thumbnail: {
                             type: :string, 
                             example: "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+                        }
+                    }
+                },
+                inspiration_object:{
+                    properties: {
+                        title: { 
+                            type: :string,
+                            example: 'Atividade 1'
+                        },
+                        activity_id: {
+                            type: :string, 
+                            example: "6ecbef60-2643-4a93-a7f5-3d15c7e4cc34"
+                        },
+                        activity_two_id: {
+                            type: :string, 
+                            example: "819d249c-e536-43df-b688-1b9ca72eec72"
+                        },
+                        activity_link:{
+                            type: :string, 
+                            example: "www.activity.com"
                         }
                     }
                 }

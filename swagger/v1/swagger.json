@@ -472,16 +472,10 @@
                       "example": [
                         {
                           "name": "Tesoura sem ponta",
-                          "quantity": 1
-                        },
-                        {
-                          "id": "063ef0fd-4c82-475f-b50e-dd10326423b3",
-                          "name": "Tesoura sem ponta",
                           "quantity": 1,
-                          "_destroy": true
+                          "description": "Tesoura para ser usada na atividade"
                         }
-                      ],
-                      "description": "To delete a material pass the id in the object, and the attribute _destroy: true"
+                      ]
                     },
                     "general_materials": {
                       "type": "array",
@@ -495,6 +489,16 @@
                     "image": {
                       "type": "string",
                       "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="
+                    },
+                    "inspirations": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "id": "819d249c-e536-43df-b688-1b9ca72eec72",
+                          "title": "Atividade 1",
+                          "link": "www.activity.com"
+                        }
+                      ]
                     }
                   },
                   "required": [
@@ -749,7 +753,8 @@
                       "example": [
                         {
                           "name": "Tesoura sem ponta",
-                          "quantity": 1
+                          "quantity": 1,
+                          "description": "Tesoura para ser usada na atividade"
                         }
                       ]
                     },
@@ -765,6 +770,16 @@
                     "image": {
                       "type": "string",
                       "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="
+                    },
+                    "inspirations": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "id": "819d249c-e536-43df-b688-1b9ca72eec72",
+                          "title": "Atividade 1",
+                          "link": "www.activity.com"
+                        }
+                      ]
                     }
                   },
                   "required": [
@@ -2893,6 +2908,12 @@
             "$ref": "#/definitions/audiences_object"
           }
         },
+        "inspirations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inspiration_object"
+          }
+        },
         "authors": {
           "type": "array",
           "items": {
@@ -3145,6 +3166,10 @@
         "quantity": {
           "type": "integer",
           "example": 1
+        },
+        "description": {
+          "type": "string",
+          "example": "Tesoura para ser usada na atividade"
         }
       },
       "required": [
@@ -3208,6 +3233,26 @@
         "thumbnail": {
           "type": "string",
           "example": "https://s3-sa-east-1.amazonaws.com/api-rbac/noimage.jpg"
+        }
+      }
+    },
+    "inspiration_object": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Atividade 1"
+        },
+        "activity_id": {
+          "type": "string",
+          "example": "6ecbef60-2643-4a93-a7f5-3d15c7e4cc34"
+        },
+        "activity_two_id": {
+          "type": "string",
+          "example": "819d249c-e536-43df-b688-1b9ca72eec72"
+        },
+        "activity_link": {
+          "type": "string",
+          "example": "www.activity.com"
         }
       }
     }
