@@ -19,6 +19,8 @@ module Gallery
     has_many :specific_materials, class_name: 'Gallery::SpecificMaterial'
     has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
     has_many :favorites, class_name: 'Experience::Favorite', as: :favoriteable, dependent: :destroy
+    has_many :inspirations, class_name: 'Gallery::Inspiration', dependent: :destroy
+    
 
     accepts_nested_attributes_for :specific_materials, allow_destroy: true
     

@@ -1,0 +1,14 @@
+# This migration comes from gallery (originally 20190514170019)
+class CreateGalleryInspirations < ActiveRecord::Migration[5.2]
+  def change
+    enable_extension 'uuid-ossp' unless extension_enabled?('uuid-ossp')
+    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
+    create_table :gallery_inspirations, id: :uuid do |t|
+      t.uuid :activity_id
+      t.uuid :activity_two_id
+      t.string :title
+      t.string :link
+      t.timestamps
+    end
+  end
+end
