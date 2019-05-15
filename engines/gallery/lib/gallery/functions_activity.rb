@@ -22,17 +22,22 @@ module Gallery
             return activity
         end
 
-        def self.verify_activities_reaction(activities, person)
-            activities.each do |activity|
-                activity.liked = activity.likes.where(person: person).present?
-                activity.favorited = activity.favorites.where(person: person).present?
+        def self.verify_activities_reaction(activities, user, auth)
+            
+            if auth
+                activities.each do |activity|
+                    activity.liked = activity.likes.where(person: user.usereable).present?
+                    activity.favorited = activity.favorites.where(person: user.usereable).present?
+                end
             end
             activities
         end
 
-        def self.reactions_activity(activity, user)
-            activity.liked?(user)
-            activity.favorited?(user)
+        def self.reactions_activity(activity, user, auth)
+            if auth
+                activity.liked?(user)
+                activity.favorited?(user)
+            end
             activity
         end
 

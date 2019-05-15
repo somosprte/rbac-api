@@ -4,7 +4,7 @@ module Gallery
   module V1
     class ActivitiesController < ApplicationController
       before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite]
-      #skip_before_action :authenticate, :only => [:index, :page]
+      skip_before_action :authenticate, only: %i[index show]
 
 
       # GET /gallery/v1/activities
@@ -17,8 +17,9 @@ module Gallery
         
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
-        @activities = Gallery::FunctionsActivity.verify_activities_reaction(@activities, @current_user.usereable)
-
+        
+        @activities = Gallery::FunctionsActivity.verify_activities_reaction(@activities, current_user, auth_present?)
+        
         render json: @activities, meta: pagination_dict(@activities)
       end
 
@@ -48,7 +49,7 @@ module Gallery
 
       # GET /gallery/v1/activities/:id
       def show
-        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, current_user, auth_present?)
         render json: @activity
       end
       
