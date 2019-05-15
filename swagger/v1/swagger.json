@@ -197,6 +197,34 @@
             "type": "string",
             "description": "Search global fields",
             "required": false
+          },
+          {
+            "name": "scopes",
+            "in": "query",
+            "type": "string",
+            "description": "Search by scope",
+            "required": false
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "type": "string",
+            "description": "Search by author",
+            "required": false
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "type": "string",
+            "description": "Search by audience",
+            "required": false
+          },
+          {
+            "name": "space_type",
+            "in": "query",
+            "type": "string",
+            "description": "Search by space type",
+            "required": false
           }
         ],
         "responses": {

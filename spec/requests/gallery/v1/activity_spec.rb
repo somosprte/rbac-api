@@ -11,7 +11,11 @@ RSpec.describe 'Activities API', type: :request do
             description "Get Activities"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
             parameter name: :page, :in => :query, :type => :integer, :description => 'page', :default => 1, required: false
-            parameter name: :global, :in => :query, :type => :string, :description => 'Search global fields', required: false  
+            parameter name: :global, :in => :query, :type => :string, :description => 'Search global fields', required: false
+            parameter name: :scopes, :in => :query, :type => :string, :description => 'Search by scope', required: false    
+            parameter name: :author, :in => :query, :type => :string, :description => 'Search by author', required: false 
+            parameter name: :audience, :in => :query, :type => :string, :description => 'Search by audience', required: false
+            parameter name: :space_type, :in => :query, :type => :string, :description => 'Search by space type', required: false      
 
             response '200', 'Activities found' do
                 schema type: :object,
