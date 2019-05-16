@@ -1,22 +1,23 @@
 module Gallery
   class Activity < ApplicationRecord
+    enum remixed: [:no, :yes]
     attr_accessor :image, :liked, :favorited
-    has_many :activity_scopes,    class_name: 'Gallery::ActivityScope'
+    has_many :activity_scopes,    class_name: 'Gallery::ActivityScope',  dependent: :destroy
     has_many :scopes, through: :activity_scopes, class_name: 'Gallery::Scope'
     
     has_many :activity_audiences,    class_name: 'Gallery::ActivityAudience'
-    has_many :audiences, through: :activity_audiences, class_name: 'Gallery::Audience'
+    has_many :audiences, through: :activity_audiences, class_name: 'Gallery::Audience',  dependent: :destroy
 
-    has_many :authors,    class_name: 'Gallery::Author'
+    has_many :authors,    class_name: 'Gallery::Author',  dependent: :destroy
     has_many :people, through: :authors, class_name: 'User::Person'
 
-    has_many :activity_space_types,    class_name: 'Gallery::ActivitySpaceType'
+    has_many :activity_space_types,    class_name: 'Gallery::ActivitySpaceType',  dependent: :destroy
     has_many :space_types, through: :activity_space_types, class_name: 'Gallery::SpaceType'
 
-    has_many :activity_general_materials,    class_name: 'Gallery::ActivityGeneralMaterial'
+    has_many :activity_general_materials,    class_name: 'Gallery::ActivityGeneralMaterial',  dependent: :destroy
     has_many :general_materials, through: :activity_general_materials, class_name: 'Gallery::GeneralMaterial'
   
-    has_many :specific_materials, class_name: 'Gallery::SpecificMaterial'
+    has_many :specific_materials, class_name: 'Gallery::SpecificMaterial', dependent: :destroy
     has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
     has_many :favorites, class_name: 'Experience::Favorite', as: :favoriteable, dependent: :destroy
     has_many :inspirations, class_name: 'Gallery::Inspiration', dependent: :destroy
@@ -32,6 +33,16 @@ module Gallery
       original: '1200x1200#'
     }
     validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+    # Copy model, used to remix
+    amoeba do
+      enable
+      include_association :activity_scopes
+      include_association :activity_audiences
+      include_association :authors
+      include_association :activity_space_types
+      include_association :general_materials
+      include_association :specific_materials
+    end
 
     def self.search_global(query)
       where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")

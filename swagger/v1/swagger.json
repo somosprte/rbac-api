@@ -996,6 +996,238 @@
         }
       }
     },
+    "/gallery/v1/activities/{id}/remix": {
+      "post": {
+        "summary": "Remix a Activity",
+        "tags": [
+          "Activities"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Remix a Activity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "activity id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "activity": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "Atividade"
+                    },
+                    "caption": {
+                      "type": "string",
+                      "example": "Atividade em sala"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "primeira atividade em sala de aula"
+                    },
+                    "motivation": {
+                      "type": "string",
+                      "example": "Ensinamentos basicos"
+                    },
+                    "powerful_ideas": {
+                      "type": "string",
+                      "example": "Ideias"
+                    },
+                    "products": {
+                      "type": "string",
+                      "example": "Produtos"
+                    },
+                    "requirements": {
+                      "type": "string",
+                      "example": "Inglês"
+                    },
+                    "published": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "version_history": {
+                      "type": "string",
+                      "example": "1.0"
+                    },
+                    "copyright": {
+                      "type": "string",
+                      "example": "rbac"
+                    },
+                    "license_type": {
+                      "type": "string",
+                      "example": "License"
+                    },
+                    "space_organization": {
+                      "type": "string",
+                      "example": "Precisa de projetor para realizar a atividade"
+                    },
+                    "implementation_steps": {
+                      "type": "string",
+                      "example": "Primeiramente ler a apostila pagina 2"
+                    },
+                    "implementation_tips": {
+                      "type": "string",
+                      "example": "Realizar a atividade durante o dia"
+                    },
+                    "reflection_assessment": {
+                      "type": "string",
+                      "example": "Avaliar o comportamento do aluno"
+                    },
+                    "duration": {
+                      "type": "string",
+                      "example": "cerca de 30 minutos"
+                    },
+                    "references": {
+                      "type": "string",
+                      "example": "Referências bibliograficas"
+                    },
+                    "scope_ids": {
+                      "type": "array",
+                      "example": [
+                        "c6a92130-6d30-42f6-93c0-245acf360152"
+                      ]
+                    },
+                    "audience_ids": {
+                      "type": "array",
+                      "example": [
+                        "3b11f1db-e8c2-4379-beb7-0ba7f993e23a",
+                        "93f8345c-3e87-4485-9dfb-2a1102252020"
+                      ]
+                    },
+                    "person_ids": {
+                      "type": "array",
+                      "example": [
+                        "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
+                      ]
+                    },
+                    "space_type_ids": {
+                      "type": "array",
+                      "example": [
+                        "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
+                      ]
+                    },
+                    "specific_materials_attributes": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "name": "Tesoura sem ponta",
+                          "quantity": 1,
+                          "description": "Tesoura para ser usada na atividade"
+                        }
+                      ]
+                    },
+                    "general_materials": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "id": "9c65a353-497a-42ed-9631-38f68c6862b0",
+                          "quantity": 11
+                        }
+                      ]
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="
+                    },
+                    "inspirations": {
+                      "type": "array",
+                      "example": [
+                        {
+                          "id": "819d249c-e536-43df-b688-1b9ca72eec72",
+                          "title": "Atividade 1",
+                          "link": "www.activity.com"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "caption",
+                    "description",
+                    "motivation",
+                    "powerful_ideas",
+                    "products",
+                    "requirements",
+                    "published",
+                    "version_history",
+                    "copyright",
+                    "license_type",
+                    "space_organization",
+                    "duration",
+                    "implementation_stepsscope_ids",
+                    "audience_ids",
+                    "person_ids",
+                    "space_type_ids",
+                    "general_materials"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity remixed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/activities_object"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Activity Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
     "/gallery/v1/audiences/": {
       "get": {
         "summary": "Get Audiences",
@@ -2907,6 +3139,10 @@
         "references": {
           "type": "string",
           "example": "Referências bibliograficas"
+        },
+        "remixed": {
+          "type": "string",
+          "example": "no"
         },
         "liked": {
           "type": "boolean",

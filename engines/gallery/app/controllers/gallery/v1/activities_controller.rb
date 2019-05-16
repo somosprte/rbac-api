@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite]
+      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix]
       skip_before_action :authenticate, only: %i[index show]
 
 
@@ -45,7 +45,7 @@ module Gallery
         if @activity.save
           Gallery::FunctionsActivity.crud_general_materials(@activity, params)
           Gallery::FunctionsActivity.crud_inspirations(@activity, params)
-          render json: @activity
+          render json: @activity, status: :created
         else
           render json: @activity.errors, status: :unprocessable_entity
         end
@@ -95,6 +95,22 @@ module Gallery
         end
         @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
         render json: @activity
+      end
+
+      # POST /gallery/v1/activities/:id/remix
+      def remix
+        activity_remixed = @activity.amoeba_dup
+        activity_remixed.remixed = 1
+        activity_remixed.image = @activity.image
+        activity_remixed.save
+        if activity_remixed.update(activity_params)
+          Gallery::FunctionsActivity.crud_general_materials(activity_remixed, params, true)
+          Gallery::FunctionsActivity.crud_inspirations(activity_remixed, params, true)
+          render json: activity_remixed
+        else
+          activity_remixed.destroy
+          render json: activity_remixed.errors, status: :unprocessable_entity
+        end
       end
 
 

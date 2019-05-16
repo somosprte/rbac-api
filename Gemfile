@@ -57,7 +57,7 @@ gem 'aws-sdk-s3'
 gem 'bcrypt'
 gem 'paperclip'
 gem 'rails_admin'
-
+gem 'amoeba'
 gem 'auth', path: 'engines/auth'
 gem 'user', path: 'engines/user'
 gem 'gallery', path: 'engines/gallery'

@@ -19,6 +19,7 @@ module Gallery
                        :reflection_assessment,
                        :duration,
                        :references,
+                       :remixed,
                        :liked,
                        :favorited,
                        :scopes,
