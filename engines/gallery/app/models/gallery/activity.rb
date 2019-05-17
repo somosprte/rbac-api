@@ -1,7 +1,7 @@
 module Gallery
   class Activity < ApplicationRecord
     enum remixed: [:no, :yes]
-    attr_accessor :image, :liked, :favorited
+    attr_accessor :image, :liked, :favorited, :implemented
     has_many :activity_scopes,    class_name: 'Gallery::ActivityScope',  dependent: :destroy
     has_many :scopes, through: :activity_scopes, class_name: 'Gallery::Scope'
     
@@ -21,7 +21,7 @@ module Gallery
     has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
     has_many :favorites, class_name: 'Experience::Favorite', as: :favoriteable, dependent: :destroy
     has_many :inspirations, class_name: 'Gallery::Inspiration', dependent: :destroy
-    
+    has_many :implementations, class_name: 'Experience::Implementation', dependent: :destroy
 
     accepts_nested_attributes_for :specific_materials, allow_destroy: true
     
@@ -70,6 +70,10 @@ module Gallery
 
     def favorited?(current_user)
       self.favorited = favorites.where(person: current_user.usereable).present?
+    end
+
+    def implemented?(current_user)
+      self.implemented = implementations.where(person: current_user.usereable).present?
     end
 
   end

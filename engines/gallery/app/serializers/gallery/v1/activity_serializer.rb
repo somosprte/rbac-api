@@ -22,6 +22,7 @@ module Gallery
                        :remixed,
                        :liked,
                        :favorited,
+                       :implemented,
                        :scopes,
                        :audiences,
                        :inspirations,

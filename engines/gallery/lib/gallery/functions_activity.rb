@@ -28,6 +28,7 @@ module Gallery
                 activities.each do |activity|
                     activity.liked = activity.likes.where(person: user.usereable).present?
                     activity.favorited = activity.favorites.where(person: user.usereable).present?
+                    activity.implemented = activity.implementations.where(person: user.usereable).present?
                 end
             end
             activities
@@ -37,6 +38,7 @@ module Gallery
             if auth
                 activity.liked?(user)
                 activity.favorited?(user)
+                activity.implemented?(user)
             end
             activity
         end

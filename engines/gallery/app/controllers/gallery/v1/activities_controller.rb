@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix]
+      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix, :implement]
       skip_before_action :authenticate, only: %i[index show]
 
 
@@ -81,7 +81,7 @@ module Gallery
         else
           @activity.likes.create(person: @current_user.usereable)
         end
-        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user, auth_present?)
         render json: @activity
       end
 
@@ -93,7 +93,7 @@ module Gallery
         else
           @activity.favorites.create(person: @current_user.usereable)
         end
-        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user)
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user, auth_present?)
         render json: @activity
       end
 
@@ -111,6 +111,15 @@ module Gallery
           activity_remixed.destroy
           render json: activity_remixed.errors, status: :unprocessable_entity
         end
+      end
+
+      # POST /gallery/v1/activities/:id/implement
+      def implement
+        unless @activity.implementations.find_by(person:@current_user.usereable)
+          @activity.implementations.create(person:@current_user.usereable, date_implementation:params[:date_implementation], place_implementation:params[:place_implementation], number_participants: params[:number_participants], description: params[:description])
+        end
+        @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user, auth_present?)
+        render json: @activity
       end
 
 

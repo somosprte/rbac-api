@@ -161,6 +161,10 @@ RSpec.configure do |config|
                             type: :boolean,
                             example: true
                         },
+                        implemented:{
+                            type: :boolean,
+                            example: true
+                        },
                         scopes:{
                             type: :array,
                             items: {

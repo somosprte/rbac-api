@@ -469,4 +469,59 @@ RSpec.describe 'Activities API', type: :request do
           end
       end
     end
+
+    path '/gallery/v1/activities/{id}/implement' do
+      post "Implemented this activity" do
+          tags 'Activities'
+          security [ Bearer: [] ]
+          consumes 'application/json'
+          description "I implemented this activity"
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true    
+          parameter name: :body, in: :body, required: true, schema: {
+              type: :object,
+              properties: {
+                date_implementation: { type: :string, example: "2019-05-01"},
+                place_implementation: { type: :string, example: "MIT"},
+                number_participants: { type: :integer, example: 10},
+                number_participants: { type: :string, example: "Implementação em classe"}
+                   
+              },
+              required: ["date_implementation"] 
+          }   
+          
+          response '200', 'Activity implemented' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/activities_object'
+                          } 
+                      }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+
+          response '401', 'Unauthorized' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+          response '404', 'Activity Not Found' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+
+          response '422', 'Entity error' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+      end
+    end
 end
