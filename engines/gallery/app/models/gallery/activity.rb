@@ -38,7 +38,6 @@ module Gallery
       enable
       include_association :activity_scopes
       include_association :activity_audiences
-      include_association :authors
       include_association :activity_space_types
       include_association :general_materials
       include_association :specific_materials
