@@ -3,8 +3,9 @@ module Gallery
         class GeneralMaterialSerializer < ActiveModel::Serializer
             attributes :id,
                        :name, 
-                       :quantity,
                        :description 
+
+                       
         end
     end
 end
