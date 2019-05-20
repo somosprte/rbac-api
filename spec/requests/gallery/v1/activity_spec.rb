@@ -524,4 +524,156 @@ RSpec.describe 'Activities API', type: :request do
           end
       end
     end
+
+    path '/gallery/v1/activities/{id}/likes' do
+      get "Get likes a activity" do
+          tags 'Activities'
+          security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Get likes a activity"      
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
+          parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
+            parameter name: :page, :in => :query, :type => :integer, :description => 'page', :default => 1, required: false
+
+          response '200', 'Ok' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/like_objects'
+                          } 
+                      },
+                      links: {
+                            type: :object,
+                            properties: {
+                              self: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=1&page[size]=10"
+                              },
+                              first: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=1&page[size]=10"
+                              },
+                              prev: {
+                                type: :string,
+                                format: :url,
+                                example: nil
+                              },
+                              next: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=2&page[size]=10"
+                              },
+                              last: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=10&page[size]=10"
+                              }
+                            },
+                            required: [ 'self', 'first', 'last']
+                          },
+                        meta: {
+                            '$ref': '#/definitions/meta_pagination_object'
+                        }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+
+          response '401', 'Unauthorized' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+
+          response '404', 'Activity Not Found' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+      end
+    end
+
+    path '/gallery/v1/activities/{id}/implementations' do
+      get "Get implementations a activity" do
+          tags 'Activities'
+          security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Get implementations a activity"      
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
+          parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
+          parameter name: :page, :in => :query, :type => :integer, :description => 'page', :default => 1, required: false
+
+          response '200', 'Ok' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/implementation_objects'
+                          } 
+                      },
+                      links: {
+                            type: :object,
+                            properties: {
+                              self: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=1&page[size]=10"
+                              },
+                              first: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=1&page[size]=10"
+                              },
+                              prev: {
+                                type: :string,
+                                format: :url,
+                                example: nil
+                              },
+                              next: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=2&page[size]=10"
+                              },
+                              last: {
+                                type: :string,
+                                format: :url,
+                                example: "//gallery/v1/activities?page[number]=10&page[size]=10"
+                              }
+                            },
+                            required: [ 'self', 'first', 'last']
+                          },
+                        meta: {
+                            '$ref': '#/definitions/meta_pagination_object'
+                        }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+
+          response '401', 'Unauthorized' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+
+          response '404', 'Activity Not Found' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+      end
+    end
 end

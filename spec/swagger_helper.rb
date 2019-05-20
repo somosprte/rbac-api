@@ -480,6 +480,56 @@ RSpec.configure do |config|
                             example: "www.activity.com"
                         }
                     }
+                },
+                like_objects:{
+                    type: :object,
+                    properties: {
+                        id: {
+                            type: :string,
+                            example: '6bea14a4-0e33-4d05-a015-df79ca9a3559'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'experience-likes'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/like_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                like_object:{
+                    type: :object,
+                    properties: {
+                      person:{
+                        '$ref' => '#/definitions/person_object' 
+                      } 
+                    }
+                },
+                implementation_objects:{
+                    type: :object,
+                    properties: {
+                        id: {
+                            type: :string,
+                            example: '6bea14a4-0e33-4d05-a015-df79ca9a3559'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'experience-implementation'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/implementation_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                implementation_object:{
+                    type: :object,
+                    properties: {
+                      person:{
+                        '$ref' => '#/definitions/person_object' 
+                      } 
+                    }
                 }
             }
         }
