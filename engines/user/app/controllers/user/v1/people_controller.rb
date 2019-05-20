@@ -21,6 +21,16 @@ module User
       def show
         render json: @person
       end
+
+      # GET /user/v1/people/favorites/activities
+      def get_favorites_activities
+        favorite_activities = Gallery::Activity.get_activity_favorites(@current_user.usereable)
+
+        favorite_activities = favorite_activities.page(params[:page] || 1)
+        favorite_activities = favorite_activities.per(params[:per] || 10)
+
+        render json: favorite_activities, each_serializer:Gallery::V1::ActivitySerializer, meta: pagination_dict(favorite_activities)
+      end
     
 
       def pagination_dict(collection)

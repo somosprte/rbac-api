@@ -63,6 +63,10 @@ module Gallery
       joins(:space_types).where("gallery_space_types.title ilike '%#{space_type}%'")
     end
 
+    def self.get_activity_favorites(person)
+      joins(:favorites).where("experience_favorites.person_id = '#{person.id}' and experience_favorites.favoriteable_type = 'Gallery::Activity'")
+    end
+
     def liked?(current_user)
       self.liked = likes.where(person: current_user.usereable).present?
     end

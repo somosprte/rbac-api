@@ -2,7 +2,8 @@ module Gallery
     module V1
         class SpecificMaterialSerializer < ActiveModel::Serializer
             attributes :id,
-                       :name, 
+                       :name,
+                       :description, 
                        :quantity 
         end
     end

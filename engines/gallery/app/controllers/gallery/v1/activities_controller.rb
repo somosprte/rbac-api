@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix, :implement]
+      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix, :implement, :get_likes, :get_implementations]
       skip_before_action :authenticate, only: %i[index show]
 
 
@@ -122,6 +122,28 @@ module Gallery
         end
         @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user, auth_present?)
         render json: @activity
+      end
+
+      # GET /gallery/v1/activities/:id/likes
+      def get_likes
+        likes = @activity.likes
+
+        likes = likes.page(params[:page] || 1)
+        likes = likes.per(params[:per] || 10)
+
+        render json: likes, each_serializer: Experience::V1::LikeSerializer, meta: pagination_dict(likes)
+
+      end
+
+      # GET /gallery/v1/activities/:id/implementations
+      def get_implementations
+        implementations = @activity.implementations
+
+        implementations = implementations.page(params[:page] || 1)
+        implementations = implementations.per(params[:per] || 10)
+
+
+        render json: implementations, each_serializer: Experience::V1::ImplementationSerializer, meta: pagination_dict(implementations)
       end
 
 

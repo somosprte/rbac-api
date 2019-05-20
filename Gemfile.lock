@@ -10,6 +10,7 @@ PATH
   remote: engines/experience
   specs:
     experience (0.1.0)
+      active_model_serializers
       rails (~> 5.2.2)
 
 PATH
@@ -24,6 +25,7 @@ PATH
   remote: engines/user
   specs:
     user (0.1.0)
+      active_model_serializers
       rails (~> 5.2.2)
 
 GEM
