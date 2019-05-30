@@ -104,7 +104,7 @@ module Gallery
         activity_remixed.image = @activity.image
         activity_remixed.person_ids = @current_user.usereable.id
         activity_remixed.save
-        activity_remixed.inspirations.create(activity_two_id:@activity.id, title:@activity.title)
+        activity_remixed.inspirations.create(activity_two_id:@activity.id)
         if activity_remixed.update(activity_params)
           Gallery::FunctionsActivity.crud_general_materials(activity_remixed, params, true)
           Gallery::FunctionsActivity.crud_inspirations(activity_remixed, params, true)
