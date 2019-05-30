@@ -57,11 +57,11 @@ module Gallery
                 }   
             end
 
-            def specific_materials
-                object.specific_materials.map{|specific_material|
-                    Gallery::V1::SpecificMaterialSerializer.new(specific_material, root: false)
-                }   
-            end
+            # def specific_materials
+            #     object.specific_materials.map{|specific_material|
+            #         Gallery::V1::SpecificMaterialSerializer.new(specific_material, root: false)
+            #     }   
+            # end
 
             def general_materials
                 object.general_materials.map{|general_material|

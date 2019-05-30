@@ -17,7 +17,7 @@ module Gallery
     has_many :activity_general_materials,    class_name: 'Gallery::ActivityGeneralMaterial',  dependent: :destroy
     has_many :general_materials, through: :activity_general_materials, class_name: 'Gallery::GeneralMaterial'
   
-    has_many :specific_materials, class_name: 'Gallery::SpecificMaterial', dependent: :destroy
+    #has_many :specific_materials, class_name: 'Gallery::SpecificMaterial', dependent: :destroy
     has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
     has_many :favorites, class_name: 'Experience::Favorite', as: :favoriteable, dependent: :destroy
     
@@ -26,7 +26,7 @@ module Gallery
     
     has_many :implementations, class_name: 'Experience::Implementation', dependent: :destroy
 
-    accepts_nested_attributes_for :specific_materials, allow_destroy: true
+    #accepts_nested_attributes_for :specific_materials, allow_destroy: true
     
 
     has_attached_file :image, styles: {
