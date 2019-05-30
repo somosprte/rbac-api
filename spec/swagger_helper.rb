@@ -208,6 +208,12 @@ RSpec.configure do |config|
                         images:{
                             '$ref' => '#/definitions/image_object' 
                                
+                        },
+                        comments:{
+                            '$ref' => '#/definitions/comment_object' 
+                        },
+                        likes:{
+                            '$ref' => '#/definitions/like_object' 
                         }
                     },
                     required: ['title']
@@ -516,7 +522,36 @@ RSpec.configure do |config|
                         '$ref' => '#/definitions/person_object' 
                       } 
                     }
-                }
+                },
+                comment_objects:{
+                    type: :object,
+                    properties: {
+                        id: {
+                            type: :string,
+                            example: '6bea14a4-0e33-4d05-a015-df79ca9a3559'
+                        },
+                        type: {
+                            type: :string,
+                            example: 'experience-comments'
+                        },
+                        attributes: {
+                            '$ref' => '#/definitions/comment_object' 
+                        }
+                    },
+                    required: [ 'id', 'type', 'attributes']
+                },
+                comment_object:{
+                    type: :object,
+                    properties: {
+                      person:{
+                        '$ref' => '#/definitions/person_object' 
+                      },
+                      text:{
+                        type: :string,
+                        example:"Comment"
+                      }
+                    }
+                },
             }
         }
     }

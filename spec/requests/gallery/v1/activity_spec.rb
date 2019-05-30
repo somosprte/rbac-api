@@ -676,4 +676,51 @@ RSpec.describe 'Activities API', type: :request do
           
       end
     end
+
+    path '/gallery/v1/activities/{id}/comment' do
+      post "Comment a activity" do
+          tags 'Activities'
+          security [ Bearer: [] ]
+          consumes 'application/json'
+          description "Comment a activity"      
+          parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
+          parameter name: :body, in: :body, required: true, schema: {
+            type: :object,
+            properties: {
+              text: { type: :string, example: "Comments"}
+            },
+            required: ["text"] 
+        }   
+
+          response '200', 'Comment ok' do
+              schema type: :object,
+                  properties: {
+                      data: {
+                          type: :array,
+                          items: {
+                              '$ref': '#/definitions/activities_object'
+                          } 
+                      }
+                  },
+                  required: ["data"] 
+              run_test!
+          end
+
+          response '401', 'Unauthorized' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+
+          response '404', 'Activity Not Found' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+          response '500', 'Internal Server Error' do
+            schema '$ref': '#/definitions/error_object'
+            run_test!
+          end
+          
+      end
+    end
 end

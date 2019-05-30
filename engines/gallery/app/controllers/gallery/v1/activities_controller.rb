@@ -3,7 +3,7 @@ require_dependency "gallery/application_controller"
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix, :implement, :get_likes, :get_implementations]
+      before_action :set_activity, only: [:show, :update, :destroy, :like, :favorite, :remix, :implement, :get_likes, :get_implementations, :comment]
       skip_before_action :authenticate, only: %i[index show]
 
 
@@ -144,6 +144,12 @@ module Gallery
 
 
         render json: implementations, each_serializer: Experience::V1::ImplementationSerializer, meta: pagination_dict(implementations)
+      end
+
+      # POST /gallery/v1/activities/:id/comment
+      def comment
+        @activity.comments.create(text: params[:text], person: @current_user.usereable)
+        render json: @activity
       end
 
 

@@ -25,6 +25,7 @@ module Gallery
     has_many :activities, through: :inspirations, class_name: "Gallery::Activity"
     
     has_many :implementations, class_name: 'Experience::Implementation', dependent: :destroy
+    has_many :comments, class_name: 'Experience::Comment', as: :commenteable, dependent: :destroy
 
     #accepts_nested_attributes_for :specific_materials, allow_destroy: true
     

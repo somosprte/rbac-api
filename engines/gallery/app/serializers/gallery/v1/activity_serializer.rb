@@ -30,7 +30,9 @@ module Gallery
                        :space_types,
                        :specific_materials,
                        :general_materials,
-                       :images
+                       :images,
+                       :comments,
+                       :likes
 
             
             def scopes
@@ -72,6 +74,18 @@ module Gallery
             def inspirations
                 object.inspirations.map{|inspiration|
                     Gallery::V1::InspirationSerializer.new(inspiration, root: false)
+                }   
+            end
+
+            def comments
+                object.comments.map{|comment|
+                    Experience::V1::CommentSerializer.new(comment, root: false)
+                }   
+            end
+
+            def likes
+                object.likes.map{|like|
+                    Experience::V1::LikeSerializer.new(like, root: false)
                 }   
             end
 
