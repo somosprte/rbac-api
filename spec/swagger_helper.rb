@@ -196,10 +196,8 @@ RSpec.configure do |config|
                             }   
                         },
                         specific_materials:{
-                            type: :array,
-                            items: {
-                                '$ref' => '#/definitions/specific_materials_object' 
-                            }   
+                            type: :string,
+                            example: "Cola e tesoura sem ponta"
                         },
                         general_materials:{
                             type: :array,

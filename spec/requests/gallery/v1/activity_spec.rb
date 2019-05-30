@@ -151,7 +151,7 @@ RSpec.describe 'Activities API', type: :request do
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
                           person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},
                           space_type_ids: {type: :array, example:["df1f4ff2-c167-44b9-9b3d-50d51e909e2d"]}, 
-                          specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1, "description": "Tesoura para ser usada na atividade"}]},
+                          specific_materials:{type: :string, example:"Cola e tesoura sem ponta"},
                           general_materials:{type: :array, example:[{"id": "9c65a353-497a-42ed-9631-38f68c6862b0", "quantity": 11}]},
                           image:{type: :string, example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="},
                           inspirations_ids:{type: :array, example:["819d249c-e536-43df-b688-1b9ca72eec72"]}
@@ -228,7 +228,7 @@ RSpec.describe 'Activities API', type: :request do
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
                           person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},
                           space_type_ids: {type: :array, example:["df1f4ff2-c167-44b9-9b3d-50d51e909e2d"]},
-                          specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1, "description": "Tesoura para ser usada na atividade"}]},
+                          specific_materials:{type: :string, example:"Cola e tesoura sem ponta"},
                           general_materials:{type: :array, example:[{"id": "9c65a353-497a-42ed-9631-38f68c6862b0", "quantity": 11}]},
                           image:{type: :string, example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="},
                           inspirations_ids:{type: :array, example:["819d249c-e536-43df-b688-1b9ca72eec72"]}

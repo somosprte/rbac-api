@@ -491,15 +491,9 @@
                         "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
                       ]
                     },
-                    "specific_materials_attributes": {
-                      "type": "array",
-                      "example": [
-                        {
-                          "name": "Tesoura sem ponta",
-                          "quantity": 1,
-                          "description": "Tesoura para ser usada na atividade"
-                        }
-                      ]
+                    "specific_materials": {
+                      "type": "string",
+                      "example": "Cola e tesoura sem ponta"
                     },
                     "general_materials": {
                       "type": "array",
@@ -764,15 +758,9 @@
                         "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
                       ]
                     },
-                    "specific_materials_attributes": {
-                      "type": "array",
-                      "example": [
-                        {
-                          "name": "Tesoura sem ponta",
-                          "quantity": 1,
-                          "description": "Tesoura para ser usada na atividade"
-                        }
-                      ]
+                    "specific_materials": {
+                      "type": "string",
+                      "example": "Cola e tesoura sem ponta"
                     },
                     "general_materials": {
                       "type": "array",
@@ -3607,10 +3595,8 @@
           }
         },
         "specific_materials": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/specific_materials_object"
-          }
+          "type": "string",
+          "example": "Cola e tesoura sem ponta"
         },
         "general_materials": {
           "type": "array",
