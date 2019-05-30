@@ -463,21 +463,9 @@ RSpec.configure do |config|
                 },
                 inspiration_object:{
                     properties: {
-                        title: { 
-                            type: :string,
-                            example: 'Atividade 1'
-                        },
-                        activity_id: {
-                            type: :string, 
-                            example: "6ecbef60-2643-4a93-a7f5-3d15c7e4cc34"
-                        },
                         activity_two_id: {
                             type: :string, 
                             example: "819d249c-e536-43df-b688-1b9ca72eec72"
-                        },
-                        activity_link:{
-                            type: :string, 
-                            example: "www.activity.com"
                         }
                     }
                 },

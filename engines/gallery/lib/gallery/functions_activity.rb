@@ -45,16 +45,14 @@ module Gallery
 
         def self.crud_inspirations(activity, activity_params, update=nil)
             ids = []
-            activity_params[:activity][:inspirations].each do |inspiration|
-                gallery_inspiration = Gallery::Activity.find_by(id:inspiration[:id])
+            activity_params[:activity][:inspirations_ids].each do |inspiration|
+                gallery_inspiration = Gallery::Activity.find_by(id:inspiration)
                 if gallery_inspiration
-                    unless activity.inspirations.find_by(activity_two_id:inspiration[:id])
-                        activity.inspirations.create(activity_two_id:inspiration[:id], title:inspiration[:title], activity_link:inspiration[:link])
-                    else
-                        activity.inspirations.update(title:inspiration[:title], activity_link:inspiration[:link])
+                    unless activity.inspirations.find_by(activity_two_id:inspiration)
+                        activity.inspirations.create(activity_two_id:inspiration)
                     end
                 end
-                ids.push(inspiration[:id])
+                ids.push(inspiration)
             end
             if update == true
                 sync_inspirations = Gallery::Inspiration.where(activity_id:activity.id).where.not(activity_two_id:ids)

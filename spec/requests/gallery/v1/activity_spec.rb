@@ -154,7 +154,7 @@ RSpec.describe 'Activities API', type: :request do
                           specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1, "description": "Tesoura para ser usada na atividade"}]},
                           general_materials:{type: :array, example:[{"id": "9c65a353-497a-42ed-9631-38f68c6862b0", "quantity": 11}]},
                           image:{type: :string, example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="},
-                          inspirations:{type: :array, example:[{"id": "819d249c-e536-43df-b688-1b9ca72eec72", "title": "Atividade 1", "link": "www.activity.com"}]}
+                          inspirations_ids:{type: :array, example:["819d249c-e536-43df-b688-1b9ca72eec72"]}
                         },
                       required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids", "general_materials"] 
                   }
@@ -231,7 +231,7 @@ RSpec.describe 'Activities API', type: :request do
                           specific_materials_attributes:{type: :array, example:[{"name": "Tesoura sem ponta", "quantity": 1, "description": "Tesoura para ser usada na atividade"}]},
                           general_materials:{type: :array, example:[{"id": "9c65a353-497a-42ed-9631-38f68c6862b0", "quantity": 11}]},
                           image:{type: :string, example: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="},
-                          inspirations:{type: :array, example:[{"id": "819d249c-e536-43df-b688-1b9ca72eec72", "title": "Atividade 1", "link": "www.activity.com"}]}
+                          inspirations_ids:{type: :array, example:["819d249c-e536-43df-b688-1b9ca72eec72"]}
                       },
                       required: ["title","caption","description","motivation","powerful_ideas","products","requirements","published","version_history","copyright","license_type","space_organization", "duration", "implementation_steps" "scope_ids","audience_ids","person_ids", "space_type_ids", "general_materials"] 
                   }
