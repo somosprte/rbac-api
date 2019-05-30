@@ -49,7 +49,7 @@ module Gallery
                 gallery_inspiration = Gallery::Activity.find_by(id:inspiration)
                 if gallery_inspiration
                     unless activity.inspirations.find_by(activity_two_id:inspiration)
-                        activity.inspirations.create(activity_two_id:inspiration)
+                        activity.inspirations.create(activity_two_id:inspiration, title: activity.title)
                     end
                 end
                 ids.push(inspiration)

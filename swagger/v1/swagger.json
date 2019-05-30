@@ -1249,6 +1249,10 @@
                   "example": "MIT"
                 },
                 "number_participants": {
+                  "type": "integer",
+                  "example": 10
+                },
+                "description": {
                   "type": "string",
                   "example": "Implementação em classe"
                 }
@@ -3995,6 +3999,10 @@
         "activity_two_id": {
           "type": "string",
           "example": "819d249c-e536-43df-b688-1b9ca72eec72"
+        },
+        "title": {
+          "type": "string",
+          "example": "Atividade 1"
         }
       }
     },
@@ -4053,6 +4061,10 @@
       "properties": {
         "person": {
           "$ref": "#/definitions/person_object"
+        },
+        "description": {
+          "type": "string",
+          "example": "Implementação em classe"
         }
       }
     },

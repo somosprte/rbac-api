@@ -470,6 +470,10 @@ RSpec.configure do |config|
                         activity_two_id: {
                             type: :string, 
                             example: "819d249c-e536-43df-b688-1b9ca72eec72"
+                        },
+                        title:{
+                            type: :string, 
+                            example: "Atividade 1"
                         }
                     }
                 },
@@ -520,6 +524,10 @@ RSpec.configure do |config|
                     properties: {
                       person:{
                         '$ref' => '#/definitions/person_object' 
+                      },
+                      description: {
+                        type: :string,
+                        example: "Implementação em classe"
                       } 
                     }
                 },

@@ -2,7 +2,8 @@ module Experience
     module V1
         class ImplementationSerializer < ActiveModel::Serializer
             attributes :id,
-                       :person
+                       :person,
+                       :description
 
 
         

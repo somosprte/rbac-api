@@ -2,7 +2,8 @@ module Gallery
     module V1
         class InspirationSerializer < ActiveModel::Serializer
             attributes :id,
-                       :activity_two_id
+                       :activity_two_id,
+                       :title
         end
     end
 end
