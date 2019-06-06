@@ -78,7 +78,7 @@ RSpec.describe 'Auth API', type: :request do
                             type: :string,
                             example: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiMTI9OGI0OTYtYjk3NC00YWM10LWFiZGEtODlhZjZmYWUwMjgxIn0"
                         },
-                        person_id: {
+                        id: {
                             type: :string,
                             example: "ad054857-3de0-484a-9c01-180344c00985"
                         }
