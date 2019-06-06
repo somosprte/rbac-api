@@ -36,7 +36,8 @@ module Auth
                         auth = Auth::User.find_by(username:username)
                         if auth && auth.authenticate(login_params[:password])
                             jwt = Authenticate.issue({user: auth.id})
-                            render json: {jwt: jwt}
+                            person = auth.usereable
+                            render json: {jwt: jwt, person_id:person.id}
                         else
                             render_json_error :bad_request, :invalid_password
                         end
