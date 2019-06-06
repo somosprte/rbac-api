@@ -441,8 +441,24 @@ RSpec.configure do |config|
                             type: :string, 
                             example: "Cartolina para ser usada em atividades"
                         },
+                        activity_general_materials:{
+                            '$ref' => '#/definitions/activity_general_materials_object' 
+                        }
                     },
                     required: [ 'name', 'description']
+                },
+                activity_general_materials_object:{
+                    type: :object,
+                    properties: {
+                        id: { 
+                            type: :string,
+                            example: '73590bc0-95f5-41ea-8337-f3e0e24709f'
+                        },
+                        quantity: {
+                            type: :integer, 
+                            example: 10
+                        }
+                    }
                 },
                 image_object:{
                     type: :object,
