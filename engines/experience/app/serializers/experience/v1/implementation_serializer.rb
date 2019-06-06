@@ -3,7 +3,10 @@ module Experience
         class ImplementationSerializer < ActiveModel::Serializer
             attributes :id,
                        :person,
-                       :description
+                       :description,
+                       :date_implementation,
+                       :place_implementation,
+                       :number_participants
 
 
         
