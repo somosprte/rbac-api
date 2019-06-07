@@ -32,7 +32,8 @@ module Gallery
                        :general_materials,
                        :images,
                        :comments,
-                       :likes
+                       :likes,
+                       :implementations
 
             
             def scopes
@@ -86,6 +87,12 @@ module Gallery
             def likes
                 object.likes.map{|like|
                     Experience::V1::LikeSerializer.new(like, root: false)
+                }   
+            end
+
+            def implementations
+                object.implementations.map{|implementation|
+                    Experience::V1::ImplementationSerializer.new(implementation, root: false)
                 }   
             end
 

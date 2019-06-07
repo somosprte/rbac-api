@@ -214,6 +214,9 @@ RSpec.configure do |config|
                         },
                         likes:{
                             '$ref' => '#/definitions/like_object' 
+                        },
+                        implementations:{
+                            '$ref' => '#/definitions/implementation_object' 
                         }
                     },
                     required: ['title']
@@ -544,7 +547,19 @@ RSpec.configure do |config|
                       description: {
                         type: :string,
                         example: "Implementação em classe"
-                      } 
+                      },
+                      date_implementation: {
+                        type: :string,
+                        example: "2019-05-05"
+                      }, 
+                      place_implementation: {
+                        type: :string,
+                        example: "Sala de aula"
+                      },
+                      number_participants: {
+                        type: :integer,
+                        example: 10
+                      }  
                     }
                 },
                 comment_objects:{
@@ -573,6 +588,10 @@ RSpec.configure do |config|
                       text:{
                         type: :string,
                         example:"Comment"
+                      },
+                      created_at:{
+                        type: :string,
+                        example:"2019-01-01"
                       }
                     }
                 },

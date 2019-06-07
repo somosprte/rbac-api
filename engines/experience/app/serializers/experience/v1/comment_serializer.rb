@@ -3,7 +3,8 @@ module Experience
         class CommentSerializer < ActiveModel::Serializer
             attributes :id,
                        :person,
-                       :text
+                       :text,
+                       :created_at
 
 
         
