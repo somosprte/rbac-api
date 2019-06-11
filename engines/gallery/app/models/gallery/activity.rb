@@ -47,25 +47,49 @@ module Gallery
       include_association :specific_materials
     end
 
-    def self.search_global(query)
-      where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
-    end
+    scope :search_global, -> (query=nil){
+      if query
+        where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
+      else
+        all
+      end
+    } 
 
-    def self.search_by_scope(scope)
-      joins(:scopes).where("gallery_scopes.title ilike '%#{scope}%'")
-    end
+    scope :search_by_scopes, -> (scopes=nil){
+      if scopes
+        scopes = scopes.split(',')
+        joins(:scopes).where({gallery_scopes:{id:scopes}})
+      else
+        all
+      end
+    }
 
-    def self.search_by_author(author)
-      joins(:people).where("user_people.name ilike '%#{author}%'")
-    end
+    scope :search_by_authors, -> (authors=nil){
+      if authors
+        authors = authors.split(',')
+        joins(:people).where({user_people:{id:authors}})
+      else
+        all
+      end
+    }
 
-    def self.search_by_audience(audience)
-      joins(:audiences).where("gallery_audiences.name ilike '%#{audience}%'")
-    end
+    scope :search_by_audiences, -> (audiences=nil){
+      if audiences
+        audiences = audiences.split(',')
+        joins(:audiences).where({gallery_audiences:{id:audiences}})
+      else
+        all
+      end
+    }
 
-    def self.search_by_space_type(space_type)
-      joins(:space_types).where("gallery_space_types.title ilike '%#{space_type}%'")
-    end
+    scope :search_by_space_types, -> (space_types=nil){
+      if space_types
+        space_types = space_types.split(',')
+        joins(:space_types).where({gallery_space_types:{id:space_types}})
+      else
+        all
+      end
+    }
 
     def self.get_activity_favorites(person)
       joins(:favorites).where("experience_favorites.person_id = '#{person.id}' and experience_favorites.favoriteable_type = 'Gallery::Activity'")

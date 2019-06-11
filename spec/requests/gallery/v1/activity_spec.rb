@@ -12,10 +12,10 @@ RSpec.describe 'Activities API', type: :request do
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
             parameter name: :page, :in => :query, :type => :integer, :description => 'page', :default => 1, required: false
             parameter name: :global, :in => :query, :type => :string, :description => 'Search global fields', required: false
-            parameter name: :scopes, :in => :query, :type => :string, :description => 'Search by scope', required: false    
-            parameter name: :author, :in => :query, :type => :string, :description => 'Search by author', required: false 
-            parameter name: :audience, :in => :query, :type => :string, :description => 'Search by audience', required: false
-            parameter name: :space_type, :in => :query, :type => :string, :description => 'Search by space type', required: false      
+            parameter name: :scope_ids, :in => :query, :type => :string, :description => 'Search by scope, scope_ids=id1,id2', required: false    
+            parameter name: :author_ids, :in => :query, :type => :string, :description => 'Search by author, author_ids=id1,id2', required: false 
+            parameter name: :audience_ids, :in => :query, :type => :string, :description => 'Search by audience, audience_ids=id1,id2', required: false
+            parameter name: :space_type_ids, :in => :query, :type => :string, :description => 'Search by space type, space_type_ids=id1,id2', required: false      
 
             response '200', 'Activities found' do
                 schema type: :object,

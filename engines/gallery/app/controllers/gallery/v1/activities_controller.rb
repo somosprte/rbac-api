@@ -9,27 +9,8 @@ module Gallery
 
       # GET /gallery/v1/activities
       def index
-        @activities = Gallery::Activity.all
-        if params[:global]
-          @activities = Gallery::Activity.search_global(params[:global])
-        end
+        @activities = Gallery::Activity.search_global(params[:global]).search_by_scopes(params[:scope_ids]).search_by_authors(params[:author_ids]).search_by_audiences(params[:audience_ids]).search_by_space_types(params[:space_type_ids])
         
-        if params[:author]
-          @activities = Gallery::Activity.search_by_author(params[:author])
-        end
-
-        if params[:scope]
-          @activities = Gallery::Activity.search_by_scope(params[:scope])
-        end
-
-        if params[:audience]
-          @activities = Gallery::Activity.search_by_audience(params[:audience])
-        end
-
-        if params[:space_type]
-          @activities = Gallery::Activity.search_by_space_type(params[:space_type])
-        end
-
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
         
