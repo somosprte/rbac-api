@@ -33,8 +33,10 @@ module Gallery
                        :images,
                        :comments,
                        :likes,
-                       :implementations
-
+                       :implementations,
+                       :total_implementations,
+                       :total_likes,
+                       :total_comments
             
             def scopes
                 object.scopes.map{|scope|
@@ -103,6 +105,18 @@ module Gallery
                   square: object.image.url(:square),
                   thumbnail: object.image.url(:thumb)
                 }
+            end
+
+            def total_implementations
+                object.implementations.size
+            end
+
+            def total_likes
+                object.likes.size
+            end
+
+            def total_comments
+                object.comments.size
             end
 
         end

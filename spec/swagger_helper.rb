@@ -217,6 +217,18 @@ RSpec.configure do |config|
                         },
                         implementations:{
                             '$ref' => '#/definitions/implementation_object' 
+                        },
+                        total_implementations:{
+                            type: :integer,
+                            example: 10
+                        },
+                        total_likes:{
+                            type: :integer,
+                            example: 10
+                        },
+                        total_comments:{
+                            type: :integer,
+                            example: 10
                         }
                     },
                     required: ['title']
