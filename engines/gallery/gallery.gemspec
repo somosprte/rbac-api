@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pg"
   spec.add_dependency 'active_model_serializers'
   spec.add_dependency "paperclip"
+  spec.add_dependency 'pundit'
 end

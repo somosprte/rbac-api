@@ -9,7 +9,7 @@ module Gallery
 
       # GET /gallery/v1/activities
       def index
-        @activities = Gallery::Activity.search_global(params[:global]).search_by_scopes(params[:scope_ids]).search_by_authors(params[:author_ids]).search_by_audiences(params[:audience_ids]).search_by_space_types(params[:space_type_ids])
+        @activities = Gallery::Activity.search_global(params[:global]).search_by_scopes(params[:scope_ids]).search_by_authors(params[:author_ids]).search_by_audiences(params[:audience_ids]).search_by_space_types(params[:space_type_ids]).order("created_at DESC")
         
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
@@ -34,6 +34,7 @@ module Gallery
 
       # PATCH/PUT gallery/v1/activities/:id
       def update
+        authorize @activity
         if @activity.update(activity_params)
           Gallery::FunctionsActivity.crud_general_materials(@activity, params, true)
           Gallery::FunctionsActivity.crud_inspirations(@activity, params, true)
@@ -51,6 +52,7 @@ module Gallery
       
       # DELETE /gallery/v1/activities/:id
       def destroy
+        authorize @activity
         @activity.destroy
       end
 

@@ -81,7 +81,7 @@ module Gallery
             end
 
             def comments
-                object.comments.map{|comment|
+                object.comments.order("created_at DESC").map{|comment|
                     Experience::V1::CommentSerializer.new(comment, root: false)
                 }   
             end
@@ -93,7 +93,7 @@ module Gallery
             end
 
             def implementations
-                object.implementations.map{|implementation|
+                object.implementations.order("created_at DESC").map{|implementation|
                     Experience::V1::ImplementationSerializer.new(implementation, root: false)
                 }   
             end
