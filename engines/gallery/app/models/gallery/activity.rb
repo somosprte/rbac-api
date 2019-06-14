@@ -44,7 +44,6 @@ module Gallery
       include_association :activity_audiences
       include_association :activity_space_types
       include_association :general_materials
-      include_association :specific_materials
     end
 
     scope :search_global, -> (query=nil){
