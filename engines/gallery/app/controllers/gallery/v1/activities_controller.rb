@@ -100,9 +100,9 @@ module Gallery
 
       # POST /gallery/v1/activities/:id/implement
       def implement
-        unless @activity.implementations.find_by(person:@current_user.usereable)
-          @activity.implementations.create(person:@current_user.usereable, date_implementation:params[:date_implementation], place_implementation:params[:place_implementation], number_participants: params[:number_participants], description: params[:description])
-        end
+        
+        @activity.implementations.create(person:@current_user.usereable, date_implementation:params[:date_implementation], place_implementation:params[:place_implementation], number_participants: params[:number_participants], description: params[:description])
+        
         @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user, auth_present?)
         render json: @activity
       end
