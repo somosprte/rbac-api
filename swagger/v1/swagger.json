@@ -161,6 +161,148 @@
         }
       }
     },
+    "/experience/v1/comments/{id}": {
+      "put": {
+        "summary": "Update a Comment",
+        "tags": [
+          "Comments"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a Comment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "comment id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "comment": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "example": "Comment"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/comment_objects"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Comment Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Comment",
+        "tags": [
+          "Comments"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a Comment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "comment id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Comment delete"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Audience Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
     "/gallery/v1/activities/": {
       "get": {
         "summary": "Get Activities",

@@ -135,6 +135,12 @@ module Gallery
         render json: @activity
       end
 
+      # DELETE /gallery/v1/activities/:id/comment/:comment_id
+      def destroy_comment
+        @activity.comments.create(text: params[:text], person: @current_user.usereable)
+        render json: @activity
+      end
+
 
       def pagination_dict(collection)
         {

@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   mount Gallery::Engine, at: "/gallery"
   mount Auth::Engine, at: "/auth"
   mount User::Engine, at: "/user"
+  mount Experience::Engine, at: "/experience"
 end
