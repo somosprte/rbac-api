@@ -2,35 +2,38 @@ require 'rails_helper'
 require 'swagger_helper'
 
 
-RSpec.describe 'Comments API', type: :request do
+RSpec.describe 'Implementations API', type: :request do
     
-    path '/experience/v1/comments/{id}' do
-        put "Update a Comment" do
-            tags 'Comments'
+    path '/experience/v1/implementations/{id}' do
+        put "Update a Implementation" do
+            tags 'Implementations'
             security [ Bearer: [] ]
             consumes 'application/json'
             description "Update a Comment"
-            parameter name: :id, :in => :path, :type => :string, :description => 'comment id', required: true      
+            parameter name: :id, :in => :path, :type => :string, :description => 'implementation id', required: true      
             parameter name: :body, in: :body, required: true, schema: {
                 type: :object,
                 properties: {
-                    comment: {
+                    implementation: {
                         type: :object,
                         properties: {
-                            text: { type: :string, example: "Comment"},
+                            date_implementation: { type: :string, example: "2019-01-15"},
+                            place_implementation: { type: :string, example: "MIT"},
+                            number_participants: { type: :integer, example: 10},
+                            description: { type: :string, example: "Implementação em classe"},
                         },
                         required: ["text"] 
                     }
                 }
             }   
             
-            response '200', 'Comment update' do
+            response '200', 'Implementation update' do
                 schema type: :object,
                     properties: {
                         data: {
                             type: :array,
                             items: {
-                                '$ref': '#/definitions/comment_objects'
+                                '$ref': '#/definitions/implementation_objects'
                             } 
                         }
                     },
@@ -44,7 +47,7 @@ RSpec.describe 'Comments API', type: :request do
             end
             
            
-            response '404', 'Comment Not Found' do
+            response '404', 'Implementation Not Found' do
                 schema '$ref': '#/definitions/error_object'
                 run_test!
             end
@@ -64,16 +67,16 @@ RSpec.describe 'Comments API', type: :request do
     end
 
 
-    path '/experience/v1/comments/{id}' do
-        delete "Delete a Comment" do
-            tags 'Comments'
+    path '/experience/v1/implementations/{id}' do
+        delete "Delete a Implementation" do
+            tags 'Implementations'
             security [ Bearer: [] ]
             consumes 'application/json'
-            description "Delete a Comment"
-            parameter name: :id, :in => :path, :type => :string, :description => 'comment id', required: true      
+            description "Delete a Implementation"
+            parameter name: :id, :in => :path, :type => :string, :description => 'implementation id', required: true      
   
             
-            response '204', 'Comment delete' do
+            response '204', 'Implementation delete' do
               run_test!
             end
 
@@ -82,7 +85,7 @@ RSpec.describe 'Comments API', type: :request do
                 run_test!
             end
             
-            response '404', 'Comment Not Found' do
+            response '404', 'Implementation Not Found' do
                 schema '$ref': '#/definitions/error_object'
                 run_test!
             end

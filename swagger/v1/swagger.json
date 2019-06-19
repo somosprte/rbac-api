@@ -289,7 +289,161 @@
             }
           },
           "404": {
-            "description": "Audience Not Found",
+            "description": "Comment Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
+    "/experience/v1/implementations/{id}": {
+      "put": {
+        "summary": "Update a Implementation",
+        "tags": [
+          "Implementations"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a Comment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "implementation id",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "implementation": {
+                  "type": "object",
+                  "properties": {
+                    "date_implementation": {
+                      "type": "string",
+                      "example": "2019-01-15"
+                    },
+                    "place_implementation": {
+                      "type": "string",
+                      "example": "MIT"
+                    },
+                    "number_participants": {
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Implementação em classe"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Implementation update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/implementation_objects"
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Implementation Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "422": {
+            "description": "Entity error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Implementation",
+        "tags": [
+          "Implementations"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a Implementation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "implementation id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Implementation delete"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Implementation Not Found",
             "schema": {
               "$ref": "#/definitions/error_object"
             }
