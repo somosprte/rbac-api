@@ -483,7 +483,8 @@ RSpec.describe 'Activities API', type: :request do
                 date_implementation: { type: :string, example: "2019-05-01"},
                 place_implementation: { type: :string, example: "MIT"},
                 number_participants: { type: :integer, example: 10},
-                description: { type: :string, example: "Implementação em classe"}
+                description: { type: :string, example: "Implementação em classe"},
+                person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]}
                 
               },
               required: ["date_implementation"] 

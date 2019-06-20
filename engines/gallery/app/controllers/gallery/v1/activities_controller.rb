@@ -100,9 +100,10 @@ module Gallery
 
       # POST /gallery/v1/activities/:id/implement
       def implement
+        implementation = @activity.implementations.create(person:@current_user.usereable, date_implementation:params[:date_implementation], place_implementation:params[:place_implementation], number_participants: params[:number_participants], description: params[:description])
         
-        @activity.implementations.create(person:@current_user.usereable, date_implementation:params[:date_implementation], place_implementation:params[:place_implementation], number_participants: params[:number_participants], description: params[:description])
-        
+        implementation.person_ids = params[:person_ids]
+
         @activity = Gallery::FunctionsActivity.reactions_activity(@activity, @current_user, auth_present?)
         render json: @activity
       end

@@ -21,8 +21,8 @@ RSpec.describe 'Implementations API', type: :request do
                             place_implementation: { type: :string, example: "MIT"},
                             number_participants: { type: :integer, example: 10},
                             description: { type: :string, example: "Implementação em classe"},
-                        },
-                        required: ["text"] 
+                            person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]}
+                        }
                     }
                 }
             }   

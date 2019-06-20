@@ -571,7 +571,13 @@ RSpec.configure do |config|
                       number_participants: {
                         type: :integer,
                         example: 10
-                      }  
+                      },
+                        authors:{
+                            type: :array,
+                            items: {
+                                '$ref' => '#/definitions/person_object' 
+                            }   
+                        }  
                     }
                 },
                 comment_objects:{

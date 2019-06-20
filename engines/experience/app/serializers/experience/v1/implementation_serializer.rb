@@ -6,7 +6,8 @@ module Experience
                        :description,
                        :date_implementation,
                        :place_implementation,
-                       :number_participants
+                       :number_participants,
+                       :authors
 
 
         
@@ -17,6 +18,12 @@ module Experience
                 else
                     nil
                 end
+            end
+
+            def authors
+                object.people.map{|author|
+                    User::V1::PersonSerializer.new(author, root: false)
+                }   
             end
         end
     end

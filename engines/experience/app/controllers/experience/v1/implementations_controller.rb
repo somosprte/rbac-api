@@ -31,7 +31,7 @@ module Experience
 
         # Only allow a trusted parameter "white list" through.
         def implementation_params
-            params.require(:implementation).permit(:date_implementation, :place_implementation, :number_participants, :description)
+            params.require(:implementation).permit(:date_implementation, :place_implementation, :number_participants, :description, person_ids:[])
         end
     end
   end

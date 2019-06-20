@@ -353,11 +353,14 @@
                     "description": {
                       "type": "string",
                       "example": "Implementação em classe"
+                    },
+                    "person_ids": {
+                      "type": "array",
+                      "example": [
+                        "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
+                      ]
                     }
-                  },
-                  "required": [
-                    "text"
-                  ]
+                  }
                 }
               }
             }
@@ -1555,6 +1558,12 @@
                 "description": {
                   "type": "string",
                   "example": "Implementação em classe"
+                },
+                "person_ids": {
+                  "type": "array",
+                  "example": [
+                    "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
+                  ]
                 }
               },
               "required": [
@@ -4408,6 +4417,12 @@
         "number_participants": {
           "type": "integer",
           "example": 10
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/person_object"
+          }
         }
       }
     },
