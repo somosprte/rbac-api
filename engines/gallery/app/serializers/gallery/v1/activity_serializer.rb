@@ -36,6 +36,8 @@ module Gallery
                        :implementations,
                        :total_implementations,
                        :total_likes,
+                       :total_favorites,
+                       :total_remixes,
                        :total_comments
             
             def scopes
@@ -113,6 +115,14 @@ module Gallery
 
             def total_likes
                 object.likes.size
+            end
+
+            def total_favorites
+                object.favorites.size
+            end
+
+            def total_remixes
+                object.remixes.size
             end
 
             def total_comments

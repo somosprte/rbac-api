@@ -6,22 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-person = User::Person.find_by(email:"flavio@prte.com.br")
+email = 'pedro123@gmail.com'
+
+person = User::Person.find_by(email: email)
 if person.nil?
-    person = User::Person.create(name:"Flavio", email:"flavio@prte.com.br", birthday:"1989-10-21")
+    person = User::Person.create(name:"Pedro", email: email, birthday:"1989-10-10")
 end
 
-auth = Auth::User.find_by(username:"flavio@prte.com.br")
+auth = Auth::User.find_by(username: email)
 if auth.nil?
-    Auth::User.create(username:"flavio@prte.com.br", password:'123456', usereable:person)
+    Auth::User.create(username: email, password:'123456', usereable:person)
 end
 
-person_2 = User::Person.find_by(email:"nivaldo@prte.com.br")
-if person_2.nil?
-    person_2 = User::Person.create(name:"Nivaldo", email:"nivaldo@prte.com.br", birthday:"1989-11-21")
-end
-
-auth_2 = Auth::User.find_by(username:"nivaldo@prte.com.br")
-if auth_2.nil?
-    Auth::User.create(username:"nivaldo@prte.com.br", password:'123456', usereable:person_2)
-end
+Gallery::Scope.create(title: 'Scope 1', description: 'Scope 1')
+Gallery::Audience.create(name: 'Crianças', description: 'Crianças')
+Gallery::SpaceType.create(title: 'Sala de aula', description: 'Sala de aula com projetor')
+Gallery::GeneralMaterial.create(name: 'Cartolina', description: 'Cartolina para ser usada em atividades')

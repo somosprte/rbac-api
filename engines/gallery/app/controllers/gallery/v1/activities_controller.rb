@@ -89,6 +89,7 @@ module Gallery
         activity_remixed.save
         activity_remixed.inspirations.create(activity_two_id:@activity.id, title:@activity.title)
         if activity_remixed.update(activity_params)
+          @activity.remixes.create(person: @current_user.usereable)
           Gallery::FunctionsActivity.crud_general_materials(activity_remixed, params, true)
           Gallery::FunctionsActivity.crud_inspirations(activity_remixed, params, true)
           render json: activity_remixed
