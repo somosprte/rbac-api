@@ -96,6 +96,10 @@ module Gallery
       joins(:favorites).where("experience_favorites.person_id = '#{person.id}' and experience_favorites.favoriteable_type = 'Gallery::Activity'")
     end
 
+    def self.get_activity_implementations(person)
+      joins(:implementations).where("experience_implementations.person_id = '#{person.id}'")
+    end
+
     def liked?(current_user)
       self.liked = likes.where(person: current_user.usereable).present?
     end

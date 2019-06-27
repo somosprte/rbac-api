@@ -31,8 +31,17 @@ module User
 
         render json: favorite_activities, each_serializer:Gallery::V1::ActivitySerializer, meta: pagination_dict(favorite_activities)
       end
-    
 
+      # GET /user/v1/people/implementations/activities
+      def get_implementations_activities
+        implementation_activities = Gallery::Activity.get_activity_implementations(@current_user.usereable)
+
+        implementation_activities = implementation_activities.page(params[:page] || 1)
+        implementation_activities = implementation_activities.per(params[:per] || 10)
+
+        render json: implementation_activities, each_serializer:Gallery::V1::ActivitySerializer, meta: pagination_dict(implementation_activities)
+      end
+    
       def pagination_dict(collection)
         {
           current_page: collection.current_page,

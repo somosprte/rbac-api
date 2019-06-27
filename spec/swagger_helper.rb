@@ -226,6 +226,14 @@ RSpec.configure do |config|
                             type: :integer,
                             example: 10
                         },
+                        total_favorites:{
+                            type: :integer,
+                            example: 10
+                        },
+                        total_remixes:{
+                            type: :integer,
+                            example: 10
+                        },
                         total_comments:{
                             type: :integer,
                             example: 10
