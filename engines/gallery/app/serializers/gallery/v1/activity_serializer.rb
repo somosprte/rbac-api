@@ -32,6 +32,7 @@ module Gallery
                        :general_materials,
                        :images,
                        :comments,
+                       :remixes,
                        :likes,
                        :implementations,
                        :total_implementations,
@@ -85,6 +86,12 @@ module Gallery
             def comments
                 object.comments.order("created_at DESC").map{|comment|
                     Experience::V1::CommentSerializer.new(comment, root: false)
+                }   
+            end
+
+            def remixes
+                object.remixes.order("created_at DESC").map{|remix|
+                    Experience::V1::RemixSerializer.new(remix, root: false)
                 }   
             end
 

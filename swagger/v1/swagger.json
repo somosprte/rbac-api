@@ -4099,6 +4099,9 @@
         "comments": {
           "$ref": "#/definitions/comment_object"
         },
+        "remixes": {
+          "$ref": "#/activity_remixes"
+        },
         "likes": {
           "$ref": "#/definitions/like_object"
         },
@@ -4562,6 +4565,124 @@
         "created_at": {
           "type": "string",
           "example": "2019-01-01"
+        }
+      }
+    }
+  },
+  "activity_remixes": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "example": "974c67d9-24ef-4952-b8cd-f24c5a56bb2b"
+      },
+      "activity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "9c3d580c-7c1c-4c20-af40-043cca8c92e5"
+          },
+          "title": {
+            "type": "string",
+            "example": "primeira Atividade a ser remixada"
+          },
+          "caption": {
+            "type": "string",
+            "example": "Atividade em sala"
+          },
+          "description": {
+            "type": "string",
+            "example": "primeira atividade em sala de aula"
+          },
+          "motivation": {
+            "type": "string",
+            "example": "Ensinamentos basicos"
+          },
+          "powerful_ideas": {
+            "type": "string",
+            "example": "Ideias"
+          },
+          "products": {
+            "type": "string",
+            "example": "Produtos"
+          },
+          "requirements": {
+            "type": "string",
+            "example": "Inglês"
+          },
+          "published": {
+            "type": "boolean",
+            "example": true
+          },
+          "version_history": {
+            "type": "string",
+            "example": "1.0"
+          },
+          "copyright": {
+            "type": "string",
+            "example": "rbac"
+          },
+          "license_type": {
+            "type": "string",
+            "example": "License"
+          },
+          "created_at": {
+            "type": "date",
+            "example": "2019-06-28T20:10:14.543Z"
+          },
+          "updated_at": {
+            "type": "date",
+            "example": "2019-06-28T20:10:16.173Z"
+          },
+          "space_organization": {
+            "type": "string",
+            "example": "Precisa de projetor para realizar a atividade"
+          },
+          "implementation_steps": {
+            "type": "string",
+            "example": "Primeiramente ler a apostila pagina 2"
+          },
+          "implementation_tips": {
+            "type": "string",
+            "example": "Realizar a atividade durante o dia"
+          },
+          "reflection_assessment": {
+            "type": "string",
+            "example": "Avaliar o comportamento do aluno"
+          },
+          "duration": {
+            "type": "string",
+            "example": "cerca de 30 minutos"
+          },
+          "image_file_name": {
+            "type": "string",
+            "example": "data"
+          },
+          "image_content_type": {
+            "type": "string",
+            "example": "image/png"
+          },
+          "image_file_size": {
+            "type": "integer",
+            "example": 476
+          },
+          "image_updated_at": {
+            "type": "date",
+            "example": "2019-06-28T20:10:15.398Z"
+          },
+          "references": {
+            "type": "string",
+            "example": "Referências bibliograficas"
+          },
+          "remixed": {
+            "type": "string",
+            "example": "yes"
+          },
+          "specific_materials": {
+            "type": "string",
+            "example": "Cola e tesoura sem ponta"
+          }
         }
       }
     }

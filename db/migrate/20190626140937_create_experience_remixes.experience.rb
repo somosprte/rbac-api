@@ -6,7 +6,8 @@ class CreateExperienceRemixes < ActiveRecord::Migration[5.2]
     create_table :experience_remixes, id: :uuid do |t|
       t.uuid :person_id
       t.uuid :remixeable_id
-      t.string  :remixeable_type
+      t.string :remixeable_type
+      t.uuid :activity_id
 
       t.timestamps
     end
