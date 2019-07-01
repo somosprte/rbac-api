@@ -122,7 +122,7 @@ module Gallery
 
       # GET /gallery/v1/activities/:id/implementations
       def get_implementations
-        implementations = @activity.implementations
+        implementations = @activity.implementations.order(created_at: :desc)
 
         implementations = implementations.page(params[:page] || 1)
         implementations = implementations.per(params[:per] || 10)
