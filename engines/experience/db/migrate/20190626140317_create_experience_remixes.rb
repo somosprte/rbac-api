@@ -6,7 +6,6 @@ class CreateExperienceRemixes < ActiveRecord::Migration[5.2]
       t.uuid :person_id
       t.uuid :remixeable_id
       t.string :remixeable_type
-      t.uuid :activity_id
 
       t.timestamps
     end
