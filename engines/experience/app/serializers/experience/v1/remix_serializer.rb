@@ -5,12 +5,8 @@ module Experience
     class RemixSerializer < ActiveModel::Serializer
       attributes :id, :activity
 
-      def activity_id
-        object.activity_id
-      end
-
       def activity
-        Gallery::Activity.find_by(id: activity_id)
+        Gallery::Activity.find_by(id: object.activity_id) unless object.activity_id.nil?
       end
 
     end
