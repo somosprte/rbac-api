@@ -34,7 +34,7 @@ module User
 
       # GET /user/v1/people/implementations/activities
       def get_implementations_activities
-        implementation_activities = Gallery::Activity.get_activity_implementations(@current_user.usereable)
+        implementation_activities = Gallery::Activity.get_activity_implementations(@current_user.usereable).order(created_at: :desc)
 
         implementation_activities = implementation_activities.page(params[:page] || 1)
         implementation_activities = implementation_activities.per(params[:per] || 10)
