@@ -39,7 +39,9 @@ module Gallery
                        :total_likes,
                        :total_favorites,
                        :total_remixes,
-                       :total_comments
+                       :total_comments,
+                       :created_at,
+                       :updated_at
             
             def scopes
                 object.scopes.map{|scope|
