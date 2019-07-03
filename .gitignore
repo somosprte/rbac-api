@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore genereted PDF file activity
-public/activity.pdf
+public/*.pdf
 
 # Ignore bundler config.
 /.bundle
