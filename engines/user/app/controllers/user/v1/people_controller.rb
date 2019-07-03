@@ -1,11 +1,12 @@
-require_dependency "user/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'user/application_controller'
 
 module User
   module V1
     class PeopleController < ApplicationController
       before_action :set_person, only: [:show]
-      #skip_before_action :authenticate, :only => [:index, :page]
-
+      # skip_before_action :authenticate, :only => [:index, :page]
 
       # GET /user/v1/people
       def index
@@ -29,19 +30,22 @@ module User
         favorite_activities = favorite_activities.page(params[:page] || 1)
         favorite_activities = favorite_activities.per(params[:per] || 10)
 
-        render json: favorite_activities, each_serializer:Gallery::V1::ActivitySerializer, meta: pagination_dict(favorite_activities)
+        render json: favorite_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(favorite_activities)
       end
 
       # GET /user/v1/people/implementations/activities
       def get_implementations_activities
-        implementation_activities = Gallery::Activity.get_activity_implementations(@current_user.usereable).order(created_at: :desc)
-
+        # implementation_activities = Gallery::Activity.get_activity_implementations(@current_user.usereable).order(created_at: :desc)
+        implementation_activities = Gallery::Activity
+                                    .joins(implementations: :exp_people)
+                                    .where("experience_exp_people.person_id = '#{@current_user.usereable.id}'")
+                                    .order(created_at: :desc)
         implementation_activities = implementation_activities.page(params[:page] || 1)
         implementation_activities = implementation_activities.per(params[:per] || 10)
 
-        render json: implementation_activities, each_serializer:Gallery::V1::ActivitySerializer, meta: pagination_dict(implementation_activities)
+        render json: implementation_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(implementation_activities)
       end
-    
+
       def pagination_dict(collection)
         {
           current_page: collection.current_page,
@@ -53,10 +57,11 @@ module User
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_person
-          @person = Person.find(params[:id])
-        end
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_person
+        @person = Person.find(params[:id])
+      end
     end
   end
 end
