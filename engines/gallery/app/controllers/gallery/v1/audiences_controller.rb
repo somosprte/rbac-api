@@ -4,7 +4,7 @@ module Gallery
   module V1
     class AudiencesController < ApplicationController
       before_action :set_audience, only: [:show, :update, :destroy]
-      #skip_before_action :authenticate, :only => [:index, :page]
+      skip_before_action :authenticate, :only => [:index]
 
 
       # GET /gallery/v1/audiences

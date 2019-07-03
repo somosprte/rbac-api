@@ -4,7 +4,7 @@ module Gallery
   module V1
     class SpaceTypesController < ApplicationController
       before_action :set_space_type, only: [:show, :update, :destroy]
-      #skip_before_action :authenticate, :only => [:index, :page]
+      skip_before_action :authenticate, :only => [:index]
 
 
       # GET /gallery/v1/space_types

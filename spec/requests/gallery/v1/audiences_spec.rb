@@ -6,7 +6,6 @@ RSpec.describe 'Audiences API', type: :request do
     path '/gallery/v1/audiences/' do
         get "Get Audiences" do
             tags 'Audiences'
-            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get Audiences"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false

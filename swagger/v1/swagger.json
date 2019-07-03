@@ -1943,13 +1943,6 @@
         "tags": [
           "Audiences"
         ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
-        ],
         "consumes": [
           "application/json"
         ],
@@ -2745,13 +2738,6 @@
         "tags": [
           "Scopes"
         ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
-        ],
         "consumes": [
           "application/json"
         ],
@@ -3146,13 +3132,6 @@
         "tags": [
           "Space Types"
         ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
-        ],
         "consumes": [
           "application/json"
         ],
@@ -3546,13 +3525,6 @@
         "summary": "Get People",
         "tags": [
           "People"
-        ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
         ],
         "consumes": [
           "application/json"

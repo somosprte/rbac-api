@@ -6,7 +6,7 @@ module User
   module V1
     class PeopleController < ApplicationController
       before_action :set_person, only: [:show]
-      # skip_before_action :authenticate, :only => [:index, :page]
+      skip_before_action :authenticate, :only => [:index]
 
       # GET /user/v1/people
       def index

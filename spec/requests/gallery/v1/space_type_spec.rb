@@ -6,7 +6,6 @@ RSpec.describe 'Space types API', type: :request do
     path '/gallery/v1/space_types/' do
         get "Get Space Types" do
             tags 'Space Types'
-            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get Space Typess"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false

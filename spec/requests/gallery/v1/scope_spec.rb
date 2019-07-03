@@ -6,7 +6,6 @@ RSpec.describe 'Scopes API', type: :request do
     path '/gallery/v1/scopes/' do
         get "Get Scopes" do
             tags 'Scopes'
-            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get Scopes"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false

@@ -6,7 +6,6 @@ RSpec.describe 'Users API', type: :request do
     path '/user/v1/people/' do
         get "Get People" do
             tags 'People'
-            security [ Bearer: [] ]
             consumes 'application/json'
             description "Get People"      
             parameter name: :per, :in => :query, :type => :integer, :description => 'results per page', :default => 10, required: false
