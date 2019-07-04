@@ -5,7 +5,7 @@ require_dependency 'gallery/application_controller'
 module Gallery
   module V1
     class ActivitiesController < ApplicationController
-      before_action :set_activity, only: %i[show update destroy like favorite remix implement get_likes get_implementations comment]
+      before_action :set_activity, only: %i[show pdf update destroy like favorite remix implement get_likes get_implementations comment]
       skip_before_action :authenticate, only: %i[index show]
 
       # GET /gallery/v1/activities
@@ -53,8 +53,12 @@ module Gallery
       # GET /gallery/v1/activities/:id
       def show
         @activity = Gallery::FunctionsActivity.reactions_activity(@activity, current_user, auth_present?)
-        Gallery::V1.pdf_generate(@activity)
         render json: @activity
+      end
+
+      # GET /gallery/v1/activities/:id/pdf
+      def pdf
+        Gallery::V1.pdf_generate(@activity)        
       end
 
       # DELETE /gallery/v1/activities/:id

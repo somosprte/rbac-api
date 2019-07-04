@@ -12,5 +12,6 @@ Gallery::Engine.routes.draw do
         match 'activities/:id/likes', to: 'activities#get_likes', via: [:get]
         match 'activities/:id/implementations', to: 'activities#get_implementations', via: [:get]
         match 'activities/:id/comment', to: 'activities#comment', via: [:post]
+        match 'activities/:id/pdf', to: 'activities#pdf', via: [:get]
     end
 end

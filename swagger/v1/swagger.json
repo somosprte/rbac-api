@@ -940,6 +940,57 @@
         }
       }
     },
+    "/gallery/v1/activities/{id}/pdf": {
+      "get": {
+        "summary": "Get a Activity PDF",
+        "tags": [
+          "Activities"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get a Activity File PDF for download",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "activity id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "404": {
+            "description": "Activity Not Found",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
+    },
     "/gallery/v1/activities": {
       "post": {
         "summary": "Create a Activity",

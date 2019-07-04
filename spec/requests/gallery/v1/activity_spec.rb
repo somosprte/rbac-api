@@ -117,6 +117,36 @@ RSpec.describe 'Activities API', type: :request do
           
       end
     end
+    
+    path '/gallery/v1/activities/{id}/pdf' do
+      get "Get a Activity PDF" do
+        tags 'Activities'
+        security [ Bearer: [] ]
+        consumes 'application/json'
+        description "Get a Activity File PDF for download"      
+        parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
+
+        response '204', 'No Content' do
+          run_test!
+        end
+
+        response '401', 'Unauthorized' do
+          schema '$ref': '#/definitions/error_object'
+          run_test!
+        end
+
+        response '404', 'Activity Not Found' do
+          schema '$ref': '#/definitions/error_object'
+          run_test!
+        end
+        
+        response '500', 'Internal Server Error' do
+          schema '$ref': '#/definitions/error_object'
+          run_test!
+        end
+        
+      end
+    end
 
     path '/gallery/v1/activities' do
       post "Create a Activity" do
