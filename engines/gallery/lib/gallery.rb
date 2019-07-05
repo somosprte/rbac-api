@@ -28,7 +28,12 @@ module Gallery
         # Title section
         pdf.text activity.title || '', styles[:title]
         pdf.move_down margin_bottom
-        
+        # Created_at section
+        pdf.text "Data de criação: #{activity.created_at.strftime('%d/%m/%y às %H:%M')}", size: 9, align: :left
+        pdf.move_up margin_bottom
+        # Updated_at section
+        pdf.text "Data de atualização: #{activity.updated_at.strftime('%d/%m/%y às %H:%M')}", size: 9, align: :right
+        pdf.move_down margin_bottom
         # SubTitle section
         pdf.text activity.caption || '', styles[:caption]
         pdf.move_down margin_bottom
