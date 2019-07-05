@@ -16,6 +16,7 @@ module Gallery
       styles = {
         title: { align: :center, size: 20, color: primary_color, style: :bold },
         subtitle: { size: 12, color: primary_color, style: :bold },
+        img: { width: 320, position: :center },
         image: { width: 200, position: :center },
         p: { size: 12, align: :justify },
         caption: { size: 12 },
@@ -87,10 +88,18 @@ module Gallery
         pdf.move_down margin_bottom
         # Space organization section
         pdf.text 'Organização do espaço', styles[:subtitle]
+        activity.space_organization&.scan(/src[^ ]+/)&.each { |url|
+          pdf.image open(url[5..url.size - 2]), styles[:img]
+          pdf.move_down margin_bottom - 6
+        }
         pdf.text Sanitize.fragment(activity.space_organization) || '', styles[:p]
         pdf.move_down margin_bottom
         # Implementation steps section
         pdf.text 'Passos para Implementação', styles[:subtitle]
+        activity.implementation_steps&.scan(/src[^ ]+/)&.each { |url|
+          pdf.image open(url[5..url.size - 2]), styles[:img]
+          pdf.move_down margin_bottom - 6
+        }
         pdf.text Sanitize.fragment(activity.implementation_steps) || '', styles[:p]
         pdf.move_down margin_bottom        
         # General materials table
@@ -119,10 +128,18 @@ module Gallery
         pdf.move_down margin_bottom
         #  Implementation tips section
         pdf.text 'Dicas sobre a implementação', styles[:subtitle]
+        activity.implementation_tips&.scan(/src[^ ]+/)&.each { |url|
+          pdf.image open(url[5..url.size - 2]), styles[:img]
+          pdf.move_down margin_bottom - 6
+        }
         pdf.text Sanitize.fragment(activity.implementation_tips) || '', styles[:p]
         pdf.move_down margin_bottom
         # Reflection assessment  section
         pdf.text 'Reflexão e avaliação', styles[:subtitle]
+        activity.reflection_assessment&.scan(/src[^ ]+/)&.each { |url|
+          pdf.image open(url[5..url.size - 2]), styles[:img]
+          pdf.move_down margin_bottom - 6
+        }
         pdf.text Sanitize.fragment(activity.reflection_assessment) || '', styles[:p]
         pdf.move_down margin_bottom
         # Duration section
