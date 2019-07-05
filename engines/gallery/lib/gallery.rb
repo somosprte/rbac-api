@@ -154,6 +154,10 @@ module Gallery
         pdf.move_down margin_bottom
         # References section
         pdf.text 'Referências externas', styles[:subtitle]
+        activity.references&.scan(/src[^ ]+/)&.each { |url|
+          pdf.image open(url[5..url.size - 2]), styles[:img]
+          pdf.move_down margin_bottom - 6
+        }
         pdf.text Sanitize.fragment(activity.references) || '', styles[:p]
         pdf.move_down margin_bottom
         
