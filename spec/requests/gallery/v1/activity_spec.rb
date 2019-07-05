@@ -126,7 +126,14 @@ RSpec.describe 'Activities API', type: :request do
         description "Get a Activity File PDF for download"      
         parameter name: :id, :in => :path, :type => :string, :description => 'activity id', required: true
 
-        response '204', 'No Content' do
+        response '200', 'Activity File PDF create' do
+          schema type: :object,
+            properties: {
+              url: {
+                type: :string,
+                example: 'www.domain.com/172735e6-46e1-4946-b082-d486069c4f91.pdf'
+              }
+            }
           run_test!
         end
 

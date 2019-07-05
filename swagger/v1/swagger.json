@@ -967,8 +967,17 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "Activity File PDF create",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "example": "www.domain.com/172735e6-46e1-4946-b082-d486069c4f91.pdf"
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized",

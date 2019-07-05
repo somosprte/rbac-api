@@ -58,7 +58,8 @@ module Gallery
 
       # GET /gallery/v1/activities/:id/pdf
       def pdf
-        Gallery::V1.pdf_generate(@activity)        
+        Gallery::V1.pdf_generate(@activity)
+        render json: { "url": "/#{@activity.id}.pdf" }       
       end
 
       # DELETE /gallery/v1/activities/:id

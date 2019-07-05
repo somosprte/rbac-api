@@ -28,6 +28,7 @@ module Gallery
         # Title section
         pdf.text activity.title || '', styles[:title]
         pdf.move_down margin_bottom
+        
         # SubTitle section
         pdf.text activity.caption || '', styles[:caption]
         pdf.move_down margin_bottom
@@ -103,21 +104,23 @@ module Gallery
         pdf.text Sanitize.fragment(activity.implementation_steps) || '', styles[:p]
         pdf.move_down margin_bottom        
         # General materials table
-        pdf.text 'Materiais Gerais', styles[:subtitle]
-        table_data = [
-          [
-            { content: 'Quantidade', font_style: :bold, text_color: primary_color },
-            { content: 'Nome', font_style: :bold, text_color: primary_color, width: pdf.bounds.width - 80 }
+        unless activity.general_materials.empty?
+          pdf.text 'Materiais Gerais', styles[:subtitle]
+          table_data = [
+            [
+              { content: 'Quantidade', font_style: :bold, text_color: primary_color },
+              { content: 'Nome', font_style: :bold, text_color: primary_color, width: pdf.bounds.width - 80 }
+            ]
           ]
-        ]
-        activity.general_materials&.each do |general_material| 
-          table_data << [
-            { content: general_material.activity_general_materials[0]&.quantity.to_s || 1 },
-            { content: general_material.name.to_s || '' }
-          ]
+          activity.general_materials&.each do |general_material| 
+            table_data << [
+              { content: general_material.activity_general_materials[0]&.quantity.to_s || 1 },
+              { content: general_material.name.to_s || '' }
+            ]
+          end
+          pdf.table(table_data) {  }
+          pdf.move_down margin_bottom + 6
         end
-        pdf.table(table_data) {  }
-        pdf.move_down margin_bottom + 6
         # Specific materials section
         pdf.text 'Materiais específicos', styles[:subtitle]
         pdf.text activity.specific_materials || '', styles[:p]
@@ -146,12 +149,14 @@ module Gallery
         pdf.text 'Duração', styles[:subtitle]
         pdf.text activity.duration || '', styles[:p]
         pdf.move_down margin_bottom
-        # Inspirations section
-        pdf.text 'Atividades inspiradoras', styles[:subtitle]
-        activity.inspirations&.each { |inspirations| pdf.indent (15) {
-          pdf.text "• #{inspirations.title}", styles[:ul] }
-        }
-        pdf.move_down margin_bottom
+        # Inspirations section        
+        unless activity.inspirations.empty?
+          pdf.text 'Atividades inspiradoras', styles[:subtitle]
+          activity.inspirations&.each { |inspirations| pdf.indent (15) {
+            pdf.text "• #{inspirations.title}", styles[:ul] }
+          }
+          pdf.move_down margin_bottom
+        end
         # References section
         pdf.text 'Referências externas', styles[:subtitle]
         activity.references&.scan(/src[^ ]+/)&.each { |url|
