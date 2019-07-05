@@ -5,6 +5,7 @@ require "active_model_serializers"
 require "paperclip"
 require "pundit"
 require 'gallery/functions_activity'
+require 'sanitize'
 
 module Gallery
 
@@ -86,11 +87,11 @@ module Gallery
         pdf.move_down margin_bottom
         # Space organization section
         pdf.text 'Organização do espaço', styles[:subtitle]
-        pdf.text activity.space_organization || '', styles[:p]
+        pdf.text Sanitize.fragment(activity.space_organization) || '', styles[:p]
         pdf.move_down margin_bottom
         # Implementation steps section
         pdf.text 'Passos para Implementação', styles[:subtitle]
-        pdf.text activity.implementation_steps || '', styles[:p]
+        pdf.text Sanitize.fragment(activity.implementation_steps) || '', styles[:p]
         pdf.move_down margin_bottom        
         # General materials table
         pdf.text 'Materiais Gerais', styles[:subtitle]
@@ -118,11 +119,11 @@ module Gallery
         pdf.move_down margin_bottom
         #  Implementation tips section
         pdf.text 'Dicas sobre a implementação', styles[:subtitle]
-        pdf.text activity.implementation_tips || '', styles[:p]
+        pdf.text Sanitize.fragment(activity.implementation_tips) || '', styles[:p]
         pdf.move_down margin_bottom
         # Reflection assessment  section
         pdf.text 'Reflexão e avaliação', styles[:subtitle]
-        pdf.text activity.reflection_assessment || '', styles[:p]
+        pdf.text Sanitize.fragment(activity.reflection_assessment) || '', styles[:p]
         pdf.move_down margin_bottom
         # Duration section
         pdf.text 'Duração', styles[:subtitle]
@@ -136,7 +137,7 @@ module Gallery
         pdf.move_down margin_bottom
         # References section
         pdf.text 'Referências externas', styles[:subtitle]
-        pdf.text activity.references || '', styles[:p]
+        pdf.text Sanitize.fragment(activity.references) || '', styles[:p]
         pdf.move_down margin_bottom
         
         # Creating Header and Footer
