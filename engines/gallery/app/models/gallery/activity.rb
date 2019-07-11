@@ -39,6 +39,22 @@ module Gallery
       original: '1200x1200#'
     }
     validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+    validates :title,
+              :caption,
+              :description,
+              :motivation,
+              :powerful_ideas,
+              :products,
+              :copyright,
+              :license_type,
+              :space_organization,
+              :implementation_steps,
+              :duration,
+              :scope_ids,
+              :audience_ids,
+              :person_ids,
+              :space_type_ids,
+              presence: true
     # Copy model, used to remix
     amoeba do
       enable
@@ -90,6 +106,11 @@ module Gallery
       else
         all
       end
+    }
+
+    scope :order_by, lambda { |order = nil|
+      all
+      order(order) if order
     }
 
     def self.get_activity_favorites(person)

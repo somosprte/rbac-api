@@ -1,18 +1,21 @@
-require "gallery/engine"
-require 'prawn'
-require 'open-uri'
-require "active_model_serializers"
-require "paperclip"
-require "pundit"
+# frozen_string_literal: true
+
+require 'active_model_serializers'
+require 'gallery/engine'
 require 'gallery/functions_activity'
+require 'open-uri'
+require 'paperclip'
+require 'prawn'
+require 'pundit'
 require 'sanitize'
 
 module Gallery
-
+  # V1
   module V1
     def self.pdf_generate(activity)
-      primary_color = '00AB4E'
       margin_bottom = 12
+      options = { page_size: 'A4', margin: [96, 48, 48, 72] }
+      primary_color = '00AB4E'
       styles = {
         title: { align: :center, size: 20, color: primary_color, style: :bold },
         subtitle: { size: 12, color: primary_color, style: :bold },
@@ -22,92 +25,68 @@ module Gallery
         caption: { size: 12 },
         ul: { size: 11 }
       }
-      Prawn::Document.new(page_size: 'A4', margin: [96, 48, 48, 72]) do |pdf|
+      Prawn::Document.new(options) do |pdf|
+        header_group = lambda { |str, style|
+          pdf.text str || '', styles[style]
+          pdf.move_down margin_bottom
+        }
+        date_group = lambda { |str, date, align|
+          pdf.text "#{str} #{date.strftime('%d/%m/%y às %H:%M')}", size: 9, align: align
+          align == :left ? pdf.move_up(margin_bottom) : pdf.move_down(margin_bottom)
+        }
+        text_html_group = lambda { |subtitle, item, type = ''|
+          pdf.text subtitle, styles[:subtitle]
+          item&.scan(/src[^ ]+/)&.each { |url|
+            pdf.image open(url[5..url.size - 2]), styles[:img]
+            pdf.move_down margin_bottom - 6
+          } unless type != 'html'
+          pdf.text Sanitize.fragment(item) || '', styles[:p]
+          pdf.move_down margin_bottom
+        }
+        list_group = lambda { |subtitle, items|
+          pdf.text subtitle, styles[:subtitle]
+          items&.each { |i| pdf.indent(15) { pdf.text "• #{i.name rescue i.title}", styles[:ul] } }
+          pdf.move_down margin_bottom
+        }
         # Defining the font family for the full pdf
         pdf.font 'Helvetica'
         # Title section
-        pdf.text activity.title || '', styles[:title]
-        pdf.move_down margin_bottom
+        header_group.call activity.title, :title
         # Created_at section
-        pdf.text "Data de criação: #{activity.created_at.strftime('%d/%m/%y às %H:%M')}", size: 9, align: :left
-        pdf.move_up margin_bottom
+        date_group.call 'Data de criação:', activity.created_at, :left
         # Updated_at section
-        pdf.text "Data de atualização: #{activity.updated_at.strftime('%d/%m/%y às %H:%M')}", size: 9, align: :right
-        pdf.move_down margin_bottom
+        date_group.call 'Data de atualização:', activity.updated_at, :right
         # SubTitle section
-        pdf.text activity.caption || '', styles[:caption]
-        pdf.move_down margin_bottom
+        header_group.call activity.caption, :caption
         # Image section
         pdf.image open(activity.image.url), styles[:image]
         pdf.move_down margin_bottom
         # Authors section
-        pdf.text 'Autor(es)', styles[:subtitle]
-        activity.people&.each { |author| pdf.indent (15) {
-          pdf.text "• #{author.name}", styles[:ul] }
-        }
-        pdf.move_down margin_bottom
+        list_group.call 'Autor(es)', activity.people
         # Description section
-        pdf.text 'Descrição', styles[:subtitle]
-        pdf.text activity.description || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Descrição', activity.description
         # Motivation section
-        pdf.text 'Motivação', styles[:subtitle]
-        pdf.text activity.motivation || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Motivação', activity.motivation
         # Products section
-        pdf.text 'Produtos esperados', styles[:subtitle]
-        pdf.text activity.products || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Produtos esperados', activity.products
         # Scopes section
-        pdf.text 'Escopos', styles[:subtitle]
-        activity.scopes&.each { |scope| pdf.indent (15) {
-          pdf.text "• #{scope.title}", styles[:ul] }
-        }
-        pdf.move_down margin_bottom
+        list_group.call 'Escopos', activity.scopes
         # Audience section
-        pdf.text 'Público alvo', styles[:subtitle]
-        activity.audiences&.each { |audience| pdf.indent (15) {
-          pdf.text "• #{audience.name}", styles[:ul] }
-        }
-        pdf.move_down margin_bottom
+        list_group.call 'Público alvo', activity.audiences
         # Requirements section
-        pdf.text 'Pré-requisitos', styles[:subtitle]
-        pdf.text activity.requirements || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Pré-requisitos', activity.requirements
         # Version history section
-        pdf.text 'Histórico', styles[:subtitle]
-        pdf.text activity.version_history || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Histórico', activity.version_history
         # Copyright section
-        pdf.text 'Copyright', styles[:subtitle]
-        pdf.text activity.copyright || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Copyright', activity.copyright
         # License type section
-        pdf.text 'Tipo de licença', styles[:subtitle]
-        pdf.text activity.license_type || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Tipo de licença', activity.license_type
         # Space types section
-        pdf.text 'Tipos de espaços', styles[:subtitle]
-        activity.space_types&.each { |space_type| pdf.indent (15) {
-          pdf.text "• #{space_type.title}", styles[:ul] }
-        }
-        pdf.move_down margin_bottom
+        list_group.call 'Tipos de espaços', activity.space_types
         # Space organization section
-        pdf.text 'Organização do espaço', styles[:subtitle]
-        activity.space_organization&.scan(/src[^ ]+/)&.each { |url|
-          pdf.image open(url[5..url.size - 2]), styles[:img]
-          pdf.move_down margin_bottom - 6
-        }
-        pdf.text Sanitize.fragment(activity.space_organization) || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Organização do espaço', activity.space_organization, 'html'
         # Implementation steps section
-        pdf.text 'Passos para Implementação', styles[:subtitle]
-        activity.implementation_steps&.scan(/src[^ ]+/)&.each { |url|
-          pdf.image open(url[5..url.size - 2]), styles[:img]
-          pdf.move_down margin_bottom - 6
-        }
-        pdf.text Sanitize.fragment(activity.implementation_steps) || '', styles[:p]
-        pdf.move_down margin_bottom        
+        text_html_group.call 'Passos para Implementação', activity.implementation_steps, 'html'
         # General materials table
         unless activity.general_materials.empty?
           pdf.text 'Materiais Gerais', styles[:subtitle]
@@ -117,78 +96,48 @@ module Gallery
               { content: 'Nome', font_style: :bold, text_color: primary_color, width: pdf.bounds.width - 80 }
             ]
           ]
-          activity.general_materials&.each do |general_material| 
+          activity.general_materials&.each do |general_material|
+            quantity = general_material.activity_general_materials[0]&.quantity || 1 
             table_data << [
-              { content: general_material.activity_general_materials[0]&.quantity.to_s || 1 },
+              { content: quantity.to_s, align: :center },
               { content: general_material.name.to_s || '' }
             ]
           end
-          pdf.table(table_data) {  }
+          pdf.table(table_data) {}
           pdf.move_down margin_bottom + 6
         end
         # Specific materials section
-        pdf.text 'Materiais específicos', styles[:subtitle]
-        pdf.text activity.specific_materials || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Materiais específicos', activity.specific_materials
         # Powerful-ideas section
-        pdf.text 'Poderosas Ideias', styles[:subtitle]
-        pdf.text activity.powerful_ideas || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Poderosas Ideias', activity.powerful_ideas
         #  Implementation tips section
-        pdf.text 'Dicas sobre a implementação', styles[:subtitle]
-        activity.implementation_tips&.scan(/src[^ ]+/)&.each { |url|
-          pdf.image open(url[5..url.size - 2]), styles[:img]
-          pdf.move_down margin_bottom - 6
-        }
-        pdf.text Sanitize.fragment(activity.implementation_tips) || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Dicas sobre a implementação', activity.implementation_tips, 'html'
         # Reflection assessment  section
-        pdf.text 'Reflexão e avaliação', styles[:subtitle]
-        activity.reflection_assessment&.scan(/src[^ ]+/)&.each { |url|
-          pdf.image open(url[5..url.size - 2]), styles[:img]
-          pdf.move_down margin_bottom - 6
-        }
-        pdf.text Sanitize.fragment(activity.reflection_assessment) || '', styles[:p]
-        pdf.move_down margin_bottom
+        text_html_group.call 'Reflexão e avaliação', activity.reflection_assessment, 'html'
         # Duration section
-        pdf.text 'Duração', styles[:subtitle]
-        pdf.text activity.duration || '', styles[:p]
-        pdf.move_down margin_bottom
-        # Inspirations section        
-        unless activity.inspirations.empty?
-          pdf.text 'Atividades inspiradoras', styles[:subtitle]
-          activity.inspirations&.each { |inspirations| pdf.indent (15) {
-            pdf.text "• #{inspirations.title}", styles[:ul] }
-          }
-          pdf.move_down margin_bottom
-        end
+        text_html_group.call 'Duração', activity.duration
+        # Inspirations section
+        list_group.call 'Atividades inspiradoras', activity.inspirations unless activity.inspirations.empty?
         # References section
-        pdf.text 'Referências externas', styles[:subtitle]
-        activity.references&.scan(/src[^ ]+/)&.each { |url|
-          pdf.image open(url[5..url.size - 2]), styles[:img]
-          pdf.move_down margin_bottom - 6
-        }
-        pdf.text Sanitize.fragment(activity.references) || '', styles[:p]
-        pdf.move_down margin_bottom
-        
+        text_html_group.call 'Referências externas', activity.references, 'html'
+
         # Creating Header and Footer
         pdf.page_count.times do |i|
-          pdf.go_to_page i+1
+          pdf.go_to_page i + 1
           pdf.bounding_box([pdf.bounds.left, pdf.bounds.top + 76], width: pdf.bounds.width) {
             pdf.image "#{Rails.root}/public/mit_logo_green.jpg", width: 450, position: :center
           }
           pdf.bounding_box([pdf.bounds.left - 72, pdf.bounds.bottom - 6], width: pdf.bounds.width + 120, height: 24) {
-            pdf.rectangle [0,pdf.bounds.bottom + 24], pdf.bounds.width, 24
+            pdf.rectangle [0, pdf.bounds.bottom + 24], pdf.bounds.width, 24
             pdf.fill_color(primary_color)
             pdf.fill
-            pdf.text "#{i+1}", align: :center, valign: :center, size: 9, style: :bold, color: 'ffffff'
+            pdf.text (i + 1).to_s, align: :center, valign: :center, size: 9, style: :bold, color: 'ffffff'
           }
         end
 
         # pdf.render_file("public/#{activity.updated_at.strftime('%Y%m%dT%H%M')}_#{activity.id}.pdf") 
-        pdf.render_file("public/#{activity.id}.pdf") 
+        pdf.render_file("public/#{activity.id}.pdf")
       end
     end
   end
-
 end
