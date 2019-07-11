@@ -15,7 +15,18 @@ RSpec.describe 'Activities API', type: :request do
             parameter name: :scope_ids, :in => :query, :type => :string, :description => 'Search by scope, scope_ids=id1,id2', required: false    
             parameter name: :author_ids, :in => :query, :type => :string, :description => 'Search by author, author_ids=id1,id2', required: false 
             parameter name: :audience_ids, :in => :query, :type => :string, :description => 'Search by audience, audience_ids=id1,id2', required: false
-            parameter name: :space_type_ids, :in => :query, :type => :string, :description => 'Search by space type, space_type_ids=id1,id2', required: false      
+            parameter name: :space_type_ids, :in => :query, :type => :string, :description => 'Search by space type, space_type_ids=id1,id2', required: false  
+            parameter name: :order, :in => :query, type: :array, :description => 'Sort query by order param', required: false, items: {
+              type: :string, enum: [
+                'title ASC',
+                'title DESC',
+                'updated_at DESC',
+                'total_likes DESC',
+                'total_implementations DESC',
+                'total_remixes DESC'
+              ],
+              default: 'title ASC'
+            }
 
             response '200', 'Activities found' do
                 schema type: :object,
