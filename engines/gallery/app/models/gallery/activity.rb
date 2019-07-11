@@ -108,6 +108,11 @@ module Gallery
       end
     }
 
+    scope :order_by, lambda { |order = nil|
+      all
+      order(order) if order
+    }
+
     def self.get_activity_favorites(person)
       joins(:favorites).where("experience_favorites.person_id = '#{person.id}' and experience_favorites.favoriteable_type = 'Gallery::Activity'")
     end

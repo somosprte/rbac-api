@@ -16,7 +16,7 @@ module Gallery
                       .search_by_authors(params[:author_ids])
                       .search_by_audiences(params[:audience_ids])
                       .search_by_space_types(params[:space_type_ids])
-                      .order('created_at DESC')
+                      .order_by(params[:order])
 
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
