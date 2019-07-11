@@ -41,20 +41,19 @@ module Gallery
     validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
     validates :title,
               :caption,
-              :person_ids,
               :description,
               :motivation,
               :powerful_ideas,
               :products,
-              :scope_ids,
-              :audience_ids,
               :copyright,
               :license_type,
-              :space_type_ids,
               :space_organization,
               :implementation_steps,
-              :general_materials,
               :duration,
+              :scope_ids,
+              :audience_ids,
+              :person_ids,
+              :space_type_ids,
               presence: true
     # Copy model, used to remix
     amoeba do
