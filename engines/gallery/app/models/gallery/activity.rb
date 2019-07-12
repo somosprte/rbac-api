@@ -1,36 +1,35 @@
 module Gallery
   class Activity < ApplicationRecord
     enum remixed: [:no, :yes]
+    enum activity_type: [:internal, :external]
     attr_accessor :image, :liked, :favorited, :implemented
-    has_many :activity_scopes,    class_name: 'Gallery::ActivityScope',  dependent: :destroy
+    has_many :activity_scopes, class_name: 'Gallery::ActivityScope',  dependent: :destroy
     has_many :scopes, through: :activity_scopes, class_name: 'Gallery::Scope'
-    
-    has_many :activity_audiences,    class_name: 'Gallery::ActivityAudience'
+
+    has_many :activity_audiences, class_name: 'Gallery::ActivityAudience'
     has_many :audiences, through: :activity_audiences, class_name: 'Gallery::Audience',  dependent: :destroy
 
-    has_many :authors,    class_name: 'Gallery::Author',  dependent: :destroy
+    has_many :authors, class_name: 'Gallery::Author',  dependent: :destroy
     has_many :people, through: :authors, class_name: 'User::Person'
 
-    has_many :activity_space_types,    class_name: 'Gallery::ActivitySpaceType',  dependent: :destroy
+    has_many :activity_space_types, class_name: 'Gallery::ActivitySpaceType',  dependent: :destroy
     has_many :space_types, through: :activity_space_types, class_name: 'Gallery::SpaceType'
 
-    has_many :activity_general_materials,    class_name: 'Gallery::ActivityGeneralMaterial',  dependent: :destroy
+    has_many :activity_general_materials, class_name: 'Gallery::ActivityGeneralMaterial',  dependent: :destroy
     has_many :general_materials, through: :activity_general_materials, class_name: 'Gallery::GeneralMaterial'
   
     #has_many :specific_materials, class_name: 'Gallery::SpecificMaterial', dependent: :destroy
     has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
     has_many :favorites, class_name: 'Experience::Favorite', as: :favoriteable, dependent: :destroy
     has_many :remixes, class_name: 'Experience::Remix', as: :remixeable, dependent: :destroy
-    
 
     has_many :inspirations, class_name: 'Gallery::Inspiration', dependent: :destroy
     has_many :activities, through: :inspirations, class_name: "Gallery::Activity"
-    
+
     has_many :implementations, class_name: 'Experience::Implementation', dependent: :destroy
     has_many :comments, class_name: 'Experience::Comment', as: :commenteable, dependent: :destroy
 
     #accepts_nested_attributes_for :specific_materials, allow_destroy: true
-    
 
     has_attached_file :image, styles: {
       thumb: '100x100#',
@@ -64,7 +63,7 @@ module Gallery
       include_association :general_materials
     end
 
-    scope :search_global, -> (query=nil){
+    scope :search_global, -> (query = nil){
       if query
         where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
       else
@@ -72,7 +71,7 @@ module Gallery
       end
     } 
 
-    scope :search_by_scopes, -> (scopes=nil){
+    scope :search_by_scopes, -> (scopes = nil){
       if scopes
         scopes = scopes.split(',')
         joins(:scopes).where({gallery_scopes:{id:scopes}})
@@ -81,7 +80,7 @@ module Gallery
       end
     }
 
-    scope :search_by_authors, -> (authors=nil){
+    scope :search_by_authors, -> (authors = nil){
       if authors
         authors = authors.split(',')
         joins(:people).where({user_people:{id:authors}})
@@ -90,7 +89,7 @@ module Gallery
       end
     }
 
-    scope :search_by_audiences, -> (audiences=nil){
+    scope :search_by_audiences, -> (audiences = nil){
       if audiences
         audiences = audiences.split(',')
         joins(:audiences).where({gallery_audiences:{id:audiences}})
@@ -99,7 +98,7 @@ module Gallery
       end
     }
 
-    scope :search_by_space_types, -> (space_types=nil){
+    scope :search_by_space_types, -> (space_types = nil){
       if space_types
         space_types = space_types.split(',')
         joins(:space_types).where({gallery_space_types:{id:space_types}})
@@ -132,6 +131,5 @@ module Gallery
     def implemented?(current_user)
       self.implemented = implementations.where(person: current_user.usereable).present?
     end
-
   end
 end
