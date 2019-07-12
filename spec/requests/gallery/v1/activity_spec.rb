@@ -195,6 +195,7 @@ RSpec.describe 'Activities API', type: :request do
                           reflection_assessment: {type: :string, example:"Avaliar o comportamento do aluno"},
                           duration: {type: :string, example:"cerca de 30 minutos"},
                           references: {type: :string, example:"Referências bibliograficas"},
+                          activity_type: { type: :string, description: 'Activity type', enum: [ 'internal', 'external' ], default: 'internal' },
                           scope_ids: {type: :array, example:["c6a92130-6d30-42f6-93c0-245acf360152"]},
                           audience_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a", "93f8345c-3e87-4485-9dfb-2a1102252020"]},
                           person_ids: {type: :array, example:["3b11f1db-e8c2-4379-beb7-0ba7f993e23a"]},

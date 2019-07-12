@@ -1115,6 +1115,15 @@
                       "type": "string",
                       "example": "Referências bibliograficas"
                     },
+                    "activity_type": {
+                      "type": "string",
+                      "description": "Activity type",
+                      "enum": [
+                        "internal",
+                        "external"
+                      ],
+                      "default": "internal"
+                    },
                     "scope_ids": {
                       "type": "array",
                       "example": [
@@ -4091,6 +4100,10 @@
         "remixed": {
           "type": "string",
           "example": "no"
+        },
+        "activity_type": {
+          "type": "string",
+          "example": "internal"
         },
         "liked": {
           "type": "boolean",

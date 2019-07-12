@@ -153,6 +153,10 @@ RSpec.configure do |config|
                             type: :string,
                             example: "no"
                         },
+                        activity_type: {
+                            type: :string,
+                            example: 'internal'
+                        },
                         liked:{
                             type: :boolean,
                             example: true
