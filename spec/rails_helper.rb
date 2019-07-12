@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require_relative 'support/database_cleaner'
-#require 'paperclip/matchers'
+# require 'paperclip/matchers'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 include ActionDispatch::TestProcess
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -45,7 +47,7 @@ RSpec.configure do |config|
   # FactoryBob Help methods
   config.include FactoryBot::Syntax::Methods
   # Papaerclip Help Matchers
-  #config.include Paperclip::Shoulda::Matchers
+  # config.include Paperclip::Shoulda::Matchers
   # All cleanup block paperclip images
   config.after(:all) do
     if Rails.env.test?
@@ -55,7 +57,7 @@ RSpec.configure do |config|
   end
 
   # Custom Spec Helpers
-  #config.include AuthenticateSpecHelper
+  # config.include AuthenticateSpecHelper
   config.include RequestSpecHelper
 
   # RSpec Rails can automatically mix in different behaviours to your tests

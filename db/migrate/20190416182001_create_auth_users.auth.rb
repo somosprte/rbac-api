@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from auth (originally 20190416181554)
 class CreateAuthUsers < ActiveRecord::Migration[5.2]
   def change

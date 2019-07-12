@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from experience (originally 20190619175544)
 class CreateExperienceExpPeople < ActiveRecord::Migration[5.2]
   def change

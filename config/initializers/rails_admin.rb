@@ -1,5 +1,6 @@
-RailsAdmin.config do |config|
+# frozen_string_literal: true
 
+RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
@@ -25,8 +26,8 @@ RailsAdmin.config do |config|
 
   config.authenticate_with do
     authenticate_or_request_with_http_basic('Login required') do |username, password|
-      user = Auth::User.where(username:username, role:1).first
-      user.authenticate(password) if user
+      user = Auth::User.where(username: username, role: 1).first
+      user&.authenticate(password)
     end
     config.parent_controller = '::RailsAdminCustomController'
   end

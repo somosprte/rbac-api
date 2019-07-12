@@ -1,11 +1,12 @@
-require_dependency "gallery/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'gallery/application_controller'
 
 module Gallery
   module V1
     class ScopesController < ApplicationController
-      before_action :set_scope, only: [:show, :update, :destroy]
-      skip_before_action :authenticate, :only => [:index]
-
+      before_action :set_scope, only: %i[show update destroy]
+      skip_before_action :authenticate, only: [:index]
 
       # GET /gallery/v1/scopes
       def index
@@ -40,7 +41,7 @@ module Gallery
       def show
         render json: @scope
       end
-      
+
       # DELETE /gallery/v1/scopes/:id
       def destroy
         @scope.destroy
@@ -57,15 +58,16 @@ module Gallery
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_scope
-          @scope = Scope.find(params[:id])
-        end
 
-        # Only allow a trusted parameter "white list" through.
-        def scope_params
-          params.require(:scope).permit(:title, :description)
-        end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_scope
+        @scope = Scope.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def scope_params
+        params.require(:scope).permit(:title, :description)
+      end
     end
   end
 end

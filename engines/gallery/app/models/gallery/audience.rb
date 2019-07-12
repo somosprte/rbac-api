@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gallery
   class Audience < ApplicationRecord
     has_many :activity_audiences,    class_name: 'Gallery::ActivityAudience'

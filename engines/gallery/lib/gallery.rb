@@ -97,7 +97,7 @@ module Gallery
             ]
           ]
           activity.general_materials&.each do |general_material|
-            quantity = general_material.activity_general_materials[0]&.quantity || 1 
+            quantity = general_material.activity_general_materials[0]&.quantity || 1
             table_data << [
               { content: quantity.to_s, align: :center },
               { content: general_material.name.to_s || '' }
@@ -124,18 +124,18 @@ module Gallery
         # Creating Header and Footer
         pdf.page_count.times do |i|
           pdf.go_to_page i + 1
-          pdf.bounding_box([pdf.bounds.left, pdf.bounds.top + 76], width: pdf.bounds.width) {
+          pdf.bounding_box([pdf.bounds.left, pdf.bounds.top + 76], width: pdf.bounds.width) do
             pdf.image "#{Rails.root}/public/mit_logo_green.jpg", width: 450, position: :center
-          }
-          pdf.bounding_box([pdf.bounds.left - 72, pdf.bounds.bottom - 6], width: pdf.bounds.width + 120, height: 24) {
+          end
+          pdf.bounding_box([pdf.bounds.left - 72, pdf.bounds.bottom - 6], width: pdf.bounds.width + 120, height: 24) do
             pdf.rectangle [0, pdf.bounds.bottom + 24], pdf.bounds.width, 24
             pdf.fill_color(primary_color)
             pdf.fill
             pdf.text (i + 1).to_s, align: :center, valign: :center, size: 9, style: :bold, color: 'ffffff'
-          }
+          end
         end
 
-        # pdf.render_file("public/#{activity.updated_at.strftime('%Y%m%dT%H%M')}_#{activity.id}.pdf") 
+        # pdf.render_file("public/#{activity.updated_at.strftime('%Y%m%dT%H%M')}_#{activity.id}.pdf")
         pdf.render_file("public/#{activity.id}.pdf")
       end
     end

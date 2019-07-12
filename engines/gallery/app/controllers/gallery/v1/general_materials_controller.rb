@@ -1,11 +1,12 @@
-require_dependency "gallery/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'gallery/application_controller'
 
 module Gallery
   module V1
     class GeneralMaterialsController < ApplicationController
-      before_action :set_general_material, only: [:show, :update, :destroy]
-      #skip_before_action :authenticate, :only => [:index, :page]
-
+      before_action :set_general_material, only: %i[show update destroy]
+      # skip_before_action :authenticate, :only => [:index, :page]
 
       # GET /gallery/v1/general_materials
       def index
@@ -40,7 +41,7 @@ module Gallery
       def show
         render json: @general_material
       end
-      
+
       # DELETE /gallery/v1/space_types/:id
       def destroy
         @general_material.destroy
@@ -57,15 +58,16 @@ module Gallery
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_general_material
-          @general_material = GeneralMaterial.find(params[:id])
-        end
 
-        # Only allow a trusted parameter "white list" through.
-        def general_material_params
-          params.require(:general_material).permit(:name, :description)
-        end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_general_material
+        @general_material = GeneralMaterial.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def general_material_params
+        params.require(:general_material).permit(:name, :description)
+      end
     end
   end
 end

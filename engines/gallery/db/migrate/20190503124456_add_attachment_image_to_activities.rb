@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttachmentImageToActivities < ActiveRecord::Migration[5.2]
   def self.up
     change_table :gallery_activities do |t|

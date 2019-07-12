@@ -1,11 +1,12 @@
-require_dependency "gallery/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'gallery/application_controller'
 
 module Gallery
   module V1
     class AudiencesController < ApplicationController
-      before_action :set_audience, only: [:show, :update, :destroy]
-      skip_before_action :authenticate, :only => [:index]
-
+      before_action :set_audience, only: %i[show update destroy]
+      skip_before_action :authenticate, only: [:index]
 
       # GET /gallery/v1/audiences
       def index
@@ -40,7 +41,7 @@ module Gallery
       def show
         render json: @audience
       end
-      
+
       # DELETE /gallery/v1/audiences/:id
       def destroy
         @audience.destroy
@@ -57,15 +58,16 @@ module Gallery
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_audience
-          @audience = Audience.find(params[:id])
-        end
 
-        # Only allow a trusted parameter "white list" through.
-        def audience_params
-          params.require(:audience).permit(:name, :description)
-        end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_audience
+        @audience = Audience.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def audience_params
+        params.require(:audience).permit(:name, :description)
+      end
     end
   end
 end

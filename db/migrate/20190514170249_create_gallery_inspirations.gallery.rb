@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from gallery (originally 20190514170019)
 class CreateGalleryInspirations < ActiveRecord::Migration[5.2]
   def change

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from user (originally 20190416180253)
 class CreateUserPeople < ActiveRecord::Migration[5.2]
   def change

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module User
   class Person < ApplicationRecord
     has_many :authors, class_name: 'Gallery::Author'

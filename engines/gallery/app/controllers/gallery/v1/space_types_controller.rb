@@ -1,11 +1,12 @@
-require_dependency "gallery/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'gallery/application_controller'
 
 module Gallery
   module V1
     class SpaceTypesController < ApplicationController
-      before_action :set_space_type, only: [:show, :update, :destroy]
-      skip_before_action :authenticate, :only => [:index]
-
+      before_action :set_space_type, only: %i[show update destroy]
+      skip_before_action :authenticate, only: [:index]
 
       # GET /gallery/v1/space_types
       def index
@@ -40,7 +41,7 @@ module Gallery
       def show
         render json: @space_type
       end
-      
+
       # DELETE /gallery/v1/space_types/:id
       def destroy
         @space_type.destroy
@@ -57,15 +58,16 @@ module Gallery
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_space_type
-          @space_type = SpaceType.find(params[:id])
-        end
 
-        # Only allow a trusted parameter "white list" through.
-        def space_type_params
-          params.require(:space_type).permit(:title, :description)
-        end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_space_type
+        @space_type = SpaceType.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def space_type_params
+        params.require(:space_type).permit(:title, :description)
+      end
     end
   end
 end

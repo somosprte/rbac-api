@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateGalleryActivitySpaceTypes < ActiveRecord::Migration[5.2]
   def change
     enable_extension 'uuid-ossp' unless extension_enabled?('uuid-ossp')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateExperienceImplementations < ActiveRecord::Migration[5.2]
   def change
     enable_extension 'uuid-ossp' unless extension_enabled?('uuid-ossp')
@@ -12,6 +14,6 @@ class CreateExperienceImplementations < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :experience_implementations, [:person_id, :activity_id ], unique: true, :name => 'experience_implementation_index'
+    add_index :experience_implementations, %i[person_id activity_id], unique: true, name: 'experience_implementation_index'
   end
 end
