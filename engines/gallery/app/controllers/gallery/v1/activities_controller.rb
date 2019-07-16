@@ -28,6 +28,7 @@ module Gallery
 
       # POST gallery/v1/activities
       def create
+        params[:activity][:inserted_by] = @current_user.id
         @activity = Gallery::Activity.create(activity_params)
         if @activity.save
           Gallery::FunctionsActivity.crud_general_materials(@activity, params)
@@ -191,8 +192,13 @@ module Gallery
           :reflection_assessment,
           :duration,
           :inspiration,
+          :is_abac_author,
+          :inserted_by,
+          :external_link,
           :references,
+          :activity_type,
           :specific_materials,
+          external_authors: [],
           scope_ids: [],
           audience_ids: [],
           person_ids: [],

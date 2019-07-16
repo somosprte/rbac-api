@@ -7,7 +7,6 @@ RSpec.describe 'Activities API', type: :request do
   path '/gallery/v1/activities/' do
     get 'Get Activities' do
       tags 'Activities'
-      security [Bearer: []]
       consumes 'application/json'
       description 'Get Activities'
       parameter name: :per, in: :query, type: :integer, description: 'results per page', default: 10, required: false
@@ -22,7 +21,7 @@ RSpec.describe 'Activities API', type: :request do
           'title ASC',
           'title DESC',
           'updated_at DESC',
-          'total_likes DESC',
+          'total_favorites DESC',
           'total_implementations DESC',
           'total_remixes DESC'
         ],
@@ -193,6 +192,9 @@ RSpec.describe 'Activities API', type: :request do
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
               duration: { type: :string, example: 'cerca de 30 minutos' },
               references: { type: :string, example: 'Referências bibliograficas' },
+              is_abac_author: { type: :boolean, example: false },
+              external_link: { type: :string, example: 'https://scholar.google.com.br/' },
+              external_authors: { type: :array, example: ['Pedro', 'João da silva', 'Osvaldo'] },
               activity_type: { type: :string, description: 'Activity type', enum: %w[internal external], default: 'internal' },
               scope_ids: { type: :array, example: ['c6a92130-6d30-42f6-93c0-245acf360152'] },
               audience_ids: { type: :array, example: %w[3b11f1db-e8c2-4379-beb7-0ba7f993e23a 93f8345c-3e87-4485-9dfb-2a1102252020] },
@@ -269,6 +271,10 @@ RSpec.describe 'Activities API', type: :request do
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
               duration: { type: :string, example: 'cerca de 30 minutos' },
               references: { type: :string, example: 'Referências bibliograficas' },
+              is_abac_author: { type: :boolean, example: false },
+              external_link: { type: :string, example: 'https://scholar.google.com.br/' },
+              external_authors: { type: :array, example: ['Pedro', 'João da silva', 'Osvaldo'] },
+              activity_type: { type: :string, description: 'Activity type', enum: %w[internal external], default: 'internal' },
               scope_ids: { type: :array, example: ['c6a92130-6d30-42f6-93c0-245acf360152'] },
               audience_ids: { type: :array, example: %w[3b11f1db-e8c2-4379-beb7-0ba7f993e23a 93f8345c-3e87-4485-9dfb-2a1102252020] },
               person_ids: { type: :array, example: ['3b11f1db-e8c2-4379-beb7-0ba7f993e23a'] },
@@ -457,14 +463,18 @@ RSpec.describe 'Activities API', type: :request do
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
               duration: { type: :string, example: 'cerca de 30 minutos' },
               references: { type: :string, example: 'Referências bibliograficas' },
+              is_abac_author: { type: :boolean, example: false },
+              external_link: { type: :string, example: 'https://scholar.google.com.br/' },
+              external_authors: { type: :array, example: ['Pedro', 'João da silva', 'Osvaldo'] },
+              activity_type: { type: :string, description: 'Activity type', enum: %w[internal external], default: 'internal' },
               scope_ids: { type: :array, example: ['c6a92130-6d30-42f6-93c0-245acf360152'] },
               audience_ids: { type: :array, example: %w[3b11f1db-e8c2-4379-beb7-0ba7f993e23a 93f8345c-3e87-4485-9dfb-2a1102252020] },
               person_ids: { type: :array, example: ['3b11f1db-e8c2-4379-beb7-0ba7f993e23a'] },
               space_type_ids: { type: :array, example: ['df1f4ff2-c167-44b9-9b3d-50d51e909e2d'] },
-              specific_materials_attributes: { type: :array, example: [{ "name": 'Tesoura sem ponta', "quantity": 1, "description": 'Tesoura para ser usada na atividade' }] },
+              specific_materials: { type: :string, example: 'Cola e tesoura sem ponta' },
               general_materials: { type: :array, example: [{ "id": '9c65a353-497a-42ed-9631-38f68c6862b0', "quantity": 11 }] },
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
-              inspirations: { type: :array, example: [{ "id": '819d249c-e536-43df-b688-1b9ca72eec72', "title": 'Atividade 1', "link": 'www.activity.com' }] }
+              inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
             required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'license_type', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }

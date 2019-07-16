@@ -466,13 +466,6 @@
         "tags": [
           "Activities"
         ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
-        ],
         "consumes": [
           "application/json"
         ],
@@ -541,7 +534,7 @@
                 "title ASC",
                 "title DESC",
                 "updated_at DESC",
-                "total_likes DESC",
+                "total_favorites DESC",
                 "total_implementations DESC",
                 "total_remixes DESC"
               ],
@@ -787,6 +780,35 @@
                     "references": {
                       "type": "string",
                       "example": "Referências bibliograficas"
+                    },
+                    "is_abac_author": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "inserted_by": {
+                      "type": "string",
+                      "example": "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
+                    },
+                    "external_link": {
+                      "type": "string",
+                      "example": "https://scholar.google.com.br/"
+                    },
+                    "external_authors": {
+                      "type": "array",
+                      "example": [
+                        "Pedro",
+                        "João da silva",
+                        "Osvaldo"
+                      ]
+                    },
+                    "activity_type": {
+                      "type": "string",
+                      "description": "Activity type",
+                      "enum": [
+                        "internal",
+                        "external"
+                      ],
+                      "default": "internal"
                     },
                     "scope_ids": {
                       "type": "array",
@@ -1114,6 +1136,26 @@
                     "references": {
                       "type": "string",
                       "example": "Referências bibliograficas"
+                    },
+                    "is_abac_author": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "inserted_by": {
+                      "type": "string",
+                      "example": "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
+                    },
+                    "external_link": {
+                      "type": "string",
+                      "example": "https://scholar.google.com.br/"
+                    },
+                    "external_authors": {
+                      "type": "array",
+                      "example": [
+                        "Pedro",
+                        "João da silva",
+                        "Osvaldo"
+                      ]
                     },
                     "activity_type": {
                       "type": "string",
@@ -1470,6 +1512,35 @@
                       "type": "string",
                       "example": "Referências bibliograficas"
                     },
+                    "is_abac_author": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "inserted_by": {
+                      "type": "string",
+                      "example": "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
+                    },
+                    "external_link": {
+                      "type": "string",
+                      "example": "https://scholar.google.com.br/"
+                    },
+                    "external_authors": {
+                      "type": "array",
+                      "example": [
+                        "Pedro",
+                        "João da silva",
+                        "Osvaldo"
+                      ]
+                    },
+                    "activity_type": {
+                      "type": "string",
+                      "description": "Activity type",
+                      "enum": [
+                        "internal",
+                        "external"
+                      ],
+                      "default": "internal"
+                    },
                     "scope_ids": {
                       "type": "array",
                       "example": [
@@ -1495,15 +1566,9 @@
                         "df1f4ff2-c167-44b9-9b3d-50d51e909e2d"
                       ]
                     },
-                    "specific_materials_attributes": {
-                      "type": "array",
-                      "example": [
-                        {
-                          "name": "Tesoura sem ponta",
-                          "quantity": 1,
-                          "description": "Tesoura para ser usada na atividade"
-                        }
-                      ]
+                    "specific_materials": {
+                      "type": "string",
+                      "example": "Cola e tesoura sem ponta"
                     },
                     "general_materials": {
                       "type": "array",
@@ -1518,14 +1583,10 @@
                       "type": "string",
                       "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg=="
                     },
-                    "inspirations": {
+                    "inspirations_ids": {
                       "type": "array",
                       "example": [
-                        {
-                          "id": "819d249c-e536-43df-b688-1b9ca72eec72",
-                          "title": "Atividade 1",
-                          "link": "www.activity.com"
-                        }
+                        "819d249c-e536-43df-b688-1b9ca72eec72"
                       ]
                     }
                   },
@@ -4089,10 +4150,6 @@
           "type": "string",
           "example": "Cerca de 30 minutos"
         },
-        "inspiration": {
-          "type": "string",
-          "example": "Inspirada na atividade 1"
-        },
         "references": {
           "type": "string",
           "example": "Referências bibliograficas"
@@ -4135,11 +4192,32 @@
             "$ref": "#/definitions/inspiration_object"
           }
         },
+        "is_abac_author": {
+          "type": "boolean",
+          "example": false
+        },
         "authors": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/person_object"
           }
+        },
+        "inserted_by": {
+          "$ref": "#/definitions/person_object"
+        },
+        "external_authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "João da Silva",
+            "Pedro Henrique"
+          ]
+        },
+        "external_link": {
+          "type": "string",
+          "example": "https://scholar.google.com.br/"
         },
         "space_types": {
           "type": "array",
@@ -4191,6 +4269,14 @@
         "total_comments": {
           "type": "integer",
           "example": 10
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-07-15T15:49:38.072-03:00"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2019-07-15T15:49:38.072-03:00"
         }
       },
       "required": [

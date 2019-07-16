@@ -29,7 +29,11 @@ module Gallery
                  :scopes,
                  :audiences,
                  :inspirations,
+                 :is_abac_author,
                  :authors,
+                 :inserted_by,
+                 :external_authors,
+                 :external_link,
                  :space_types,
                  :specific_materials,
                  :general_materials,
@@ -62,6 +66,13 @@ module Gallery
         object.people.map do |author|
           User::V1::PersonSerializer.new(author, root: false)
         end
+      end
+
+      def inserted_by
+        User::V1::PersonSerializer.new(
+          User::Person.find_by(id: Auth::User.find_by(id: object.inserted_by).usereable_id),
+          root: false
+        ) if Auth::User.find_by(id: object.inserted_by)
       end
 
       def space_types

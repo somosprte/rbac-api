@@ -6,6 +6,7 @@ module Experience
       attributes :id, :activity
 
       def activity
+        # Gallery::Activity.find_by(id: object.activity_id) unless object.activity_id.nil?
         unless object&.activity_id.nil?
           obj = Gallery::Activity.find_by(id: object.activity_id)
           Gallery::V1::ActivitySerializer.new(obj, root: false)

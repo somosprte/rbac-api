@@ -39,7 +39,7 @@ module Gallery
       medium: '600x600#',
       original: '1200x1200#'
     }
-    validates_attachment_content_type :image, content_type: %r{\Aimage/.*\Z}
+    validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
     validates :title,
               :caption,
               :description,
@@ -110,7 +110,7 @@ module Gallery
     }
 
     scope :order_by, lambda { |order = nil|
-      all
+      all unless order
       select('gallery_activities.*, count(i.activity_id) as total_implementations, count(r.activity_id) as total_remixes, count(f.favoriteable_id) as total_favorites')
         .joins('left join experience_implementations i ON gallery_activities.id = i.activity_id')
         .joins('left join experience_remixes r ON gallery_activities.id = r.activity_id')

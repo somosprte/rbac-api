@@ -140,10 +140,6 @@ RSpec.configure do |config|
               type: :string,
               example: 'Cerca de 30 minutos'
             },
-            inspiration: {
-              type: :string,
-              example: 'Inspirada na atividade 1'
-            },
             references: {
               type: :string,
               example: 'Referências bibliograficas'
@@ -186,11 +182,27 @@ RSpec.configure do |config|
                 '$ref' => '#/definitions/inspiration_object'
               }
             },
+            is_abac_author: {
+              type: :boolean,
+              example: false
+            },
             authors: {
               type: :array,
               items: {
                 '$ref' => '#/definitions/person_object'
               }
+            },
+            inserted_by: {
+              '$ref' => '#/definitions/person_object'
+            },
+            external_authors: {
+              type: :array,
+              items: { type: :string },
+              example: ['João da Silva', 'Pedro Henrique']
+            },
+            external_link: {
+              type: :string,
+              example: 'https://scholar.google.com.br/'
             },
             space_types: {
               type: :array,
@@ -243,6 +255,14 @@ RSpec.configure do |config|
             total_comments: {
               type: :integer,
               example: 10
+            },
+            created_at: {
+              type: :string,
+              example: '2019-07-15T15:49:38.072-03:00'
+            },
+            updated_at: {
+              type: :string,
+              example: '2019-07-15T15:49:38.072-03:00'
             }
           },
           required: ['title']
