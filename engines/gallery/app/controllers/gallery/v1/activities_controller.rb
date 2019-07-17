@@ -17,7 +17,7 @@ module Gallery
                       .search_by_audiences(params[:audience_ids])
                       .search_by_space_types(params[:space_type_ids])
                       .order_by(params[:order])
-
+        @activities = @activities.where(published: true) unless @current_user
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
 
@@ -97,7 +97,7 @@ module Gallery
       def remix
         activity_remixed = @activity.amoeba_dup
         activity_remixed.remixed = 1
-        # activity_remixed.image = @activity.image
+        activity_remixed.image = @activity.image
         activity_remixed.inserted_by = @current_user.id     
         activity_remixed.person_ids = @activity.people.ids
         activity_remixed.scope_ids = @activity.scopes.ids
