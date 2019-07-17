@@ -17,7 +17,7 @@ module Gallery
                       .search_by_audiences(params[:audience_ids])
                       .search_by_space_types(params[:space_type_ids])
                       .order_by(params[:order])
-        @activities = @activities.where(published: true) unless @current_user
+        @activities = @activities.where(published: true) if @current_user.nil?
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
 

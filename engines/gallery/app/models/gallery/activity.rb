@@ -110,14 +110,17 @@ module Gallery
     }
 
     scope :order_by, lambda { |order = nil|
-      all.order(created_at: :desc) unless order
-      select('gallery_activities.*, count(i.activity_id) as total_implementations, count(r.activity_id) as total_remixes, count(f.favoriteable_id) as total_favorites')
+      if order.present?
+        select('gallery_activities.*, count(i.activity_id) as total_implementations, count(r.activity_id) as total_remixes, count(f.favoriteable_id) as total_favorites')
         .joins('left join experience_implementations i ON gallery_activities.id = i.activity_id')
         .joins('left join experience_remixes r ON gallery_activities.id = r.activity_id')
         .joins('left join experience_favorites f ON gallery_activities.id = f.favoriteable_id')
         .group('gallery_activities.id')
-        .order(order) if order
-    }
+        .order(order)
+      else
+        all.order(created_at: :desc)
+      end
+      }
 
     def self.get_activity_favorites(person)
       joins(:favorites).where("experience_favorites.person_id = '#{person.id}' and experience_favorites.favoriteable_type = 'Gallery::Activity'")
