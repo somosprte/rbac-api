@@ -97,8 +97,12 @@ module Gallery
       def remix
         activity_remixed = @activity.amoeba_dup
         activity_remixed.remixed = 1
-        activity_remixed.image = @activity.image
-        activity_remixed.person_ids = @current_user.usereable.id
+        # activity_remixed.image = @activity.image
+        activity_remixed.inserted_by = @current_user.id     
+        activity_remixed.person_ids = @activity.people.ids
+        activity_remixed.scope_ids = @activity.scopes.ids
+        activity_remixed.audience_ids = @activity.audiences.ids
+        activity_remixed.space_type_ids = @activity.space_types.ids
         activity_remixed.save
         activity_remixed.inspirations.create(activity_two_id: @activity.id, title: @activity.title)
         if activity_remixed.update(activity_params)
@@ -191,11 +195,10 @@ module Gallery
           :implementation_tips,
           :reflection_assessment,
           :duration,
-          :inspiration,
-          :is_abac_author,
-          :inserted_by,
-          :external_link,
           :references,
+          :is_abac_author,
+          :external_link,
+          :inserted_by,
           :activity_type,
           :specific_materials,
           external_authors: [],

@@ -666,21 +666,59 @@ RSpec.configure do |config|
               published: { type: :boolean, example: true },
               version_history: { type: :string, example: '1.0' },
               copyright: { type: :string, example: 'rbac' },
-              license_type: { type: :string, example: 'License' },
-              created_at: { type: :date, example: '2019-06-28T20:10:14.543Z' },
-              updated_at: { type: :date, example: '2019-06-28T20:10:16.173Z' },
+              license_type: { type: :string, example: 'License' },              
               space_organization: { type: :string, example: 'Precisa de projetor para realizar a atividade' },
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
               duration: { type: :string, example: 'cerca de 30 minutos' },
-              image_file_name: { type: :string, example: 'data' },
-              image_content_type: { type: :string, example: 'image/png' },
-              image_file_size: { type: :integer, example: 476 },
-              image_updated_at: { type: :date, example: '2019-06-28T20:10:15.398Z' },
               references: { type: :string, example: 'Referências bibliograficas' },
               remixed: { type: :string, example: 'yes' },
-              specific_materials: { type: :string, example: 'Cola e tesoura sem ponta' }
+              activity_type: { type: :string, example: 'internal' },
+              liked: { type: :boolean, example: true },
+              favorited: { type: :boolean, example: true },
+              implemented: { type: :boolean, example: true },              
+              audiences: {
+                type: :array,
+                items: { '$ref' => '#/definitions/audiences_object' }
+              },
+              inspirations: {
+                type: :array,
+                items: { '$ref' => '#/definitions/inspiration_object' }
+              },
+              is_abac_author: { type: :boolean, example: false },
+              authors: {
+                type: :array,
+                items: { '$ref' => '#/definitions/person_object' }
+              },
+              inserted_by: { '$ref' => '#/definitions/person_object' },
+              external_authors: {
+                type: :array,
+                items: { type: :string },
+                example: ['João da Silva', 'Pedro Henrique']
+              },
+              external_link: { type: :string, example: 'https://scholar.google.com.br/' },
+              space_types: {
+                type: :array,
+                items: { '$ref' => '#/definitions/space_type_object' }
+              },
+              specific_materials: { type: :string, example: 'Cola e tesoura sem ponta' },
+              general_materials: {
+                type: :array,
+                items: { '$ref' => '#/definitions/general_materials_object' }
+              },
+              images: { '$ref' => '#/definitions/image_object' },
+              comments: { '$ref' => '#/definitions/comment_object' },
+              remixes: { '$ref' => '#/activity_remixes' },
+              likes: { '$ref' => '#/definitions/like_object' },
+              implementations: { '$ref' => '#/definitions/implementation_object' },
+              total_implementations: { type: :integer, example: 10 },
+              total_likes: { type: :integer, example: 10 },
+              total_favorites: { type: :integer, example: 10 },
+              total_remixes: { type: :integer, example: 10 },
+              total_comments: { type: :integer, example: 10 },
+              created_at: { type: :date, example: '2019-06-28T20:10:14.543Z' },
+              updated_at: { type: :date, example: '2019-06-28T20:10:16.173Z' }
             }
           }
         }

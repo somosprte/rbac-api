@@ -785,10 +785,6 @@
                       "type": "boolean",
                       "example": false
                     },
-                    "inserted_by": {
-                      "type": "string",
-                      "example": "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
-                    },
                     "external_link": {
                       "type": "string",
                       "example": "https://scholar.google.com.br/"
@@ -1140,10 +1136,6 @@
                     "is_abac_author": {
                       "type": "boolean",
                       "example": false
-                    },
-                    "inserted_by": {
-                      "type": "string",
-                      "example": "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
                     },
                     "external_link": {
                       "type": "string",
@@ -1515,10 +1507,6 @@
                     "is_abac_author": {
                       "type": "boolean",
                       "example": false
-                    },
-                    "inserted_by": {
-                      "type": "string",
-                      "example": "3b11f1db-e8c2-4379-beb7-0ba7f993e23a"
                     },
                     "external_link": {
                       "type": "string",
@@ -4777,14 +4765,6 @@
             "type": "string",
             "example": "License"
           },
-          "created_at": {
-            "type": "date",
-            "example": "2019-06-28T20:10:14.543Z"
-          },
-          "updated_at": {
-            "type": "date",
-            "example": "2019-06-28T20:10:16.173Z"
-          },
           "space_organization": {
             "type": "string",
             "example": "Precisa de projetor para realizar a atividade"
@@ -4805,22 +4785,6 @@
             "type": "string",
             "example": "cerca de 30 minutos"
           },
-          "image_file_name": {
-            "type": "string",
-            "example": "data"
-          },
-          "image_content_type": {
-            "type": "string",
-            "example": "image/png"
-          },
-          "image_file_size": {
-            "type": "integer",
-            "example": 476
-          },
-          "image_updated_at": {
-            "type": "date",
-            "example": "2019-06-28T20:10:15.398Z"
-          },
           "references": {
             "type": "string",
             "example": "Referências bibliograficas"
@@ -4829,9 +4793,119 @@
             "type": "string",
             "example": "yes"
           },
+          "activity_type": {
+            "type": "string",
+            "example": "internal"
+          },
+          "liked": {
+            "type": "boolean",
+            "example": true
+          },
+          "favorited": {
+            "type": "boolean",
+            "example": true
+          },
+          "implemented": {
+            "type": "boolean",
+            "example": true
+          },
+          "audiences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/audiences_object"
+            }
+          },
+          "inspirations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/inspiration_object"
+            }
+          },
+          "is_abac_author": {
+            "type": "boolean",
+            "example": false
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/person_object"
+            }
+          },
+          "inserted_by": {
+            "$ref": "#/definitions/person_object"
+          },
+          "external_authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "João da Silva",
+              "Pedro Henrique"
+            ]
+          },
+          "external_link": {
+            "type": "string",
+            "example": "https://scholar.google.com.br/"
+          },
+          "space_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/space_type_object"
+            }
+          },
           "specific_materials": {
             "type": "string",
             "example": "Cola e tesoura sem ponta"
+          },
+          "general_materials": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/general_materials_object"
+            }
+          },
+          "images": {
+            "$ref": "#/definitions/image_object"
+          },
+          "comments": {
+            "$ref": "#/definitions/comment_object"
+          },
+          "remixes": {
+            "$ref": "#/activity_remixes"
+          },
+          "likes": {
+            "$ref": "#/definitions/like_object"
+          },
+          "implementations": {
+            "$ref": "#/definitions/implementation_object"
+          },
+          "total_implementations": {
+            "type": "integer",
+            "example": 10
+          },
+          "total_likes": {
+            "type": "integer",
+            "example": 10
+          },
+          "total_favorites": {
+            "type": "integer",
+            "example": 10
+          },
+          "total_remixes": {
+            "type": "integer",
+            "example": 10
+          },
+          "total_comments": {
+            "type": "integer",
+            "example": 10
+          },
+          "created_at": {
+            "type": "date",
+            "example": "2019-06-28T20:10:14.543Z"
+          },
+          "updated_at": {
+            "type": "date",
+            "example": "2019-06-28T20:10:16.173Z"
           }
         }
       }

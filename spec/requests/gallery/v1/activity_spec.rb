@@ -488,7 +488,7 @@ RSpec.describe 'Activities API', type: :request do
                    type: :array,
                    items: {
                      '$ref': '#/definitions/activities_object'
-                   }
+                    }
                  }
                },
                required: ['data']
