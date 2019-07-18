@@ -16,8 +16,8 @@ module Gallery
                       .search_by_authors(params[:author_ids])
                       .search_by_audiences(params[:audience_ids])
                       .search_by_space_types(params[:space_type_ids])
+                      .where(published: true)
                       .order_by(params[:order])
-        @activities = @activities.where(published: true) if @current_user.nil?
         @activities = @activities.page(params[:page] || 1)
         @activities = @activities.per(params[:per] || 10)
 
@@ -28,7 +28,7 @@ module Gallery
 
       # POST gallery/v1/activities
       def create
-        params[:activity][:inserted_by] = @current_user.id
+        params[:activity][:inserted_by] = @current_user.usereable_id
         @activity = Gallery::Activity.create(activity_params)
         if @activity.save
           Gallery::FunctionsActivity.crud_general_materials(@activity, params)
@@ -98,7 +98,7 @@ module Gallery
         activity_remixed = @activity.amoeba_dup
         activity_remixed.remixed = 1
         activity_remixed.image = @activity.image
-        activity_remixed.inserted_by = @current_user.id     
+        activity_remixed.inserted_by = @current_user.usereable_id     
         activity_remixed.person_ids = @activity.people.ids
         activity_remixed.scope_ids = @activity.scopes.ids
         activity_remixed.audience_ids = @activity.audiences.ids

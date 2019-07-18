@@ -23,6 +23,15 @@ module User
         render json: @person
       end
 
+      # Get /user/v1/people/current_user/activities
+      def get_people_activities
+        people_activities = Gallery::Activity.get_current_user_activities(@current_user.usereable_id)
+        people_activities = Kaminari.paginate_array(people_activities)
+        people_activities = people_activities.page(params[:page] || 1)
+        people_activities = people_activities.per(params[:per] || 10)
+        render json: people_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(people_activities)
+      end
+
       # GET /user/v1/people/favorites/activities
       def get_favorites_activities
         favorite_activities = Gallery::Activity.get_activity_favorites(@current_user.usereable)

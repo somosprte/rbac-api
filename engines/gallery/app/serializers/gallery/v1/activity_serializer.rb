@@ -70,9 +70,9 @@ module Gallery
 
       def inserted_by
         User::V1::PersonSerializer.new(
-          User::Person.find_by(id: Auth::User.find_by(id: object.inserted_by).usereable_id),
+          User::Person.find_by(id: object.inserted_by),
           root: false
-        ) if Auth::User.find_by(id: object.inserted_by)
+        ) if User::Person.find_by(id: object.inserted_by)
       end
 
       def space_types

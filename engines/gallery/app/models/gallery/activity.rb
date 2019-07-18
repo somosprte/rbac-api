@@ -109,6 +109,15 @@ module Gallery
       end
     }
 
+    def self.get_current_user_activities(id)
+      authors = select('gallery_activities.*')
+                .joins('inner join gallery_authors ON gallery_activities.id = gallery_authors.id')
+                .where("gallery_authors.person_id = '#{id}'")
+      owner = select('gallery_activities.*')
+              .where("gallery_activities.inserted_by = '#{id}'")
+      authors | owner
+    end
+
     scope :order_by, lambda { |order = nil|
       if order.present?
         select('gallery_activities.*, count(i.activity_id) as total_implementations, count(r.activity_id) as total_remixes, count(f.favoriteable_id) as total_favorites')
