@@ -109,13 +109,14 @@ module Gallery
       end
     }
 
-    def self.get_current_user_activities(id)
+    def self.get_users_activities(id, isCurrentUser = true)
+      onlyPublished = isCurrentUser ? '' : ' AND gallery_activities.published = true'
       authors = select('gallery_activities.*')
                 .joins('inner join gallery_authors ON gallery_activities.id = gallery_authors.activity_id')
-                .where("gallery_authors.person_id = '#{id}'")
-      owner = select('gallery_activities.*')
-              .where("gallery_activities.inserted_by = '#{id}'")
-      authors | owner
+                .where("gallery_authors.person_id = '#{id}'#{onlyPublished}")
+      creator = select('gallery_activities.*')
+                .where("gallery_activities.inserted_by = '#{id}'#{onlyPublished}")
+      Kaminari.paginate_array(authors | creator)
     end
 
     scope :order_by, lambda { |order = nil|

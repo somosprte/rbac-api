@@ -5,7 +5,7 @@ require_dependency 'user/application_controller'
 module User
   module V1
     class PeopleController < ApplicationController
-      before_action :set_person, only: [:show]
+      before_action :set_person, only: [:show, :get_others_users_activities]
       skip_before_action :authenticate, only: [:index]
 
       # GET /user/v1/people
@@ -25,11 +25,18 @@ module User
 
       # Get /user/v1/people/current_user/activities
       def get_people_activities
-        people_activities = Gallery::Activity.get_current_user_activities(@current_user.usereable_id)
-        people_activities = Kaminari.paginate_array(people_activities)
-        people_activities = people_activities.page(params[:page] || 1)
-        people_activities = people_activities.per(params[:per] || 10)
-        render json: people_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(people_activities)
+        current_users_activities = Gallery::Activity.get_users_activities(@current_user.usereable_id)
+        current_users_activities = current_users_activities.page(params[:page] || 1)
+        current_users_activities = current_users_activities.per(params[:per] || 10)
+        render json: current_users_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(current_users_activities)
+      end
+
+      # Get /user/v1/people/:id/activities
+      def get_others_users_activities
+        others_users_activities = Gallery::Activity.get_users_activities(@person.id, false)
+        others_users_activities = others_users_activities.page(params[:page] || 1)
+        others_users_activities = others_users_activities.per(params[:per] || 10)
+        render json: others_users_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(others_users_activities)
       end
 
       # GET /user/v1/people/favorites/activities

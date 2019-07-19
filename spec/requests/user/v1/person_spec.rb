@@ -318,4 +318,69 @@ RSpec.describe 'Users API', type: :request do
       end
     end
   end
+  path '/user/v1/people/{id}/activities' do
+    get 'Get activities inserted by or where specified user is author' do
+      tags 'People'
+      security [Bearer: []]
+      consumes 'application/json'
+      description "Get activities inserted by or where specified user is author"
+      response '200', 'Activities found' do
+        schema type: :object,
+               properties: {
+                 data: {
+                   type: :array,
+                   items: {
+                     '$ref': '#/definitions/activities_object'
+                   }
+                 },
+                 links: {
+                   type: :object,
+                   properties: {
+                     self: {
+                       type: :string,
+                       format: :url,
+                       example: '//gallery/v1/activities?page[number]=1&page[size]=10'
+                     },
+                     first: {
+                       type: :string,
+                       format: :url,
+                       example: '//gallery/v1/activities?page[number]=1&page[size]=10'
+                     },
+                     prev: {
+                       type: :string,
+                       format: :url,
+                       example: nil
+                     },
+                     next: {
+                       type: :string,
+                       format: :url,
+                       example: '//gallery/v1/activities?page[number]=2&page[size]=10'
+                     },
+                     last: {
+                       type: :string,
+                       format: :url,
+                       example: '//gallery/v1/activities?page[number]=10&page[size]=10'
+                     }
+                   },
+                   required: %w[self first last]
+                 },
+                 meta: {
+                   '$ref': '#/definitions/meta_pagination_object'
+                 }
+               },
+               required: %w[data links meta]
+        run_test!
+      end
+
+      response '401', 'Unauthorized' do
+        schema '$ref': '#/definitions/error_object'
+        run_test!
+      end
+
+      response '500', 'Internal Server Error' do
+        schema '$ref': '#/definitions/error_object'
+        run_test!
+      end
+    end
+  end
 end
