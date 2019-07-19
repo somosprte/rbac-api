@@ -4010,6 +4010,96 @@
           }
         }
       }
+    },
+    "/user/v1/people/current_user/activities": {
+      "get": {
+        "summary": "Get activities inserted by or where current user is author",
+        "tags": [
+          "People"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get activities inserted by or where current user is author",
+        "responses": {
+          "200": {
+            "description": "Activities found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/activities_object"
+                  }
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=1&page[size]=10"
+                    },
+                    "first": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=1&page[size]=10"
+                    },
+                    "prev": {
+                      "type": "string",
+                      "format": "url",
+                      "example": null
+                    },
+                    "next": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=2&page[size]=10"
+                    },
+                    "last": {
+                      "type": "string",
+                      "format": "url",
+                      "example": "//gallery/v1/activities?page[number]=10&page[size]=10"
+                    }
+                  },
+                  "required": [
+                    "self",
+                    "first",
+                    "last"
+                  ]
+                },
+                "meta": {
+                  "$ref": "#/definitions/meta_pagination_object"
+                }
+              },
+              "required": [
+                "data",
+                "links",
+                "meta"
+              ]
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_object"
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
