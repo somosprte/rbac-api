@@ -111,7 +111,7 @@ module Gallery
 
     def self.get_current_user_activities(id)
       authors = select('gallery_activities.*')
-                .joins('inner join gallery_authors ON gallery_activities.id = gallery_authors.id')
+                .joins('inner join gallery_authors ON gallery_activities.id = gallery_authors.activity_id')
                 .where("gallery_authors.person_id = '#{id}'")
       owner = select('gallery_activities.*')
               .where("gallery_activities.inserted_by = '#{id}'")
