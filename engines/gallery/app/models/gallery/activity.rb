@@ -40,23 +40,19 @@ module Gallery
       original: '1200x1200#'
     }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-    validates :title,
-              :caption,
-              :description,
-              :motivation,
+    validates :motivation,
               :powerful_ideas,
               :products,
               :copyright,
-              :license_type,
               :space_organization,
               :implementation_steps,
               :duration,
               :scope_ids,
               :audience_ids,
-              :person_ids,
               :space_type_ids,
-              presence: true
-    # Copy model, used to remix
+              presence: true, if: :is_internal?
+    validates :title, :caption, :description, presence: true # Activities external
+
     amoeba do
       enable
       include_association :activity_scopes
@@ -64,7 +60,11 @@ module Gallery
       include_association :activity_space_types
       include_association :general_materials
     end
-
+    
+    def is_internal?
+      activity_type == 'internal'
+    end
+    
     scope :search_global, lambda { |query = nil|
       if query
         where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
