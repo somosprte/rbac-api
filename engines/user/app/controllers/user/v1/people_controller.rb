@@ -33,7 +33,7 @@ module User
 
       # Get /user/v1/people/:id/activities
       def get_others_users_activities
-        others_users_activities = Gallery::Activity.get_users_activities(@person.id, false)
+        others_users_activities = Gallery::Activity.get_users_activities(@person.id, @current_user.usereable_id == @person.id)
         others_users_activities = others_users_activities.page(params[:page] || 1)
         others_users_activities = others_users_activities.per(params[:per] || 10)
         render json: others_users_activities, each_serializer: Gallery::V1::ActivitySerializer, meta: pagination_dict(others_users_activities)
