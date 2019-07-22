@@ -164,6 +164,7 @@ RSpec.configure do |config|
               type: :boolean,
               example: true
             },
+            license: { '$ref' => '#/definitions/licenses_object' },
             scopes: {
               type: :array,
               items: {
@@ -266,6 +267,49 @@ RSpec.configure do |config|
             }
           },
           required: ['title']
+        },
+        licenses_object: {
+          type: :object,
+          properties: {
+            id: {
+              type: :string,
+              example: '1758b1cc-ae2f-41c1-9d40-5c6bc7bdc807'
+            },
+            type: {
+              type: :string,
+              example: 'gallery-licenses'
+            },
+            attributes: {
+              '$ref' => '#/definitions/license_object'
+            }
+          },
+          required: %w[id type attributes]
+        },
+        license_object: {
+          type: :object,
+          properties: {
+            title: {
+              type: :string,
+              example: 'License 1'
+            },
+            acronym: {
+              type: :string,
+              example: 'L1'
+            },
+            version: {
+              type: :string,
+              example: 'v1'
+            },
+            description: {
+              type: :string,
+              example: 'Scope 1'
+            },
+            external_link: {
+              type: :string,
+              example: 'www.domain.com'
+            }
+          },
+          required: ['title', 'description']
         },
         scopes_object: {
           type: :object,
@@ -712,6 +756,7 @@ RSpec.configure do |config|
               remixes: { '$ref' => '#/activity_remixes' },
               likes: { '$ref' => '#/definitions/like_object' },
               implementations: { '$ref' => '#/definitions/implementation_object' },
+              license: { '$ref' => '#/definitions/license_object' },
               total_implementations: { type: :integer, example: 10 },
               total_likes: { type: :integer, example: 10 },
               total_favorites: { type: :integer, example: 10 },

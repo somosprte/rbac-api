@@ -26,6 +26,7 @@ module Gallery
                  :liked,
                  :favorited,
                  :implemented,
+                 :license,
                  :scopes,
                  :audiences,
                  :inspirations,
@@ -49,6 +50,10 @@ module Gallery
                  :total_comments,
                  :created_at,
                  :updated_at
+
+      def license
+        Gallery::V1::LicenseSerializer.new(object.license, root: false) if object.license
+      end
 
       def scopes
         object.scopes.map do |scope|

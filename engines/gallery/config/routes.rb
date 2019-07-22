@@ -7,6 +7,7 @@ Gallery::Engine.routes.draw do
     resources :audiences
     resources :space_types
     resources :general_materials
+    resources :licenses
     match 'activities/:id/like', to: 'activities#like', via: [:get]
     match 'activities/:id/favorite', to: 'activities#favorite', via: [:get]
     match 'activities/:id/remix', to: 'activities#remix', via: [:post]

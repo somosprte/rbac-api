@@ -200,6 +200,7 @@ module Gallery
           :external_link,
           :inserted_by,
           :activity_type,
+          :license_id,
           :specific_materials,
           external_authors: [],
           scope_ids: [],

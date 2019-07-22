@@ -5,6 +5,9 @@ module Gallery
     enum remixed: %i[no yes]
     enum activity_type: %i[internal external]
     attr_accessor :image, :liked, :favorited, :implemented
+
+    belongs_to :license, class_name: 'Gallery::License'
+
     has_many :activity_scopes, class_name: 'Gallery::ActivityScope', dependent: :destroy
     has_many :scopes, through: :activity_scopes, class_name: 'Gallery::Scope'
 
