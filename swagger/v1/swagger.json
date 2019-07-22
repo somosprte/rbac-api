@@ -3007,7 +3007,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "licese": {
+                "license": {
                   "type": "object",
                   "properties": {
                     "title": {
@@ -3111,7 +3111,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "licese": {
+                "license": {
                   "type": "object",
                   "properties": {
                     "title": {

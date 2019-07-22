@@ -81,7 +81,7 @@ RSpec.describe 'Licenses API', type: :request do
       parameter name: :body, in: :body, required: true, schema: {
         type: :object,
         properties: {
-          licese: {
+          license: {
             type: :object,
             properties: {
               title: { type: :string, example: 'License 1' },
@@ -136,7 +136,7 @@ RSpec.describe 'Licenses API', type: :request do
       parameter name: :body, in: :body, required: true, schema: {
         type: :object,
         properties: {
-          licese: {
+          license: {
             type: :object,
             properties: {
               title: { type: :string, example: 'License 1' },
