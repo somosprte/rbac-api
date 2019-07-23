@@ -22,7 +22,7 @@ module Gallery
       def create
         @audience = Gallery::Audience.create(audience_params)
         if @audience.save
-          render json: @audience
+          render json: @audience, status: :created
         else
           render json: @audience.errors, status: :unprocessable_entity
         end
