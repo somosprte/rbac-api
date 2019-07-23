@@ -6,7 +6,7 @@ module Gallery
     enum activity_type: %i[internal external]
     attr_accessor :image, :liked, :favorited, :implemented
 
-    belongs_to :license, class_name: 'Gallery::License'
+    belongs_to :license, class_name: 'Gallery::License', optional: true
 
     has_many :activity_scopes, class_name: 'Gallery::ActivityScope', dependent: :destroy
     has_many :scopes, through: :activity_scopes, class_name: 'Gallery::Scope'
@@ -89,6 +89,16 @@ module Gallery
       if authors
         authors = authors.split(',')
         joins(:people).where(user_people: { id: authors })
+      else
+        all
+      end
+    }
+
+    scope :search_by_licenses, lambda { |licenses = nil|
+      if licenses
+        licenses = licenses.split(',').to_s[1..-2].gsub(/\"/, '\'')
+        joins('inner join gallery_licenses ON gallery_licenses.id = gallery_activities.license_id')
+        .where("gallery_licenses.id IN (#{licenses})")
       else
         all
       end

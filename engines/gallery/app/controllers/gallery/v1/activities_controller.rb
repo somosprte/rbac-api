@@ -14,6 +14,7 @@ module Gallery
                       .search_global(params[:global])
                       .search_by_scopes(params[:scope_ids])
                       .search_by_authors(params[:author_ids])
+                      .search_by_licenses(params[:license_ids])
                       .search_by_audiences(params[:audience_ids])
                       .search_by_space_types(params[:space_type_ids])
                       .where(published: true)

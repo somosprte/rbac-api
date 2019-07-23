@@ -22,7 +22,7 @@ module Gallery
       def create
         @license = Gallery::License.create(license_params)
         if @license.save
-          render json: @license
+          render json: @license, status: :created
         else
           render json: @license.errors, status: :unprocessable_entity
         end

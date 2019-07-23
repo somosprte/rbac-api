@@ -14,6 +14,7 @@ RSpec.describe 'Activities API', type: :request do
       parameter name: :global, in: :query, type: :string, description: 'Search global fields', required: false
       parameter name: :scope_ids, in: :query, type: :string, description: 'Search by scope, scope_ids=id1,id2', required: false
       parameter name: :author_ids, in: :query, type: :string, description: 'Search by author, author_ids=id1,id2', required: false
+      parameter name: :license_ids, in: :query, type: :string, description: 'Search by license, license_ids=id1,id2', required: false
       parameter name: :audience_ids, in: :query, type: :string, description: 'Search by audience, audience_ids=id1,id2', required: false
       parameter name: :space_type_ids, in: :query, type: :string, description: 'Search by space type, space_type_ids=id1,id2', required: false
       parameter name: :order, in: :query, type: :array, description: 'Sort query by order param', required: false, items: {

@@ -509,6 +509,13 @@
             "required": false
           },
           {
+            "name": "license_ids",
+            "in": "query",
+            "type": "string",
+            "description": "Search by license, license_ids=id1,id2",
+            "required": false
+          },
+          {
             "name": "audience_ids",
             "in": "query",
             "type": "string",
