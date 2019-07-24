@@ -103,6 +103,14 @@ module Gallery
       end
     }
 
+    scope :search_by_activity_type, lambda { |activity_type = nil|
+      if activity_type
+        where("gallery_activities.activity_type = #{activity_type == 'internal' ? 0 : 1}")
+      else
+        all
+      end
+    }
+
     scope :search_by_audiences, lambda { |audiences = nil|
       if audiences
         audiences = audiences.split(',')

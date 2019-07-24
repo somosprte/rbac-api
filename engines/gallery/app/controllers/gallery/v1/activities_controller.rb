@@ -17,6 +17,7 @@ module Gallery
                       .search_by_licenses(params[:license_ids])
                       .search_by_audiences(params[:audience_ids])
                       .search_by_space_types(params[:space_type_ids])
+                      .search_by_activity_type(params[:activity_type])
                       .where(published: true)
                       .order_by(params[:order])
         @activities = @activities.page(params[:page] || 1)

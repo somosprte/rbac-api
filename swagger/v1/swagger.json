@@ -530,6 +530,13 @@
             "required": false
           },
           {
+            "name": "activity_type",
+            "in": "query",
+            "type": "string",
+            "description": "Search by activity type, activity_type=[ \"internal\" | \"external\" ]",
+            "required": false
+          },
+          {
             "name": "order",
             "in": "query",
             "type": "array",
