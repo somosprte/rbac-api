@@ -43,7 +43,8 @@ module Gallery
       original: '1200x1200#'
     }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-    validates :motivation,
+    validates :description,
+              :motivation,
               :powerful_ideas,
               :products,
               :copyright,
@@ -53,8 +54,10 @@ module Gallery
               :scope_ids,
               :audience_ids,
               :space_type_ids,
+              :license_id,
               presence: true, if: :is_internal?
-    validates :title, :caption, :description, presence: true # Activities external
+    validates :title, :caption, presence: true # Activities external
+    # validates :external_link, if: :is_external?
 
     amoeba do
       enable
@@ -67,6 +70,11 @@ module Gallery
     def is_internal?
       activity_type == 'internal'
     end
+
+    def is_external?
+      activity_type == 'external'
+    end
+
     
     scope :search_global, lambda { |query = nil|
       if query
