@@ -55,9 +55,9 @@ module Gallery
               :audience_ids,
               :space_type_ids,
               :license_id,
-              presence: true, if: :is_internal?
-    validates :title, :caption, presence: true # Activities external
-    # validates :external_link, if: :is_external?
+              presence: true, if: ->{ activity_type == 'internal' } # for internal only
+    validates :external_link, presence: true, if: ->{ activity_type == 'external' } # for external only
+    validates :title, :caption, presence: true # for both [internal | external]
 
     amoeba do
       enable
@@ -66,16 +66,7 @@ module Gallery
       include_association :activity_space_types
       include_association :general_materials
     end
-    
-    def is_internal?
-      activity_type == 'internal'
-    end
-
-    def is_external?
-      activity_type == 'external'
-    end
-
-    
+  
     scope :search_global, lambda { |query = nil|
       if query
         where("title ilike '%#{query}%' or caption ilike '%#{query}%' or description ilike '%#{query}%' or motivation ilike '%#{query}%'")
