@@ -532,9 +532,17 @@
           {
             "name": "activity_type",
             "in": "query",
-            "type": "string",
-            "description": "Search by activity type, activity_type=[ \"internal\" | \"external\" ]",
-            "required": false
+            "type": "array",
+            "description": "Search by activity type",
+            "required": false,
+            "items": {
+              "type": "string",
+              "enum": [
+                "internal",
+                "external"
+              ],
+              "default": "internal"
+            }
           },
           {
             "name": "order",

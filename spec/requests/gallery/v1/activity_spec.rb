@@ -17,7 +17,9 @@ RSpec.describe 'Activities API', type: :request do
       parameter name: :license_ids, in: :query, type: :string, description: 'Search by license, license_ids=id1,id2', required: false
       parameter name: :audience_ids, in: :query, type: :string, description: 'Search by audience, audience_ids=id1,id2', required: false
       parameter name: :space_type_ids, in: :query, type: :string, description: 'Search by space type, space_type_ids=id1,id2', required: false
-      parameter name: :activity_type, in: :query, type: :string, description: 'Search by activity type, activity_type=[ "internal" | "external" ]', required: false
+      parameter name: :activity_type, in: :query, type: :array, description: 'Search by activity type', required: false, items: {
+        type: :string, enum: ['internal', 'external'], default: 'internal'
+      }
       parameter name: :order, in: :query, type: :array, description: 'Sort query by order param', required: false, items: {
         type: :string, enum: [
           'title ASC',
