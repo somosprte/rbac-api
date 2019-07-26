@@ -79,8 +79,6 @@ module Gallery
         text_html_group.call 'Histórico', activity.version_history unless activity.version_history.blank?
         # Copyright section
         text_html_group.call 'Copyright', activity.copyright unless activity.copyright.blank?
-        # # License type section
-        # text_html_group.call 'Tipo de licença', activity.license_type unless activity.license_type.blank?
         # Space types section
         list_group.call 'Tipos de espaços', activity.space_types unless activity.space_types.blank?
         # Space organization section
@@ -121,7 +119,7 @@ module Gallery
         # References section
         text_html_group.call 'Referências externas', activity.references, 'html' unless activity.references.blank?
         # Activity type section
-        text_html_group.call 'Tipo de atividade', activity.activity_type unless activity.activity_type.blank?
+        text_html_group.call 'Tipo de atividade', activity.activity_type[0..-2].captilize unless activity.activity_type.blank?
         # Inserted by section
         name = User::Person.find_by_id(activity.inserted_by)&.name
         text_html_group.call 'Inserida por', name
@@ -130,6 +128,9 @@ module Gallery
         text_html_group.call 'Autores externos', external_authors unless activity.external_authors.blank?
         # External link section
         text_html_group.call 'Link externo', activity.external_link unless activity.external_link.blank?
+        # License section
+        license = Gallery::License.find_by_id(activity.license_id)
+        text_html_group.call 'Licença', "#{license&.title} (#{license&.acronym})", 'html' unless activity.license_id.blank?
 
         # Creating Header and Footer
         pdf.page_count.times do |i|
