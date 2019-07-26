@@ -119,7 +119,7 @@ module Gallery
         # References section
         text_html_group.call 'Referências externas', activity.references, 'html' unless activity.references.blank?
         # Activity type section
-        text_html_group.call 'Tipo de atividade', activity.activity_type[0..-2].captilize unless activity.activity_type.blank?
+        text_html_group.call 'Tipo de atividade', activity.activity_type[0..-2].capitalize unless activity.activity_type.blank?
         # Inserted by section
         name = User::Person.find_by_id(activity.inserted_by)&.name
         text_html_group.call 'Inserida por', name
