@@ -62,33 +62,33 @@ module Gallery
         pdf.image open(activity.image.url), styles[:image]
         pdf.move_down margin_bottom
         # Authors section
-        list_group.call 'Autor(es)', activity.people
+        list_group.call 'Autor(es)', activity.people unless activity.people.blank?
         # Description section
-        text_html_group.call 'Descrição', activity.description
+        text_html_group.call 'Descrição', activity.description unless activity.description.blank?
         # Motivation section
-        text_html_group.call 'Motivação', activity.motivation
+        text_html_group.call 'Motivação', activity.motivation unless activity.motivation.blank?
         # Products section
-        text_html_group.call 'Produtos esperados', activity.products
+        text_html_group.call 'Produtos esperados', activity.products unless activity.products.blank?
         # Scopes section
-        list_group.call 'Escopos', activity.scopes
+        list_group.call 'Escopos', activity.scopes unless activity.scopes.blank?
         # Audience section
-        list_group.call 'Público alvo', activity.audiences
+        list_group.call 'Público alvo', activity.audiences unless activity.audiences.blank?
         # Requirements section
-        text_html_group.call 'Pré-requisitos', activity.requirements
+        text_html_group.call 'Pré-requisitos', activity.requirements unless activity.requirements.blank?
         # Version history section
-        text_html_group.call 'Histórico', activity.version_history
+        text_html_group.call 'Histórico', activity.version_history unless activity.version_history.blank?
         # Copyright section
-        text_html_group.call 'Copyright', activity.copyright
-        # License type section
-        text_html_group.call 'Tipo de licença', activity.license_type
+        text_html_group.call 'Copyright', activity.copyright unless activity.copyright.blank?
+        # # License type section
+        # text_html_group.call 'Tipo de licença', activity.license_type unless activity.license_type.blank?
         # Space types section
-        list_group.call 'Tipos de espaços', activity.space_types
+        list_group.call 'Tipos de espaços', activity.space_types unless activity.space_types.blank?
         # Space organization section
-        text_html_group.call 'Organização do espaço', activity.space_organization, 'html'
+        text_html_group.call 'Organização do espaço', activity.space_organization, 'html' unless activity.space_organization.blank?
         # Implementation steps section
-        text_html_group.call 'Passos para Implementação', activity.implementation_steps, 'html'
+        text_html_group.call 'Passos para Implementação', activity.implementation_steps, 'html' unless activity.implementation_steps.blank?
         # General materials table
-        unless activity.general_materials.empty?
+        unless activity.general_materials.blank?
           pdf.text 'Materiais Gerais', styles[:subtitle]
           table_data = [
             [
@@ -107,19 +107,29 @@ module Gallery
           pdf.move_down margin_bottom + 6
         end
         # Specific materials section
-        text_html_group.call 'Materiais específicos', activity.specific_materials
+        text_html_group.call 'Materiais específicos', activity.specific_materials unless activity.specific_materials.blank?
         # Powerful-ideas section
-        text_html_group.call 'Poderosas Ideias', activity.powerful_ideas
+        text_html_group.call 'Poderosas Ideias', activity.powerful_ideas unless activity.powerful_ideas.blank?
         #  Implementation tips section
-        text_html_group.call 'Dicas sobre a implementação', activity.implementation_tips, 'html'
+        text_html_group.call 'Dicas sobre a implementação', activity.implementation_tips, 'html' unless activity.implementation_tips.blank?
         # Reflection assessment  section
-        text_html_group.call 'Reflexão e avaliação', activity.reflection_assessment, 'html'
+        text_html_group.call 'Reflexão e avaliação', activity.reflection_assessment, 'html' unless activity.reflection_assessment.blank?
         # Duration section
-        text_html_group.call 'Duração', activity.duration
+        text_html_group.call 'Duração', activity.duration unless activity.duration.blank?
         # Inspirations section
-        list_group.call 'Atividades inspiradoras', activity.inspirations unless activity.inspirations.empty?
+        list_group.call 'Atividades inspiradoras', activity.inspirations unless activity.inspirations.blank?
         # References section
-        text_html_group.call 'Referências externas', activity.references, 'html'
+        text_html_group.call 'Referências externas', activity.references, 'html' unless activity.references.blank?
+        # Activity type section
+        text_html_group.call 'Tipo de atividade', activity.activity_type unless activity.activity_type.blank?
+        # Inserted by section
+        name = User::Person.find_by_id(activity.inserted_by)&.name
+        text_html_group.call 'Inserida por', name
+        # External authors section
+        external_authors = activity.external_authors&.to_s.gsub(/\[|\]|\"/,'').gsub(/\,(?=[^\,]*$)/,' e')
+        text_html_group.call 'Autores externos', external_authors unless activity.external_authors.blank?
+        # External link section
+        text_html_group.call 'Link externo', activity.external_link unless activity.external_link.blank?
 
         # Creating Header and Footer
         pdf.page_count.times do |i|
