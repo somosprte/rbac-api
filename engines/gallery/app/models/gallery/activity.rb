@@ -143,7 +143,7 @@ module Gallery
       if order.present?
         select('gallery_activities.*, count(i.activity_id) as total_implementations, count(r.activity_id) as total_remixes, count(f.favoriteable_id) as total_favorites')
         .joins('left join experience_implementations i ON gallery_activities.id = i.activity_id')
-        .joins('left join experience_remixes r ON gallery_activities.id = r.activity_id')
+        .joins('left join experience_remixes r ON gallery_activities.id = r.remixeable_id')
         .joins('left join experience_favorites f ON gallery_activities.id = f.favoriteable_id')
         .group('gallery_activities.id')
         .order(order)
