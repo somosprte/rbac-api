@@ -189,7 +189,6 @@ RSpec.describe 'Activities API', type: :request do
               published: { type: :boolean, example: true },
               version_history: { type: :string, example: '1.0' },
               copyright: { type: :string, example: 'rbac' },
-              license_type: { type: :string, example: 'License' },
               space_organization: { type: :string, example: 'Precisa de projetor para realizar a atividade' },
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
@@ -210,7 +209,7 @@ RSpec.describe 'Activities API', type: :request do
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
               inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
-            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'license_type', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
+            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }
         }
       }
@@ -269,7 +268,6 @@ RSpec.describe 'Activities API', type: :request do
               published: { type: :boolean, example: true },
               version_history: { type: :string, example: '1.0' },
               copyright: { type: :string, example: 'rbac' },
-              license_type: { type: :string, example: 'License' },
               space_organization: { type: :string, example: 'Precisa de projetor para realizar a atividade' },
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
@@ -290,7 +288,7 @@ RSpec.describe 'Activities API', type: :request do
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
               inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
-            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'license_type', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
+            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright',  'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }
         }
       }
@@ -462,7 +460,6 @@ RSpec.describe 'Activities API', type: :request do
               published: { type: :boolean, example: true },
               version_history: { type: :string, example: '1.0' },
               copyright: { type: :string, example: 'rbac' },
-              license_type: { type: :string, example: 'License' },
               space_organization: { type: :string, example: 'Precisa de projetor para realizar a atividade' },
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
@@ -483,7 +480,7 @@ RSpec.describe 'Activities API', type: :request do
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
               inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
-            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'license_type', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
+            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }
         }
       }

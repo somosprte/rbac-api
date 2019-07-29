@@ -116,10 +116,6 @@ RSpec.configure do |config|
               type: :string,
               example: 'rbac'
             },
-            license_type: {
-              type: :string,
-              example: 'License'
-            },
             space_organization: {
               type: :string,
               example: 'Precisa de projetor para realizar a atividade'
@@ -709,8 +705,7 @@ RSpec.configure do |config|
               requirements: { type: :string, example: 'Inglês' },
               published: { type: :boolean, example: true },
               version_history: { type: :string, example: '1.0' },
-              copyright: { type: :string, example: 'rbac' },
-              license_type: { type: :string, example: 'License' },              
+              copyright: { type: :string, example: 'rbac' },          
               space_organization: { type: :string, example: 'Precisa de projetor para realizar a atividade' },
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
