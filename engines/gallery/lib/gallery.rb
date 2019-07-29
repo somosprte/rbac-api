@@ -89,7 +89,7 @@ module Gallery
         text_html_group.call 'Copyright', activity.copyright unless activity.copyright.blank?
         # License section
         license = Gallery::License.find_by_id(activity.license_id)
-        text_html_group.call 'Licença', "#{license&.title} (#{license&.acronym})", 'html' unless activity.license_id.blank?
+        text_html_group.call 'Licença', license.title&.to_s, 'html' unless activity.license_id.blank?
         # Space types section
         list_group.call 'Tipos de espaços', activity.space_types unless activity.space_types.blank?
         # Space organization section
