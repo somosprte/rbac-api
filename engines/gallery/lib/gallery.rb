@@ -63,10 +63,18 @@ module Gallery
         pdf.move_down margin_bottom
         # Authors section
         list_group.call 'Autor(es)', activity.people unless activity.people.blank?
+        # External authors section
+        external_authors = activity.external_authors&.to_s.gsub(/\[|\]|\"/,'').gsub(/\,(?=[^\,]*$)/,' e')
+        text_html_group.call 'Autores externos', external_authors unless activity.external_authors.blank?
+        # Inserted by section
+        name = User::Person.find_by_id(activity.inserted_by)&.name
+        text_html_group.call 'Inserida por', name
         # Description section
         text_html_group.call 'Descrição', activity.description unless activity.description.blank?
         # Motivation section
         text_html_group.call 'Motivação', activity.motivation unless activity.motivation.blank?
+        # Powerful-ideas section
+        text_html_group.call 'Poderosas Ideias', activity.powerful_ideas unless activity.powerful_ideas.blank?
         # Products section
         text_html_group.call 'Produtos esperados', activity.products unless activity.products.blank?
         # Scopes section
@@ -79,6 +87,9 @@ module Gallery
         text_html_group.call 'Histórico', activity.version_history unless activity.version_history.blank?
         # Copyright section
         text_html_group.call 'Copyright', activity.copyright unless activity.copyright.blank?
+        # License section
+        license = Gallery::License.find_by_id(activity.license_id)
+        text_html_group.call 'Licença', "#{license&.title} (#{license&.acronym})", 'html' unless activity.license_id.blank?
         # Space types section
         list_group.call 'Tipos de espaços', activity.space_types unless activity.space_types.blank?
         # Space organization section
@@ -106,8 +117,6 @@ module Gallery
         end
         # Specific materials section
         text_html_group.call 'Materiais específicos', activity.specific_materials unless activity.specific_materials.blank?
-        # Powerful-ideas section
-        text_html_group.call 'Poderosas Ideias', activity.powerful_ideas unless activity.powerful_ideas.blank?
         #  Implementation tips section
         text_html_group.call 'Dicas sobre a implementação', activity.implementation_tips, 'html' unless activity.implementation_tips.blank?
         # Reflection assessment  section
@@ -118,20 +127,11 @@ module Gallery
         list_group.call 'Atividades inspiradoras', activity.inspirations unless activity.inspirations.blank?
         # References section
         text_html_group.call 'Referências externas', activity.references, 'html' unless activity.references.blank?
-        # Activity type section
-        text_html_group.call 'Tipo de atividade', activity.activity_type[0..-2].capitalize unless activity.activity_type.blank?
-        # Inserted by section
-        name = User::Person.find_by_id(activity.inserted_by)&.name
-        text_html_group.call 'Inserida por', name
-        # External authors section
-        external_authors = activity.external_authors&.to_s.gsub(/\[|\]|\"/,'').gsub(/\,(?=[^\,]*$)/,' e')
-        text_html_group.call 'Autores externos', external_authors unless activity.external_authors.blank?
+        # # Activity type section
+        # text_html_group.call 'Tipo de atividade', activity.activity_type[0..-2].capitalize unless activity.activity_type.blank?
         # External link section
         text_html_group.call 'Link externo', activity.external_link unless activity.external_link.blank?
-        # License section
-        license = Gallery::License.find_by_id(activity.license_id)
-        text_html_group.call 'Licença', "#{license&.title} (#{license&.acronym})", 'html' unless activity.license_id.blank?
-
+        
         # Creating Header and Footer
         pdf.page_count.times do |i|
           pdf.go_to_page i + 1
