@@ -93,7 +93,7 @@ module Gallery
 
       def general_materials
         object.general_materials.map do |general_material|
-          Gallery::V1::GeneralMaterialSerializer.new(general_material, root: false)
+          Gallery::V1::GeneralMaterialSerializer.new(general_material, root: false, scope: object)
         end
       end
 
