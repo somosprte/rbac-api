@@ -106,9 +106,11 @@ module Gallery
             ]
           ]
           activity.general_materials&.each do |general_material|
-            quantity = general_material.activity_general_materials[0]&.quantity || 1
+            quantity = Gallery::ActivityGeneralMaterial.find_by(
+              activity_id: activity.id, general_material_id: general_material.id
+            )&.quantity
             table_data << [
-              { content: quantity.to_s, align: :center },
+              { content: quantity.to_s || '0', align: :center },
               { content: general_material.name.to_s || '' }
             ]
           end

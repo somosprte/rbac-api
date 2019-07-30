@@ -213,8 +213,14 @@ RSpec.configure do |config|
             },
             general_materials: {
               type: :array,
-              items: {
-                '$ref' => '#/definitions/general_materials_object'
+              items: { 
+                type: :object,
+                properties: {
+                  id: { type: :string, example: 'd33b9dd0-d8f9-432a-af0a-56cdbc9146ff' },
+                  name: { type: :string, example: 'Cartolina' },
+                  description: { type: :string, example: 'Cartolina para ser usada em atividades' },
+                  quantity: { type: :string, example: 11 },
+                }
               }
             },
             images: {
@@ -530,24 +536,12 @@ RSpec.configure do |config|
               type: :string,
               example: 'Cartolina para ser usada em atividades'
             },
-            activity_general_materials: {
-              '$ref' => '#/definitions/activity_general_materials_object'
-            }
-          },
-          required: %w[name description]
-        },
-        activity_general_materials_object: {
-          type: :object,
-          properties: {
-            id: {
-              type: :string,
-              example: '73590bc0-95f5-41ea-8337-f3e0e24709f'
-            },
             quantity: {
               type: :integer,
               example: 10
             }
-          }
+          },
+          required: %w[name description]
         },
         image_object: {
           type: :object,
@@ -744,7 +738,15 @@ RSpec.configure do |config|
               specific_materials: { type: :string, example: 'Cola e tesoura sem ponta' },
               general_materials: {
                 type: :array,
-                items: { '$ref' => '#/definitions/general_materials_object' }
+                items: { 
+                  type: :object,
+                  properties: {
+                    id: { type: :string, example: 'd33b9dd0-d8f9-432a-af0a-56cdbc9146ff' },
+                    name: { type: :string, example: 'Cartolina' },
+                    description: { type: :string, example: 'Cartolina para ser usada em atividades' },
+                    quantity: { type: :string, example: 11 },
+                  }
+                }
               },
               images: { '$ref' => '#/definitions/image_object' },
               comments: { '$ref' => '#/definitions/comment_object' },
