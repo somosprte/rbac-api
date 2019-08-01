@@ -72,13 +72,14 @@ echo '...file config/database.yml created'
 
 docker-compose build
 docker-compose run web bundle
+docker network create rbacapi_default
 docker-compose run web rails db:drop
 docker-compose run web rails db:create
 docker-compose run web rails db:migrate
 docker-compose run web rails db:seed
 docker-compose down
 code .
-firefox localhost:8080/api-docs/index.html
+open localhost:8080/api-docs/index.html & xdg-open localhost:8080/api-docs/index.html
 docker-compose up
 
 
