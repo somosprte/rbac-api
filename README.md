@@ -1,24 +1,45 @@
-# README
+# Development environment
 
-This `README` would normally document whatever steps are necessary to get the
-application up and running.
+## For first start
 
-Things you may want to cover:
+In terminal run:
 
-* Ruby version
+```(script)
+sh ./start.sh
+```
 
-* System dependencies
+---
 
-* Configuration
+## Basic comands
 
-* Database creation
+---
 
-* Database initialization
+copy migrations from engine
 
-* How to run the test suite
+```(script)
+docker-compose run web rails engine:install:migrations
 
-* Services (job queues, cache servers, search engines, etc.)
+docker-compose -f rds.yml run web rails engine:install:migrations
 
-* Deployment instructions
+```
 
-* ...
+---
+
+create migrate
+
+```(script)
+docker-compose run web rails db:migrate
+
+docker-compose -f rds.yml run web rails db:migrate
+```
+
+---
+update documentation
+
+```(script)
+docker-compose run web rake rswag:specs:swaggerize
+
+docker-compose -f rds.yml run web rake rswag:specs:swaggerize
+```
+
+---
