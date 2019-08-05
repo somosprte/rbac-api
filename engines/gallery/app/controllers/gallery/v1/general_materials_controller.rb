@@ -6,7 +6,7 @@ module Gallery
   module V1
     class GeneralMaterialsController < ApplicationController
       before_action :set_general_material, only: %i[show update destroy]
-      # skip_before_action :authenticate, :only => [:index, :page]
+      skip_before_action :authenticate, :only => [:index]
 
       # GET /gallery/v1/general_materials
       def index

@@ -8,7 +8,7 @@ RSpec.describe 'Space types API', type: :request do
     get 'Get Space Types' do
       tags 'Space Types'
       consumes 'application/json'
-      description 'Get Space Typess'
+      description 'Get Space Types'
       parameter name: :per, in: :query, type: :integer, description: 'results per page', default: 10, required: false
       parameter name: :page, in: :query, type: :integer, description: 'page', default: 1, required: false
 

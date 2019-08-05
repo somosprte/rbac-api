@@ -2489,16 +2489,9 @@
     },
     "/gallery/v1/general_materials/": {
       "get": {
-        "summary": "Get Space Types",
+        "summary": "Get General Materials",
         "tags": [
           "General Materials"
-        ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
         ],
         "consumes": [
           "application/json"
@@ -3710,7 +3703,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get Space Typess",
+        "description": "Get Space Types",
         "parameters": [
           {
             "name": "per",
