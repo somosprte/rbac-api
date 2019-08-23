@@ -33,6 +33,7 @@ scope = Gallery::Scope.create(title: 'Scope 1', description: 'Scope 1')
 audience = Gallery::Audience.create(name: 'Crianças', description: 'Crianças')
 space_type = Gallery::SpaceType.create(title: 'Sala de aula', description: 'Sala de aula com projetor')
 general_material = Gallery::GeneralMaterial.create(name: 'Cartolina', description: 'Cartolina para ser usada em atividades')
+license = Gallery::License.create(title: 'License 1', acronym: 'L1', version: 'v1', description: 'Scope 1', external_link: 'www.domain.com')
 p 'creating activities...'
 Gallery::Activity.create(
   title: 'Atividade Pedro - Osvaldo',
@@ -54,6 +55,7 @@ Gallery::Activity.create(
   scope_ids: [scope.id],
   audience_ids: [audience.id],
   activity_type: 'internal',
+  license_id: license.id,
   is_abac_author: false,
   inserted_by: person_1.id,
   external_authors: ['Pedro'],
@@ -85,6 +87,7 @@ Gallery::Activity.create(
   scope_ids: [scope.id],
   audience_ids: [audience.id],
   activity_type: 'internal',
+  license_id: license.id,
   is_abac_author: false,
   inserted_by: person_2.id,
   external_authors: ['Osvaldo Aurélio'],
