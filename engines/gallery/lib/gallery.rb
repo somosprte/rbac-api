@@ -123,8 +123,10 @@ module Gallery
         text_html_group.call 'Dicas sobre a implementação', activity.implementation_tips, 'html' unless activity.implementation_tips.blank?
         # Reflection assessment  section
         text_html_group.call 'Reflexão e avaliação', activity.reflection_assessment, 'html' unless activity.reflection_assessment.blank?
-        # Duration section
-        text_html_group.call 'Duração', activity.duration unless activity.duration.blank?
+        # Class Duration section
+        text_html_group.call 'Duração da aula em minutos', activity.class_duration unless activity.class_duration.blank?
+        # Class Quantity section
+        text_html_group.call 'Quantidade de aulas', activity.class_quantity unless activity.class_quantity.blank?
         # Inspirations section
         list_group.call 'Atividades inspiradoras', activity.inspirations unless activity.inspirations.blank?
         # References section

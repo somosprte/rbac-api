@@ -43,21 +43,23 @@ module Gallery
       original: '1200x1200#'
     }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-    validates :description,
-              :motivation,
-              :powerful_ideas,
-              :products,
-              :copyright,
-              :space_organization,
-              :implementation_steps,
-              :duration,
-              :scope_ids,
-              :audience_ids,
-              :space_type_ids,
-              :license_id,
-              presence: true, if: ->{ activity_type == 'internal' } # for internal only
-    validates :external_link, presence: true, if: ->{ activity_type == 'external' } # for external only
-    validates :title, :caption, presence: true # for both [internal | external]
+    # validates :description,
+    #           :motivation,
+    #           :powerful_ideas,
+    #           :products,
+    #           :copyright,
+    #           :space_organization,
+    #           :implementation_steps,
+    #           :class_duration,
+    #           :class_quantity,
+    #           :scope_ids,
+    #           :audience_ids,
+    #           :space_type_ids,
+    #           :license_id,
+    #           presence: true, if: ->{ activity_type == 'internal' } # for internal only
+    # validates :external_link, presence: true, if: ->{ activity_type == 'external' } # for external only
+    # validates :title, :caption, presence: true # for both [internal | external]
+    validates :title, presence: true
 
     amoeba do
       enable

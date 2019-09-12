@@ -132,9 +132,13 @@ RSpec.configure do |config|
               type: :string,
               example: 'Avaliar o comportamento do aluno'
             },
-            duration: {
-              type: :string,
-              example: 'Cerca de 30 minutos'
+            class_duration: {
+              type: :integer,
+              example: 50
+            },
+            class_quantity: {
+              type: :integer,
+              example: 1
             },
             references: {
               type: :string,
@@ -309,6 +313,14 @@ RSpec.configure do |config|
             external_link: {
               type: :string,
               example: 'www.domain.com'
+            },
+            allow_commercial_use: {
+              type: :string,
+              example: 'commercial'
+            },
+            allow_modify: {
+              type: :string,
+              example: 'non-modify'
             }
           },
           required: ['title', 'description']
@@ -704,7 +716,8 @@ RSpec.configure do |config|
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
-              duration: { type: :string, example: 'cerca de 30 minutos' },
+              class_duration: { type: :integer, example: 50 },
+              class_quantity: { type: :integer, example: 1 },
               references: { type: :string, example: 'Referências bibliograficas' },
               remixed: { type: :string, example: 'yes' },
               activity_type: { type: :string, example: 'internal' },
