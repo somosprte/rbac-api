@@ -88,7 +88,9 @@ RSpec.describe 'Licenses API', type: :request do
               acronym: { type: :string, example: 'L1' },
               version: { type: :string, example: 'v1' },
               description: { type: :string, example: 'Scope 1' },
-              external_link: { type: :string, example: 'www.domain.com' }
+              external_link: { type: :string, example: 'www.domain.com' },
+              allow_commercial_use: { type: :string, example: 'commercial' },
+              allow_modify: { type: :string, example: 'non-modify' }
             },
             required: ['title', 'description']
           }
@@ -143,7 +145,9 @@ RSpec.describe 'Licenses API', type: :request do
               acronym: { type: :string, example: 'L1' },
               version: { type: :string, example: 'v1' },
               description: { type: :string, example: 'Scope 1' },
-              external_link: { type: :string, example: 'www.domain.com' }
+              external_link: { type: :string, example: 'www.domain.com' },
+              allow_commercial_use: { type: :string, example: 'commercial' },
+              allow_modify: { type: :string, example: 'non-modify' }
             },
             required: ['title']
           }

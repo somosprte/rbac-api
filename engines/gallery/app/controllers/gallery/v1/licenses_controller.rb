@@ -66,7 +66,7 @@ module Gallery
 
       # Only allow a trusted parameter "white list" through.
       def license_params
-        params.require(:license).permit(:title, :acronym, :version, :description, :external_link)
+        params.require(:license).permit(:title, :acronym, :version, :description, :external_link, :allow_commercial_use,:allow_modify)
       end
     end
   end
