@@ -33,3 +33,6 @@ db/schema.rb
 data
 .env
 .env_rds
+
+# docker-compose
+docker-compose.yml
