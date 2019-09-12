@@ -193,7 +193,8 @@ RSpec.describe 'Activities API', type: :request do
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
-              duration: { type: :string, example: 'cerca de 30 minutos' },
+              class_duration: { type: :integer, example: 50 },
+              class_quantity: { type: :integer, example: 1 },
               references: { type: :string, example: 'Referências bibliograficas' },
               is_abac_author: { type: :boolean, example: false },
               external_link: { type: :string, example: 'https://scholar.google.com.br/' },
@@ -209,7 +210,7 @@ RSpec.describe 'Activities API', type: :request do
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
               inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
-            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
+            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'space_organization', 'class_duration', 'class_quantity', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }
         }
       }
@@ -272,7 +273,8 @@ RSpec.describe 'Activities API', type: :request do
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
-              duration: { type: :string, example: 'cerca de 30 minutos' },
+              class_duration: { type: :integer, example: 50 },
+              class_quantity: { type: :integer, example: 1 },
               references: { type: :string, example: 'Referências bibliograficas' },
               is_abac_author: { type: :boolean, example: false },
               external_link: { type: :string, example: 'https://scholar.google.com.br/' },
@@ -288,7 +290,7 @@ RSpec.describe 'Activities API', type: :request do
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
               inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
-            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright',  'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
+            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright',  'space_organization', 'class_duration', 'class_quantity', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }
         }
       }
@@ -464,7 +466,8 @@ RSpec.describe 'Activities API', type: :request do
               implementation_steps: { type: :string, example: 'Primeiramente ler a apostila pagina 2' },
               implementation_tips: { type: :string, example: 'Realizar a atividade durante o dia' },
               reflection_assessment: { type: :string, example: 'Avaliar o comportamento do aluno' },
-              duration: { type: :string, example: 'cerca de 30 minutos' },
+              class_duration: { type: :integer, example: 50 },
+              class_quantity: { type: :integer, example: 1 },
               references: { type: :string, example: 'Referências bibliograficas' },
               is_abac_author: { type: :boolean, example: false },
               external_link: { type: :string, example: 'https://scholar.google.com.br/' },
@@ -480,7 +483,7 @@ RSpec.describe 'Activities API', type: :request do
               image: { type: :string, example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP0Y/hfDwADvwHOEMGxZAAAAABJRU5ErkJggg==' },
               inspirations_ids: { type: :array, example: ['819d249c-e536-43df-b688-1b9ca72eec72'] }
             },
-            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'space_organization', 'duration', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
+            required: ['title', 'caption', 'description', 'motivation', 'powerful_ideas', 'products', 'requirements', 'published', 'version_history', 'copyright', 'space_organization', 'class_duration', 'class_quantity', 'implementation_steps' 'scope_ids', 'audience_ids', 'person_ids', 'space_type_ids', 'general_materials']
           }
         }
       }
