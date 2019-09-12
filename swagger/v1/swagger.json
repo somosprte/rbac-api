@@ -791,9 +791,13 @@
                       "type": "string",
                       "example": "Avaliar o comportamento do aluno"
                     },
-                    "duration": {
-                      "type": "string",
-                      "example": "cerca de 30 minutos"
+                    "class_duration": {
+                      "type": "integer",
+                      "example": 50
+                    },
+                    "class_quantity": {
+                      "type": "integer",
+                      "example": 1
                     },
                     "references": {
                       "type": "string",
@@ -889,7 +893,8 @@
                     "version_history",
                     "copyright",
                     "space_organization",
-                    "duration",
+                    "class_duration",
+                    "class_quantity",
                     "implementation_stepsscope_ids",
                     "audience_ids",
                     "person_ids",
@@ -1142,9 +1147,13 @@
                       "type": "string",
                       "example": "Avaliar o comportamento do aluno"
                     },
-                    "duration": {
-                      "type": "string",
-                      "example": "cerca de 30 minutos"
+                    "class_duration": {
+                      "type": "integer",
+                      "example": 50
+                    },
+                    "class_quantity": {
+                      "type": "integer",
+                      "example": 1
                     },
                     "references": {
                       "type": "string",
@@ -1240,7 +1249,8 @@
                     "version_history",
                     "copyright",
                     "space_organization",
-                    "duration",
+                    "class_duration",
+                    "class_quantity",
                     "implementation_stepsscope_ids",
                     "audience_ids",
                     "person_ids",
@@ -1512,9 +1522,13 @@
                       "type": "string",
                       "example": "Avaliar o comportamento do aluno"
                     },
-                    "duration": {
-                      "type": "string",
-                      "example": "cerca de 30 minutos"
+                    "class_duration": {
+                      "type": "integer",
+                      "example": 50
+                    },
+                    "class_quantity": {
+                      "type": "integer",
+                      "example": 1
                     },
                     "references": {
                       "type": "string",
@@ -1610,7 +1624,8 @@
                     "version_history",
                     "copyright",
                     "space_organization",
-                    "duration",
+                    "class_duration",
+                    "class_quantity",
                     "implementation_stepsscope_ids",
                     "audience_ids",
                     "person_ids",
@@ -3029,6 +3044,14 @@
                     "external_link": {
                       "type": "string",
                       "example": "www.domain.com"
+                    },
+                    "allow_commercial_use": {
+                      "type": "string",
+                      "example": "commercial"
+                    },
+                    "allow_modify": {
+                      "type": "string",
+                      "example": "non-modify"
                     }
                   },
                   "required": [
@@ -3133,6 +3156,14 @@
                     "external_link": {
                       "type": "string",
                       "example": "www.domain.com"
+                    },
+                    "allow_commercial_use": {
+                      "type": "string",
+                      "example": "commercial"
+                    },
+                    "allow_modify": {
+                      "type": "string",
+                      "example": "non-modify"
                     }
                   },
                   "required": [
@@ -4741,9 +4772,13 @@
           "type": "string",
           "example": "Avaliar o comportamento do aluno"
         },
-        "duration": {
-          "type": "string",
-          "example": "Cerca de 30 minutos"
+        "class_duration": {
+          "type": "integer",
+          "example": 50
+        },
+        "class_quantity": {
+          "type": "integer",
+          "example": 1
         },
         "references": {
           "type": "string",
@@ -4942,6 +4977,14 @@
         "external_link": {
           "type": "string",
           "example": "www.domain.com"
+        },
+        "allow_commercial_use": {
+          "type": "string",
+          "example": "commercial"
+        },
+        "allow_modify": {
+          "type": "string",
+          "example": "non-modify"
         }
       },
       "required": [
@@ -5443,9 +5486,13 @@
             "type": "string",
             "example": "Avaliar o comportamento do aluno"
           },
-          "duration": {
-            "type": "string",
-            "example": "cerca de 30 minutos"
+          "class_duration": {
+            "type": "integer",
+            "example": 50
+          },
+          "class_quantity": {
+            "type": "integer",
+            "example": 1
           },
           "references": {
             "type": "string",
