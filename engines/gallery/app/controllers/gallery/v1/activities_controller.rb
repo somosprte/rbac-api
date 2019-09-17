@@ -102,9 +102,10 @@ module Gallery
         activity_remixed.image = @activity.image
         activity_remixed.inserted_by = @current_user.usereable_id     
         activity_remixed.person_ids = @activity.people.ids
-        activity_remixed.scope_ids = @activity.scopes.ids
-        activity_remixed.audience_ids = @activity.audiences.ids
-        activity_remixed.space_type_ids = @activity.space_types.ids
+        activity_remixed.activity_type = 'internal'        
+        # activity_remixed.scope_ids = @activity.scopes.ids
+        # activity_remixed.audience_ids = @activity.audiences.ids
+        # activity_remixed.space_type_ids = @activity.space_types.ids
         activity_remixed.save
         activity_remixed.inspirations.create(activity_two_id: @activity.id, title: @activity.title)
         if activity_remixed.update(activity_params)
