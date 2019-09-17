@@ -27,6 +27,7 @@ module Gallery
     has_many :likes, class_name: 'Experience::Like', as: :likeable, dependent: :destroy
     has_many :favorites, class_name: 'Experience::Favorite', as: :favoriteable, dependent: :destroy
     has_many :remixes, class_name: 'Experience::Remix', as: :remixeable, dependent: :destroy
+    has_many :activities_remixes, class_name:"Experience::Remix", foreign_key: 'activity_id', dependent: :destroy
 
     has_many :inspirations, class_name: 'Gallery::Inspiration', dependent: :destroy
     has_many :activities, through: :inspirations, class_name: 'Gallery::Activity'
